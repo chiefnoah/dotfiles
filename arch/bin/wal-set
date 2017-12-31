@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+notify-send "[wal-set] init" -t 1
+
+WALLP="${HOME}/Wallpapers/Originals-1920x1080"
+
+if [[ "$1" == 'list' ]]; then
+    printf '%s\n' "$(ls "$WALLP")"
+    exit 1
+elif [[ "$1" == 'useprev' ]] && \
+   [[ -f "${HOME}/.cache/wal/wal" ]]; then
+    WALLP="$(< "${HOME}/.cache/wal/wal")"
+else
+    CATEGORY="${WALLP}/${1}"
+    if [[ -d "$CATEGORY" ]]; then
+        WALLP="$CATEGORY"
+        notify-send "[wal-set] using category ${1}" -t 1
+    else
+        printf '%s\n' "Directory ${CATEGORY} does not exist."
+        exit 1
+    fi
+fi
+
+wal -i "$WALLP" -a 75
+
+# NOTE: wal automatically reloads polybar.
+pkill dunst
+pkill compton
+
+xrdb -merge "${HOME}/.Xresources"
+. "${HOME}/.cache/wal/colors.sh"
+
+# Reload bspwm border colors.
+bspc config normal_border_color "$color0"
+bspc config focused_border_color "$color5"
+
+dunst \
+    -lb "$color0"  \
+    -nb "$color0"  \
+    -cb "#ff0000"  \
+    -lf "$color15" \
+    -bf "$color15" \
+    -cf "#000000"  \
+    -nf "$color15" &
+
+compton --config "${HOME}/.config/compton/compton.conf" &
+
+notify-send "[wal-set] done" -t 1

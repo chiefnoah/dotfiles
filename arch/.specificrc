@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+alias pacs='pacaur -Ss'
+alias paci='pacaur --noedit -S'
+alias pacrm='pacaur -Rs'
+alias pacre='sudo pacman-key --refresh-keys; pacaur -Sy'
+alias pacch='checkupdates && pacaur -k'
+alias pacup='pacaur --noedit --noconfirm -Syu'
+alias pacclean='sudo pacman -Rns $(pacman -Qtdq)'
+
+alias imgv='sxiv -t -r'
+alias snvm='source /usr/share/nvm/init-nvm.sh'

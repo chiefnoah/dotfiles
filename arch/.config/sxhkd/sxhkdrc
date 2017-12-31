@@ -1,0 +1,93 @@
+super + Escape
+    pkill -USR1 -x sxhkd ;\
+    notify-send "[sxhkd] config reloaded" -t 1 ;\
+    sh "${HOME}/.config/bspwm/bspwmrc" ;\
+    notify-send "[bspwm] config reloaded" -t 1
+
+#
+# SHORTCUTS
+#
+
+ctrl + Return
+    urxvt
+
+super + Return
+    urxvtc -e "ranger"
+
+ctrl + shift + l
+    physlock -sdp 'This computer is locked.'
+
+ctrl + alt + Delete
+    systemctl suspend
+
+# TODO fix sh environment issues, have to manually source for now
+alt + Return
+    . ~/.commonexports && . ~/.specificrc && rofi -show run
+
+shift + Return
+    rofi -show ssh
+
+ctrl + shift + Return
+    rofi -show window
+
+Print
+    mkdir -p "${HOME}/Screenshots" && \
+    maim "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 5 && \
+        notify-send "[maim] Screenshot saved." -t 1
+
+shift + Print
+    mkdir -p "${HOME}/Screenshots" && \
+    maim -s "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 10 && \
+        notify-send "[maim] Screenshot selection saved." -t 1
+
+alt + Print
+    maim -s --quality 10 | xclip -selection clipboard -t image/png && \
+        notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1
+
+XF86AudioMute
+    pactl set-sink-mute 0 toggle
+
+XF86Audio{LowerVolume,RaiseVolume}
+    amixer sset Master 5%{-,+}
+    # pactl set-sink-volume 0 {-5%,+5%}
+
+XF86MonBrightness{Down,Up}
+    light -{U,A} 10
+    # xbacklight -{dec,inc} 10
+
+
+#
+# BSPWM
+#
+
+# close or kill
+super + {c,k}
+    bspc node -{c,k}
+
+# toggle tiled / monocle layout
+super + m
+    bspc desktop -l next
+
+# focus or swap (shift) node in the given direction
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# cycle through desktops
+alt + {_,shift +} Tab
+    bspc desktop -f {next,prev}
+
+# focus or send to the given desktop
+alt + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# adjust window gap via mouse wheel
+super + button{4,5}
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5))
