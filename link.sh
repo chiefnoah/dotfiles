@@ -31,9 +31,12 @@ fi
 
 case "$1" in
 	base)
+        # see dotfiles README on why this is touched
+        touch "${HOME}/.specificrc"
 	    $stow_cmd $p_base
 		;;
     baseg)
+        touch "${HOME}/.specificrc"
         $stow_cmd $p_base $p_baseg
         ;;
 	rice_og)
