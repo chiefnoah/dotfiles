@@ -14,10 +14,10 @@ alias agh='ag -a --hidden'
 alias badlinks='find . -xtype l'
 alias df='df --exclude-type=tmpfs -h'
 alias dmesg='dmesg -xHw'
-alias lsblk='lsblk --output=NAME,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID,MOUNTPOINT'
-alias lsusb='lsusb -t'
+alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ns='sudo netstat -tulpn'
+alias treea='tree -aI .git'
 
 # General
 alias c='clear'
