@@ -30,17 +30,18 @@ bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
 # Load wallpaper with pywal
-wal -i "${HOME}/wallpaper.png" -a 75
+wal -i "${HOME}/wallpaper.png"
 
-# NOTE: wal automatically reloads polybar. Only dunst needs to be reloaded.
+# Reload bspwm, dunst, and lemonbar with the new colors.
+pkill lemonbar
 pkill dunst
 
-# Reload bspwm and dunst colors.
 xrdb -merge "${HOME}/.Xresources"
 source "${HOME}/.cache/wal/colors.sh"
 
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
+
 dunst \
     -lb "$color0"  \
     -nb "$color0"  \
@@ -49,3 +50,5 @@ dunst \
     -bf "$color15" \
     -cf "#000000"  \
     -nf "$color15" &
+
+"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -f '-lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1' &

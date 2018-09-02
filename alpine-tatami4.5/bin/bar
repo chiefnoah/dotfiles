@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while true; do
+    printf "lemonbar todo ($(date))\n"
+    sleep 1
+done
