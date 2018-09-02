@@ -5,7 +5,7 @@
 # helper function to enforce argc and display provided description
 # and usage string when violated.
 _require () {
-    if [[ "$1" -lt "$2" ]]; then
+    if [ "$1" -lt "$2" ]; then
         printf "${3}\nUSAGE: ${4}\n" ; return 1
     fi
 }
@@ -20,7 +20,7 @@ lnc () {
 
 # auto-ls after cd. Does not show hidden files.
 cd () {
-    if [[ -n "$1" ]]; then
+    if [ -n "$1" ]; then
         builtin cd "$1" && l
     else
         builtin cd "$HOME" && l
@@ -47,6 +47,28 @@ sshnew () {
     ssh-keygen -o -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
+}
+
+
+instassh () {
+    _require $# 4 'Automates ssh keypair generation and installation.' \
+        "$0 [keypair name] [username] [ipv4 addr] [ssh port]" || return 1
+    (
+    set -eu
+    sshnew "$1" ''
+    printf '\ncopying pubkey...\n'
+    ssh-copy-id -i "${HOME}/.ssh/${1}.pub" "${2}@${3}" -p "$4"
+    printf 'writing config stanza...\n'
+    tee <<EOF >> "${HOME}/.ssh/config"
+
+Host ${1}
+    IdentitiesOnly yes
+    HostName ${3}
+    Port ${4}
+    User ${2}
+    IdentityFile ~/.ssh/${1}
+EOF
+    ) || { printf '\nerrored.\n'; rm -vf "${HOME}/.ssh/${1}"{,.pub}; }
 }
 
 
