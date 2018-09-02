@@ -25,9 +25,9 @@ shlib_c_reset='\e[0m'
 
 shlib_cur_path () {
     local wd="$(basename "$PWD")"
+    [ "$wd" = "$USER" ] && wd='~'
     [ "$1" = 'nocolor' ] && shlib_c_fg_cyan= shlib_c_reset=
-    local dummy=''  # prevents bash, mksh from expanding ~, preserves zsh behavior
-    echo -e "${shlib_c_fg_cyan}${wd/$USER/${dummy}~}${shlib_c_reset}"
+    echo -e "${shlib_c_fg_cyan}${wd}${shlib_c_reset}"
 }
 
 shlib_git_dirty () {
