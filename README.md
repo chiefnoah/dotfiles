@@ -2,28 +2,19 @@
 
 ***"you are your dotfiles."***
 
-### Organization
+For a general list of software I use and recommend, refer to [essentials](https://github.com/JoshuaRLi/essentials).
 
-`universal/` contains dotfiles and software configurations that should work across most gnu/linux distributions. Any other top level directory is `{distribution-name}/` and contains a `.specificrc` file, sourced by `universal/.commonrc`. That file defines shell aliases, functions and environment exports specific to the distribution or to software I usually use with the distro.
 
-Each distro TLD is complemented with a `install-{distribution-name}.sh` initial bootstrapping script:
+### Install/Uninstall
+
+Simply execute `link.sh base|arch|debian`. If you want to uninstall (unlink symlinks), pass `d` as the second argument. 
+
+`link.sh base` should be used when there is no X server running; only tty access. It is a dotfiles subset for the other options.
+
+Additionally, the `install-{distribution-name}.sh` scripts are useful to provision a fresh distribution install with the software that my dotfiles configure.
 
 * `install-arch` assumes a fresh Arch install with nothing but tty access.
 * `install-debian` assumes a fresh Debian install preconfigured with a functional desktop environment running on X.
-
-Finally, `special/` contains configuration files that have a more individual, involved install process.
-
-
-### Installation
-
-These dotfiles are not universally plug-and-play; there are files that are specific to me, like `universal/.gitconfig`. That being said, here is an example installation on Arch:
-
-```bash
-DFDIR="${HOME}/dots"
-git clone --recursive https://github.com/JoshuaRLi/dotfiles.git "$DFDIR" && cd "$DFDIR"
-DISTRO='arch'
-"./install-${DISTRO}.sh" && ./link.sh universal "$DISTRO"
-```
 
 
 ### Special Directories
@@ -37,15 +28,8 @@ There are a few special directories worth noting.
 * `scripts/` - useful scripts that i've written
 
 
-### Backup/Restore/Uninstall
+### `.specificrc`
 
-If `link.sh` encounters existing dotfiles while creating symlinks, it will make backups suffixed with `.stow-bak`. To remove all dotfile symlinks, simply `unlink.sh` with no arguments. If there is an existing `.stow.bak` match, that file will be restored by removing the backup suffix.
+This file, sourced by `common/.commonrc`, defines shell aliases, functions and environment exports specific to the distribution and software I usually use with the distribution.
 
-**Important:** This backup/restore functionality has not been thoroughly tested; it is a poor hack that I threw together because GNU stow does not have this functionality built-in. I would advise to use caution with my linking and unlinking scripts.
-
-TODO: I will be implementing my own symlinker soon, rather than rely on `stow`.
-
-
-### Software
-
-For a general list of software I use and recommend, refer to [essentials](https://github.com/JoshuaRLi/essentials).
+If you are just installing the base dotfiles, it is useful to `touch ~/.specificrc` to prevent the error message that is displayed when attempting to source a nonexistent file.
