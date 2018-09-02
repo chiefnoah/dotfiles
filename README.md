@@ -19,13 +19,6 @@ tatami4.5   - config for Alpine Linux rice "tatami4.5"
 Alternatively, you may consider using `stow` to cherry-pick and link individual dotfile folders of your choosing - `link.sh` is convenience.
 
 
-## Notes
-
-There are a few special directories and files worth noting.
-
-* `common/` - contains common shell aliases, functions, environment, and more, for all distros
-* `scripts/` - useful scripts that i've written
-
-#### `.specificrc`
+### `.specificrc`
 
 This file, sourced by `common/.commonrc`, defines shell aliases, functions and environment exports specific to the distribution and software I usually use with the distribution. `link.sh` will automatically `touch ~/.specificrc` when installing the base or baseg distro-agnostic preset - this prevents the error message that is displayed when attempting to source a nonexistent file.
