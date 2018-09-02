@@ -1,9 +1,9 @@
 #!/usr/bin/env mksh
 
+export SHELL="$(which mksh)"
+
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
-
-export SHELL="$(which mksh)"
 
 # prompt
 shlib_export_PS1

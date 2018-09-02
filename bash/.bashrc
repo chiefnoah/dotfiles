@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
+export SHELL="$(which bash)"
+
 # bring in common shell aliases, environment and functions
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
-
-export SHELL="$(which bash)"
 
 # prompt
 shlib_export_PS1
