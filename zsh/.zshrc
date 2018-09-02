@@ -1,5 +1,4 @@
 export SHELL="$(which zsh)"
-. "${HOME}/.shlib"
 . "${HOME}/.dotfiles-base/all"
 
 # completion adjustments

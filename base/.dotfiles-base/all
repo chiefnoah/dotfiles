@@ -4,6 +4,8 @@ ssource () {
     done
 }
 
+ssource "${HOME}/.dotfiles-base/lib"
+
 ssource "${HOME}/.dotfiles-base/env"
 ssource "${HOME}/.dotfiles-base/aliases"
 ssource "${HOME}/.dotfiles-base/functions"

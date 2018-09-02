@@ -1,5 +1,4 @@
 export SHELL="$(which mksh)"
-. "${HOME}/.shlib"
 . "${HOME}/.dotfiles-base/all"
 
 # prompt

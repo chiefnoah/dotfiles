@@ -1,5 +1,4 @@
 export SHELL="$(which bash)"
-. "${HOME}/.shlib"
 . "${HOME}/.dotfiles-base/all"
 
 # prompt

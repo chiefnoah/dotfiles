@@ -22,7 +22,7 @@ EOF
 	exit 1
 }
 
-p_base="base bin sh mksh bash zsh nano micro ranger weechat tools"
+p_base="base bin mksh bash zsh nano micro ranger weechat tools"
 p_baseg="atom mpv rofi redshift cava"
 p_dev="tools-dev python golang rust nodejs ruby"
 
