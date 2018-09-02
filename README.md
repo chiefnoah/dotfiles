@@ -26,6 +26,15 @@ DISTRO='arch'
 ```
 
 
+### Special Directories
+
+There are a few special directories worth noting.
+
+* `arch/` - contains the `.specificrc` for arch-based distros
+* `debian/` - contains the `.specificrc` for debian-based distros
+* `manual-configs/` - configuration files that require a more manual, involved installation process than merely symlinking
+
+
 ### Backup/Restore/Uninstall
 
 If `link.sh` encounters existing dotfiles while creating symlinks, it will make backups suffixed with `.stow-bak`. To remove all dotfile symlinks, simply `unlink.sh` with no arguments. If there is an existing `.stow.bak` match, that file will be restored by removing the backup suffix.
