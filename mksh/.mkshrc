@@ -7,14 +7,19 @@ cur_path () {
     printf "${wd/$USER/\~}"
 }
 
-cur_branch () {
+__git_dirty () {
+    [ -z "$(git status --porcelain)" ] || printf '* '
+}
+
+git_branch () {
+    [ -d '.git' ] || return
     local cb="$(git branch 2>/dev/null | grep \*)"
-    [[ -n "$cb" ]] && printf "(${cb:2:-1})"
+    [ -n "$cb" ] && printf " ($(__git_dirty)${cb:2:-1})"
 }
 
 HN="$(hostname)"
 PS1='${HN} #'
-(( USER_ID )) && PS1='[${USER}@${HN} $(cur_path) $(cur_branch)]$ '
+(( USER_ID )) && PS1='${USER}@${HN} $(cur_path)$(git_branch) $ '
 
 alias hist='fc -l'
 export HISTFILE="${HOME}/.mksh_history"
