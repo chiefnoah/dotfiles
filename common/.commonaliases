@@ -9,8 +9,6 @@ alias llt='ll -rt'
 alias r='ranger'
 
 # Info/Introspection/Search
-alias ag='ag -a'
-alias agh='ag -a --hidden'
 alias badlinks='find . -xtype l'
 alias df='dfc -p /dev,-tmpfs || df --exclude-type=tmpfs -h'
 alias du='ncdu || sudo du -skh .??* * | sort -rh'
@@ -18,6 +16,8 @@ alias dmesg='dmesg -xHw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ns='sudo netstat -tulpn'
+alias rg='rg -a'
+alias rgh='rg -a --hidden'
 alias treea='tree -aI .git'
 
 # General
@@ -37,7 +37,6 @@ alias sitemirror='wget --no-config -mpkKE -e robots=off'
 alias ssha='pgrep ssh-agent || eval $(ssh-agent)'
 alias sshc='$EDITOR ~/.ssh/config'
 alias tailf='tail -f -n 100'
-alias vi='vim'
 
 # Docker
 alias alp='sudo docker run -it --rm alpine'
@@ -90,10 +89,14 @@ alias gog='go get -u -v'
 
 # Python
 alias p='/usr/bin/env python3'
+alias pdist='p setup.py sdist bdist_wheel'
+alias pupload='p -m twine upload -r warehouse dist/*'
 alias pe='pipenv'
 alias pei='pe install'
+alias peid='pe install --dev'
 alias penew='pe --rm ; pe install --dev ; pe check ; pe shell'
 alias perm='pe --rm'
+alias pesh='pe shell'
 alias peu='pe uninstall'
 alias peup='pe update && pe check'
 pedump () {
@@ -105,8 +108,6 @@ pedump () {
 alias pipi='p -m pip install --user'
 alias pipl='p -m pip freeze'
 alias pipu='p -m pip uninstall'
-alias pypir='p setup.py register -r pypi'
-alias pypip='p setup.py sdist bdist_wheel upload -r pypi'
 
 # Node.js/npm
 alias node='nvm use node'

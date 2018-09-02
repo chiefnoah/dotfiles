@@ -14,7 +14,6 @@ pathprepend() {
   done
 }
 
-export PYTHONSTARTUP="${HOME}/.pythonrc"
 export PIP_DOWNLOAD_CACHE="${HOME}/.pip/cache"
 export GPG_TTY="$(tty)"
 export GOPATH="${HOME}/.go"
