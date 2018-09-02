@@ -9,8 +9,8 @@ usage () {
 USAGE: $0 PRESET [d]
 
 PRESETS:
-base        - non-graphical, non-dev configs
-baseg       - X/graphical configs
+base        - all non-graphical, non-dev configs
+baseg       - all X/graphical configs
 dev         - blanket development environment config
 og          - config for Arch Linux rice "og"
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
@@ -22,34 +22,44 @@ EOF
 	exit 1
 }
 
-p_base="base bin mksh bash zsh ranger weechat tools"
-p_baseg="mpv rofi redshift cava"
+p_base="base bin mksh bash zsh tools"
 
 if [ "$2" = 'd' ]; then
-    stow_cmd="stow -vDt ${HOME}"
+    stow="stow -vDt ${HOME}"
 else
-    stow_cmd="stow -vt ${HOME}"
+    stow="stow -vt ${HOME}"
 fi
 
 if
     ! case "$1" in
 	base)
-	    $stow_cmd $p_base ;;
+	    $stow $p_base
+        $stow -d applications ranger weechat
+        ;;
     baseg)
-        $stow_cmd -d dev-tools atom
-        $stow_cmd $p_baseg ;;
+        $stow -d applications cava mpv redshift
+        $stow -d dev-tools atom
+        ;;
     dev)
-        $stow_cmd -d dev-tools basics nano micro
-        $stow_cmd -d dev-langs python golang rust ruby nodejs
+        $stow -d dev-langs python golang rust ruby nodejs
+        $stow -d dev-tools basics nano micro
         ;;
 	og)
-		$stow_cmd $p_base $p_baseg 'os-arch' 'rice-og' ;;
+		$stow $p_base 'os-arch' 'rice-og'
+        $stow -d applications ranger weechat \
+            cava mpv redshift
+        ;;
     tatami4.5)
-		$stow_cmd $p_base $p_baseg 'os-alpine' 'rice-tatami4.5' ;;
+		$stow $p_base 'os-alpine' 'rice-tatami4.5'
+        $stow -d applications ranger weechat \
+            mpv
+        ;;
     work)
-		$stow_cmd $p_base $p_baseg 'os-mac' 'rice-work'
-        $stow_cmd -d dev-tools basics nano micro
-        $stow_cmd -d dev-langs python nodejs
+		$stow $p_base 'os-mac' 'rice-work'
+        $stow -d applications weechat \
+            mpv
+        $stow -d dev-langs python nodejs
+        $stow -d dev-tools basics nano micro
         ;;
 	*)
 		usage ;;
