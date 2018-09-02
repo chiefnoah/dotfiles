@@ -24,7 +24,7 @@ if [[ -f "${HOME}/.cache/wal/wal" ]] && [[ -z "$1" ]]; then
 else
     sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
     notify "Detected screen dimensions: ${sdim}"
-    walldir="${HOME}/Wallpapers/Originals-${sdim}"
+    walldir="${HOME}/Wallpapers-${sdim}"
     if [[ ! -d "$walldir" ]]; then
         notify-err "Directory ${walldir} not found."
         exit 1
