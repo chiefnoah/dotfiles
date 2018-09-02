@@ -41,6 +41,15 @@ killtty () {
 }
 
 
+gitignore () {
+    _require $# 1 'gitignore.io download wrapper.' \
+        "$0 [directive ...]" || return 1
+    local URL="https://www.gitignore.io/api/${1}"
+    shift; for d in "$@"; do URL="${URL},${d}"; done
+    wget "$URL" -O .gitignore
+}
+
+
 sshnew () {
     _require $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
         "$0 [keypair name] [optional comment]" || return 1
