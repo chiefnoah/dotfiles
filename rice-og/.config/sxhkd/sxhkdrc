@@ -7,6 +7,9 @@ super + Escape
 ctrl + Return
     urxvt
 
+shift + Return
+    bspwm-draw-urxvt
+
 super + Return
     urxvtc -e "ranger"
 
@@ -21,9 +24,6 @@ alt + Return
 
 ctrl + alt + Return
     rofi -show window
-
-shift + Return
-    rofi -show ssh
 
 Print
     mkdir -p "${HOME}/Screenshots" && \
