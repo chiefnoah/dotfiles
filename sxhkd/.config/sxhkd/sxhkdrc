@@ -24,11 +24,11 @@ ctrl + alt + Delete
 alt + Return
     . ~/.commonexports && . ~/.specificrc && rofi -show run
 
+ctrl + alt + Return
+    rofi -show window
+
 shift + Return
     rofi -show ssh
-
-ctrl + shift + Return
-    rofi -show window
 
 Print
     mkdir -p "${HOME}/Screenshots" && \
@@ -67,6 +67,10 @@ super + {c,k}
 # toggle tiled / monocle layout
 super + m
     bspc desktop -l next
+
+# cycle through nodes, useful during monocle layout
+ctrl + shift + Return
+    bspc node -f next
 
 # focus or swap (shift) node in the given direction
 super + {_,shift + }{h,j,k,l}
