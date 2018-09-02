@@ -1,2 +1,2 @@
-#include ".xres/xft"
-#include ".xres/urxvt"
+#include ".config/.Xresources.d/xft"
+#include ".config/.Xresources.d/urxvt"

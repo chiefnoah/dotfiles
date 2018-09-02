@@ -11,7 +11,7 @@ URxvt.scrollBar: false
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
-URxvt*saveLines: 255
+URxvt*saveLines: 1024
 
 ! esc sequences for word jumping
 URxvt.keysym.Control-Left: \033[1;5D
