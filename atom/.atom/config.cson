@@ -1,7 +1,12 @@
 "*":
+  "autocomplete-python":
+    useKite: false
   core:
     audioBeep: false
     autoHideMenuBar: true
+    disabledPackages: [
+      "whitespace"
+    ]
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
@@ -10,7 +15,9 @@
   editor:
     confirmCheckoutHeadRevision: false
     fontFamily: "Hack"
+    fontSize: 11
     showCursorOnSelection: false
+    showInvisibles: true
     softWrap: true
   "exception-reporting":
     userId: "d8648668-4bd5-4d06-8930-8db37b401285"

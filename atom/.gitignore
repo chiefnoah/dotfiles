@@ -1,0 +1,7 @@
+.atom/packages
+.atom/*cache*
+.atom/.*
+.atom/blob-store
+.atom/storage
+.atom/projects.cson
+.atom/github.cson
