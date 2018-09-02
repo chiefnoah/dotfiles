@@ -66,6 +66,7 @@ lockdown () {
     chmod 700 "${HOME}/."{ssh,gnupg}
     chmod 600 -vR "${HOME}/.gnupg/"*
     chmod 700 "${HOME}/.gnupg/private-keys-v1.d"
+    chmod 700 "${HOME}/.gnupg/crls.d"
     chmod 400 -vR "${HOME}/.ssh/"*
     chmod 444 -vR "${HOME}/.ssh/"*.pub
     chmod 600 -v "${HOME}/.ssh/config"
