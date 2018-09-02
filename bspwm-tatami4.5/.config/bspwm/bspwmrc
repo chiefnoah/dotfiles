@@ -29,6 +29,9 @@ bspc config pointer_follows_focus   false
 bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
+# Reload fonts
+xset +fp "${HOME}/.local/share/fonts/tewi"
+
 # Load wallpaper with pywal
 wal -i "${HOME}/wallpaper.png"
 
@@ -51,4 +54,4 @@ dunst \
     -cf "#000000"  \
     -nf "$color15" &
 
-"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -f '-lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1' &
+"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
