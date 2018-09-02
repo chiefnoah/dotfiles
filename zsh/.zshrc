@@ -4,11 +4,13 @@
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
-# auto-complete
+# completion adjustments
 autoload -Uz compinit && compinit
 zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:*:*:users' ignored-patterns '_*'
 
 # prompt
 # need to redefine colors so zsh knows the control characters don't need to show up in terminal
