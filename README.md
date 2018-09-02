@@ -21,7 +21,7 @@ Additionally, the `install-{distribution-name}.sh` scripts are useful to provisi
 
 There are a few special directories worth noting.
 
-* `arch/` - contains the `.specificrc` for arch-based distros
+* `arch/` - contains the `.specificrc` for arch-based distros as well as some X configuration
 * `debian/` - contains the `.specificrc` for debian-based distros
 * `common/` - contains common shell aliases, functions, environment, and more, for all distros
 * `manual-configs/` - configuration files that require a more manual, involved installation process than merely symlinking

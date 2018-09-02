@@ -6,7 +6,7 @@ usage () {
 }
 
 base_dots="common scripts bash zsh nano micro redshift ranger"
-baseg_dots="atom mpv rofi x"
+baseg_dots="atom mpv rofi"
 arch_dots="arch bspwm sxhkd urxvt dunst compton polybar pywal"
 debian_dots="debian"
 
