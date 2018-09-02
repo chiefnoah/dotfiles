@@ -4,8 +4,7 @@ export SHELL="$(which bash)"
 # prompt
 df_export_PS1
 
-# configure GNU readline
-set -o emacs
+# configure GNU readline + keybindings
 bind -f "${HOME}/.inputrc"
 
 # options

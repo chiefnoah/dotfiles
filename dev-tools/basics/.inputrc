@@ -1,5 +1,7 @@
 $include /etc/inputrc
 
+set keymap emacs
+
 "\C-r": reverse-search-history
 "\C-l": alias-expand-line
 "\C-a": beginning-of-line
