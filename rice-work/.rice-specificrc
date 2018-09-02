@@ -13,7 +13,8 @@ else
     df_warn "google-cloud-sdk not initiated; use zsh or bash"
 fi
 
-source "${PYENV_ROOT}/versions/3.6.5/bin/virtualenvwrapper.sh"
+export PYENV_VERSION=3.7.0
+source "${PYENV_ROOT}/versions/$(pyenv global)/bin/virtualenvwrapper.sh"
 
 export PYTHONDONTWRITEBYTECODE='pls no'
 
