@@ -1,7 +1,22 @@
-URxvt.scrollBar: false
+URxvt*termName: rxvt
 URxvt.letterSpace: -1
 URxvt.internalBorder: 25
 URxvt.font: xft:Hack:size=11
+
+! scrolling adjustments
+URxvt.scrollBar: false
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
+! clickable URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! esc sequences for word jumping
+URxvt.keysym.Control-Left: \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
 
 ! disable ctrl-shift
 URxvt.iso14755: false
