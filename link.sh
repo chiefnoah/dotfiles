@@ -1,14 +1,16 @@
 #!/usr/bin/env sh
 
 usage () {
-	printf "USAGE: $0 base|arch|debian\n"
+	printf "USAGE: $0 base|baseg|debian|rice_og\n"
 	exit 1
 }
 
-base_dots="common common-dev scripts bash zsh nano micro redshift ranger"
-baseg_dots="atom mpv rofi"
-arch_dots="arch bspwm sxhkd urxvt dunst polybar pywal"
-debian_dots="debian"
+# dotfile presets
+p_base="common common-dev scripts bash zsh nano micro ranger"
+p_baseg="atom mpv rofi redshift"
+p_debian="debian"
+p_rice_og="arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og"
+
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
@@ -18,17 +20,20 @@ fi
 
 case "$1" in
 	base)
-	    $stow_cmd $base_dots
+	    $stow_cmd $p_base
 		;;
-	arch)
-		$stow_cmd $base_dots $baseg_dots $arch_dots
-		;;
+    baseg)
+        $stow_cmd $p_base $p_baseg
+        ;;
 	debian)
-		$stow_cmd $base_dots $baseg_dots $debian_dots
+		$stow_cmd $p_debian
+		;;
+	rice_og)
+		$stow_cmd $p_base $p_baseg $p_rice_og
 		;;
 	*)
 		usage
 		;;
 esac
 
-[ ! "$?" -eq 0 ] && printf "You have to move or delete the files stow is conflicting with.\n"
+[ ! "$?" -eq 0 ] && printf "\nYou have to move or delete the files stow is conflicting with.\n"
