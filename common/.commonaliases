@@ -52,6 +52,13 @@ else
     alias df='df --exclude-type=tmpfs -h ; printf "\nYou should install dfc.\n"'
 fi
 
+if command -v tree > /dev/null 2>&1; then
+    alias tree='exa --tree'
+    alias treea='exa --tree -aI .git'
+else
+    alias treea='tree -aI .git'
+fi
+
 alias badlinks='find . -xtype l'
 alias dmesg='dmesg -xHw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
@@ -62,7 +69,6 @@ psi () {
 alias pst='pstree -hTp'
 alias rg='rg -a'
 alias rgh='rg -a --hidden'
-alias treea='tree -aI .git'
 alias watchdir='inotifywait -e create,modify,delete -mr'
 
 
