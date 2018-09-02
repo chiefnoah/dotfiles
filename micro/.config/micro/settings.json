@@ -3,7 +3,7 @@
     "autoindent": false,
     "autosave": false,
     "colorcolumn": 0,
-    "colorscheme": "default",
+    "colorscheme": "simple",
     "cursorline": true,
     "eofnewline": true,
     "fastdirty": true,
@@ -39,5 +39,5 @@
     "tabsize": 4,
     "tabstospaces": true,
     "termtitle": true,
-    "useprimary": true,
+    "useprimary": true
 }

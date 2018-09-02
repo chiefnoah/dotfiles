@@ -4,8 +4,10 @@
     "CtrlL": "CutLine",
     "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
-    "CtrlT": "NewTab",
-    "CtrlLeft": "PreviousTab",
-    "CtrlRight": "NextTab",
+    "CtrlLeft": "WordLeft",
+    "CtrlRight": "WordRight",
+    "CtrlT": "AddTab",
+    "AltLeft": "PreviousTab",
+    "AltRight": "NextTab",
     "CtrlSpace": "CommandMode"
 }
