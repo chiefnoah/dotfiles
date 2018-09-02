@@ -30,7 +30,7 @@ bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
 
-# Load and apply ~/.{X,}colors
+# Load and apply fonts and colors of X
 xset +fp "${HOME}/.local/share/fonts/tewi"
 xrdb -merge -quiet "${HOME}/.Xresources"
 xrdb -merge -quiet "${HOME}/.Xcolors"
@@ -49,6 +49,10 @@ dunst \
     -cf "#000000"  \
     -nf "$color15" &
 
+pkill tatami-bar
 pkill lemonbar
-"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -g x24 \
+"${HOME}/bin/tatami-bar" | lemonbar -B "$color0" -F "$color8" -g x24 -u 2 \
     -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
+#    -f '-*-fontawesome-medium-*-*-*-*-*-*-*-*-*-*-*' \
+#    -f '-*-hack-medium-*-*-*-*-*-*-*-*-*-*-*'
+# why do people pipe to sh & ?

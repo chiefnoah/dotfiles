@@ -1,3 +1,42 @@
+! special
+*.foreground:   #919294
+*.background:   #1d1f21
+*.cursorColor:  #919294
+
+! black
+*.color0:       #404040
+*.color8:       #464646
+
+! red
+*.color1:       #7a4256
+*.color9:       #7a4956
+
+! green
+*.color2:       #58614f
+*.color10:      #6d7762
+
+! yellow
+*.color3:       #97814e
+*.color11:      #a38d56
+
+! blue
+*.color4:       #424a64
+*.color12:      #626c94
+
+! magenta
+*.color5:       #7d5066
+*.color13:      #7e4967
+
+! cyan
+*.color6:       #3c5a5d
+*.color14:      #548084
+
+! white
+*.color7:       #7b8695
+*.color15:      #94a1b3
+
+! ------------
+
 *.color0: #000000
 *color0:  #000000
 *.color1: #A8A8A8
@@ -31,12 +70,12 @@
 *.color15: #f4f4f4
 *color15:  #f4f4f4
 
-! color7
-URxvt*foreground:   #f4f4f4
-URxvt*cursorColor:  #f4f4f4
 ! color0
 URxvt*background:   [100]#000000
 URxvt*borderColor:  [100]#000000
+! color7
+URxvt*foreground:   #f4f4f4
+URxvt*cursorColor:  #f4f4f4
 
 ! Black color that will not be affected by bold highlighting.
 *.color66: #000000
