@@ -21,7 +21,7 @@ EOF
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
-p_base="common common-dev bin bash zsh nano micro ranger"
+p_base="common common-dev bin mksh bash zsh nano micro ranger weechat"
 p_baseg="atom mpv rofi redshift cava"
 
 if [ "$2" = 'd' ]; then
@@ -44,11 +44,11 @@ case "$1" in
             arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og
 		;;
     tatami4.5)
-		$stow_cmd common common-dev bin mksh nano micro ranger mpv cava \
+		$stow_cmd $p_base $p_baseg \
             alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5
 		;;
     cash)
-		$stow_cmd $p_base \
+		$stow_cmd $p_base $p_baseg \
             macos-cash
 		;;
 	*)
