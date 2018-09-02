@@ -93,6 +93,16 @@ alias ytm='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass
 alias sc='youtube-dl --ignore-config --ignore-errors --no-continue -f bestaudio --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'
 
 
+# Audio
+alias asrc='$EDITOR ~/.asoundrc'
+alias atest='speaker-test'
+alias lscards='aplay -l ; cat /proc/asound/cards'
+alias wav='aplay'
+alias mp='mplayer -vo null -ao alsa'
+alias mpj='mplayer -vo null -ao jack'
+# for video aliases (mpv), refer to .xsrc
+
+
 # Docker
 alias alp='sudo docker run -it --rm alpine'
 alias dcp='sudo docker container prune -f'

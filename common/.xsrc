@@ -1,7 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Stuff specifically for X sessions.
+# Stuff specifically for X sessions (graphical desktop environments)
+
+# list fontconfig fonts (for XLFD, use xfontsel or xlsfonts)
+alias fonts='fc-list | cut -f2 -d: | sort -u'
 
 alias ssel='maim -s | xclip -selection clipboard -t image/png'
-alias v='mpv --profile=vid-hq'
-alias fonts='fc-list | cut -f2 -d: | sort -u'
+
+# For audio, see .commonaliases
+alias vp='mpv -ao alsa --profile=vid-hq'
