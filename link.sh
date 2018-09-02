@@ -30,7 +30,7 @@ if
     ! case "$1" in
 	base)
 	    $stow base bin
-        $stow -d applications weechat
+        $stow -d applications weechat gnupg
         $stow -d shells bash mksh zsh
         ;;
     baseg)
@@ -46,7 +46,7 @@ if
         ;;
 	og)
 		$stow base bin 'os-arch' 'rice-og'
-        $stow -d applications weechat \
+        $stow -d applications weechat gnupg \
             cava mpv redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
@@ -54,7 +54,7 @@ if
         ;;
     tatami4.5)
 		$stow base bin 'os-alpine' 'rice-tatami4.5'
-        $stow -d applications weechat \
+        $stow -d applications weechat gnupg \
             mpv
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
@@ -62,7 +62,7 @@ if
         ;;
     work)
 		$stow --ignore='Brewfile' base bin 'os-mac' 'rice-work'
-        $stow -d applications weechat \
+        $stow -d applications weechat gnupg \
             mpv
         $stow -d dev-langs python nodejs
         $stow -d dev-tools basics nano micro tmux
