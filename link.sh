@@ -28,7 +28,7 @@ stow="stow -vt ${HOME}"
 if
     ! case "$1" in
 	base)
-	    $stow base bin tools
+	    $stow base bin
         $stow -d applications ranger weechat
         $stow -d shells bash mksh zsh
         ;;
@@ -42,7 +42,7 @@ if
         $stow -d shells bash mksh zsh
         ;;
 	og)
-		$stow base bin tools 'os-arch' 'rice-og'
+		$stow base bin 'os-arch' 'rice-og'
         $stow -d applications ranger weechat \
             cava mpv redshift
         $stow -d dev-langs python golang rust ruby nodejs
@@ -50,13 +50,13 @@ if
         $stow -d shells zsh
         ;;
     tatami4.5)
-		$stow base bin tools 'os-alpine' 'rice-tatami4.5'
+		$stow base bin 'os-alpine' 'rice-tatami4.5'
         $stow -d applications ranger weechat \
             mpv
         $stow -d shells mksh
         ;;
     work)
-		$stow --ignore='Brewfile' base bin tools 'os-mac' 'rice-work'
+		$stow --ignore='Brewfile' base bin 'os-mac' 'rice-work'
         $stow -d applications weechat \
             mpv
         $stow -d dev-langs python nodejs
