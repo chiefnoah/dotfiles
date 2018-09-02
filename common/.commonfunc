@@ -88,7 +88,7 @@ extract () {
             *.bz2)       bunzip2 -v "$1"  ;;
             *.gz)        gunzip -v "$1"   ;;
             *.xz)        unxz -v "$1"     ;;
-            *.zip)       unzip -v "$1"    ;;
+            *.zip)       unzip "$1"       ;;
             *.rar)       rar x "$1"       ;;
             *.7z)        7z x "$1"        ;;
             *)           printf "%s\n" "Can't recognize file extension on '${1}'" ;;
