@@ -1,3 +1,11 @@
-.weechat/logs
-.weechat/*.log
+logs/
+*.log
+plugins.xml*
+
 sec.conf
+
+python.conf
+perl.conf
+exec.conf
+script.conf
+iset.conf
