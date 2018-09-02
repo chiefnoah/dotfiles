@@ -2,12 +2,12 @@
 
 ***"you are your dotfiles."***
 
-These are all my dotfiles for gnu/linux. Some of them are rice-specific - check out my ricing work [here](https://tildeslash.io/rice.html).
+These are all my dotfiles for *nix. Some of them are specific to my [riced desktop setups](https://tildeslash.io/rice.html).
 
 
-### Install/Uninstall
+## Install/Uninstall
 
-`git clone --recursive https://github.com/JoshuaRLi/dotfiles`, install `stow`, then simply execute `link.sh PRESET` to link dotfiles for the preset that you want. Here are the current presets:
+`git clone --recursive https://github.com/JoshuaRLi/dotfiles`, install `stow`, then simply execute `link.sh PRESET` to link dotfiles for the preset that you want (if you want to unlink, pass `d` as the second argument). Here are the current presets:
 
 ```
 base        - basic configuration for non-graphical environment
@@ -18,17 +18,13 @@ tatami4.5   - config for Alpine Linux rice "tatami4.5"
 
 Alternatively, you may consider using `stow` to cherry-pick and link individual dotfile folders of your choosing - `link.sh` is convenience.
 
-If you want to unlink (effectively uninstalling a dotfiles preset), pass `d` as the second argument.
 
+## Notes
 
-#### Special Directories
-
-There are a few special directories worth noting.
+There are a few special directories and files worth noting.
 
 * `common/` - contains common shell aliases, functions, environment, and more, for all distros
-* `manual-configs/` - configuration files that require a more manual, involved installation process than merely symlinking
 * `scripts/` - useful scripts that i've written
-
 
 #### `.specificrc`
 
