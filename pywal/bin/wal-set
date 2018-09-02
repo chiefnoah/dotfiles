@@ -1,29 +1,52 @@
 #!/usr/bin/env bash
 
-notify-send "[wal-set] init" -t 1
+notify () {
+    msg="[wal-set] ${1}"
+    mode="${2:-normal}"
+    if pgrep dunst > /dev/null; then
+        notify-send "$msg" -u "$mode"
+    else
+        printf '%s\n' "$msg"
+    fi
+}
+
+notify-err () {
+    notify "ERROR: ${1}" 'critical'
+}
+
+notify 'init'
+if [[ -z "$1" ]]; then
+    notify-err 'Please specify one of the subdirectories in wal-set list.'
+    exit 1
+fi
 
 sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
-notify-send "Detected screen dimensions: ${sdim}"
+notify "Detected screen dimensions: ${sdim}"
 
-WALLP="${HOME}/Wallpapers-${sdim}/Originals"
+WALLP="${HOME}/Wallpapers/Originals-${sdim}"
+notify "Searching in ${WALLP}"
 if [ ! -d "$WALLP" ]; then
-    notify-send "Directory ${WALLP} not found. Exiting."
+    notify-err "Directory ${WALLP} not found."
     exit 1
 fi
 
 if [[ "$1" == 'list' ]]; then
-    printf '%s\n' "$(ls "$WALLP")"
+    notify "Subdirectories: $(ls -1 "$WALLP" | tr '\n' ' ')"
     exit 1
-elif [[ "$1" == 'useprev' ]] && \
-   [[ -f "${HOME}/.cache/wal/wal" ]]; then
-    WALLP="$(< "${HOME}/.cache/wal/wal")"
+elif [[ "$1" == 'useprev' ]]; then
+    if [[ -f "${HOME}/.cache/wal/wal" ]]; then
+        WALLP="$(< "${HOME}/.cache/wal/wal")"
+    else
+        notify-err "pywal's cache is empty. You have not loaded a wallpaper before."
+        exit 1
+    fi
 else
     CATEGORY="${WALLP}/${1}"
     if [[ -d "$CATEGORY" ]]; then
         WALLP="$CATEGORY"
-        notify-send "[wal-set] using category ${1}" -t 1
+        notify "Using wallpaper subdirectory ${1}"
     else
-        printf '%s\n' "Directory ${CATEGORY} does not exist."
+        notify-err "Directory ${CATEGORY} does not exist."
         exit 1
     fi
 fi
@@ -35,7 +58,7 @@ pkill dunst
 
 # Reload bspwm and dunst colors.
 xrdb -merge "${HOME}/.Xresources"
-. "${HOME}/.cache/wal/colors.sh"
+source "${HOME}/.cache/wal/colors.sh"
 
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
@@ -47,5 +70,3 @@ dunst \
     -bf "$color15" \
     -cf "#000000"  \
     -nf "$color15" &
-
-notify-send "[wal-set] done" -t 1
