@@ -3,8 +3,5 @@
 # Stuff specifically for X sessions.
 
 alias ssel='maim -s | xclip -selection clipboard -t image/png'
-
-# mpv
 alias v='mpv --profile=vid-hq'
-alias mp3='mpv --profile=enc-a-mp3'
-alias m4a='mpv --profile=enc-a-aac'
+alias fonts='fc-list | cut -f2 -d: | sort -u'
