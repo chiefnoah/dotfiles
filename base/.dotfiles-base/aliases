@@ -83,7 +83,7 @@ alias ns='sudo netstat -tulpn'
 
 # filesystem
 alias a='atool -Ea'
-alias e='atool -Ex'
+alias ua='atool -Ex'
 alias rd='rmdir'
 alias shred='shred -zun 10'
 alias um='udiskie-mount'
