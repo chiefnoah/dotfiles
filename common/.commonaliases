@@ -1,33 +1,67 @@
 #!/usr/bin/env bash
 
+
 # Navigation
+if command -v exa > /dev/null 2>&1; then
+    alias ls='exa'
+    alias l='exa -l'
+    alias ll='exa -la'
+    alias llt='exa -lar --sort=modified'
+    alias lll='exa -bghliSm --time-style=long-iso --git'
+else
+    alias ls='ls -F --color=always'
+    alias l='ls -lph'
+    alias ll='ls -Alph'
+    alias llt='ll -rt'
+fi
+
 alias ..='cd ..'
-alias ls='ls -F --color=always'
-alias l='ls -lph'
-alias ll='ls -Alph'
-alias llt='ll -rt'
 alias r='ranger'
 
+
 # Info/Introspection/Search
+if command -v fd > /dev/null 2>&1; then
+    alias f='fd'
+    alias fe='fd -e'
+    alias fh='fd -H'
+    alias fha='fd -HI'
+else
+    f () { find -iname "*${1}*"; printf "\nYou should install fd.\n" }
+fi
+
+if command -v ncdu > /dev/null 2>&1; then
+    alias du='ncdu -rr'
+    alias dum='ncdu'
+else
+    alias du='du -skh .??* * | sort -rh ; printf "\nYou should install ncdu.\n"'
+fi
+
+if command -v dfc > /dev/null 2>&1; then
+    alias df='dfc -p /dev,-tmpfs'
+else
+    alias df='df --exclude-type=tmpfs -h ; printf "\nYou should install dfc.\n"'
+fi
+
 alias badlinks='find . -xtype l'
-alias df='dfc -p /dev,-tmpfs || df --exclude-type=tmpfs -h'
-alias du='ncdu || sudo du -skh .??* * | sort -rh'
+alias bat='cat /sys/class/power_supply/BAT0/{status,capacity}'
 alias dmesg='dmesg -xHw'
-alias f='fd'
-alias fe='fd -e'
-alias fh='fd -H'
-alias fha='fd -HI'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ns='sudo netstat -tulpn'
+alias pg='pgrep -f'
+psi () {
+    ps wup $(pgrep -f "$1")
+}
+alias pst='pstree -hTp'
 alias rg='rg -a'
 alias rgh='rg -a --hidden'
 alias treea='tree -aI .git'
 
+
 # General
 alias a='atool -Ea'
 alias al='atool -El'
-alias c='clear'
+alias c='tput reset'
 alias cl='c && ll'
 alias e='atool -Ex'
 alias gpg='gpg2'
@@ -47,11 +81,13 @@ alias tailf='tail -f -n 100'
 alias um='udiskie-mount'
 alias uu='udiskie-umount'
 
+
 # Docker
 alias alp='sudo docker run -it --rm alpine'
 alias dcp='sudo docker container prune -f'
 alias dls='sudo docker images && printf '\n' && sudo docker ps'
 alias dclean='sudo docker stop $(sudo docker ps -a -q) ; dcp ; sudo docker rmi $(sudo docker images -q)'
+
 
 # Git (also see .gitconfig for some fancier aliases)
 alias g='git'
@@ -90,11 +126,13 @@ gt () {
 }
 alias gu='g submodule update --init --recursive --remote'
 
+
 # Go
 alias gocd='cd "$GOPATH"'
 alias godl='go get -d -v'
 alias goi='go install'
 alias gog='go get -u -v'
+
 
 # Python
 alias p='/usr/bin/env python3'
@@ -118,15 +156,18 @@ alias pipi='p -m pip install --user'
 alias pipl='p -m pip freeze'
 alias pipu='p -m pip uninstall'
 
+
 # Node.js/npm
 alias node='nvm use node'
 alias npmi='npm install'
 alias npmig='npm install -g'
 
+
 # Rust
 alias cr='cargo run'
 alias cb='cargo build'
 alias cbr='cargo build --release'
+
 
 # Tmux
 alias tn='tmux new-session -s'
@@ -135,6 +176,7 @@ alias tad='tmux attach -d -t'
 alias tks='tmux kill-session -t'
 alias tkill='tmux kill-server'
 alias tl='tmux list-sessions'
+
 
 # Other
 # YouTube. For batch scraping: https://github.com/JoshuaRLi/ytmcd

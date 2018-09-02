@@ -21,10 +21,16 @@ lnc () {
 # auto-ls after cd. Does not show hidden files.
 cd () {
     if [[ -n "$1" ]]; then
-        builtin cd "$1" && ls -lph
+        builtin cd "$1" && l
     else
-        builtin cd "$HOME" && ls -lph
+        builtin cd "$HOME" && l
     fi
+}
+
+
+# man wrapper with --help fallback.
+h () {
+    man "$@" 2>/dev/null || "$@" --help 2>&1 | less -irS
 }
 
 
