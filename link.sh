@@ -45,6 +45,8 @@ if
 		$stow base bin tools 'os-arch' 'rice-og'
         $stow -d applications ranger weechat \
             cava mpv redshift
+        $stow -d dev-langs python golang rust ruby nodejs
+        $stow -d dev-tools basics nano micro
         $stow -d shells zsh
         ;;
     tatami4.5)
