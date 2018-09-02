@@ -33,7 +33,8 @@ pathprepend "/usr/sbin"
 pathprepend "/usr/local/bin"
 pathprepend "/usr/local/sbin"
 pathprepend "${HOME}/bin"
-pathprepend "${HOME}/.local/bin"  # pip --user installed executables
-pathprepend "${HOME}/.cargo/bin"  # cargo (rust) installed executables
-pathprepend "${GOPATH}/bin"       # go workspace binaries
+pathprepend "${HOME}/.local/bin"            # pip --user installed executables
+pathprepend "${HOME}/.cargo/bin"            # cargo (rust) installed executables
+pathprepend "${GOPATH}/bin"                 # go workspace binaries
+pathprepend "${HOME}/.gem/ruby/2.5.0/bin"   # gem binaries
 export PATH
