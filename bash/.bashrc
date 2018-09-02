@@ -4,6 +4,8 @@
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
+export SHELL='bash'
+
 # prompt
 shlib_export_PS1
 

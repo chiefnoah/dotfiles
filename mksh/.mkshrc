@@ -3,6 +3,8 @@
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
+export SHELL='mksh'
+
 # prompt
 shlib_export_PS1
 
