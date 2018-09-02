@@ -32,7 +32,7 @@
     stat = show --format=fuller --show-signature --stat
     peek = show --format=fuller --show-signature HEAD
     unstage = reset --
-    resign = rebase --exec 'git commit --amend --no-edit -n -S' -i
+    resign = rebase --exec 'git commit --amend --reset-author --no-edit -n -S' -i
 
 [apply]
     whitespace = fix
