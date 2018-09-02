@@ -55,8 +55,6 @@ alias badlinks='find . -xtype l'
 alias bat='cat /sys/class/power_supply/BAT0/{status,capacity}'
 alias dmesg='dmesg -xHw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
-alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias ns='sudo netstat -tulpn'
 alias pg='pgrep -f'
 psi () {
     ps wup $(pgrep -f "$1")
@@ -66,6 +64,14 @@ alias rg='rg -a'
 alias rgh='rg -a --hidden'
 alias treea='tree -aI .git'
 alias watchdir='inotifywait -e create,modify,delete -mr'
+
+
+# Networking
+alias lip='hostname -i'
+# Also: ip route get 1.1.1.1 | awk '{print $(NF-2); exit}'
+alias eip='dig +short myip.opendns.com @resolver1.opendns.com'
+# Also: curl -s http://whatismyip.akamai.com
+alias ns='sudo netstat -tulpn'
 
 
 # Filesystem
