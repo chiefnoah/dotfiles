@@ -39,20 +39,14 @@ mkdir -p "${HOME}/bin"
 
 apti='sudo apt install -y'
 notify "Installing software..."
-$apti cryptsetup \
-    curl            \
-    fonts-hack-ttf  \
-    git             \
-    gnupg2          \
-    htop            \
-    maim            \
-    mpv             \
-    ncdu            \
-    neofetch        \
-    rofi            \
-    ssh             \
-    stow            \
-    wget            \
+$apti cryptsetup gnupg2 ssh \
+    editorconfig fonts-hack-ttf \
+    git stow \
+    htop ncdu neofetch \
+    maim \
+    mpv \
+    rofi \
+    curl wget \
     xclip
 
 if ask "Install python?"; then
@@ -64,6 +58,8 @@ if ask "Custom install atom 1.22.1?"; then
     curl -Lo "${TMP}/atom.deb" https://github.com/atom/atom/releases/download/v1.22.1/atom-amd64.deb
     $apti gconf2 gconf-service gconf2-common libgconf-2-4
     sudo dpkg -i "${TMP}/atom.deb"
+    apm install package-sync
+    printf 'Use package-sync inside Atom to install from ~/.atom/packages.cson\n'
 fi
 
 if ask "Custom install micro 1.3.4?"; then
