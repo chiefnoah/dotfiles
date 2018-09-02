@@ -62,7 +62,7 @@ alias gdc='git diff --cached'
 alias gf='fetch --tags --prune'
 alias gfa='fetch --all --tags --prune'
 alias gl="g log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gp='g push'
+alias gp='g push --all'
 alias gpf='gp --force'
 alias gpom='gp -u origin master'
 alias gpomf='gp -u origin master --force'
@@ -111,6 +111,11 @@ alias pipu='p -m pip uninstall'
 alias node='nvm use node'
 alias npmi='npm install'
 alias npmig='npm install -g'
+
+# Rust
+alias cr='cargo run'
+alias cb='cargo build'
+alias cbr='cargo build --release'
 
 # Tmux
 alias tn='tmux new-session -s'
