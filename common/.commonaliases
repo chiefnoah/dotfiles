@@ -84,7 +84,7 @@ alias gu='g submodule update --init --recursive --remote'
 
 # Go
 alias gocd='cd "$GOPATH"'
-alias godl='go get -d'
+alias godl='go get -d -v'
 alias goi='go install'
 alias gog='go get -u -v'
 
