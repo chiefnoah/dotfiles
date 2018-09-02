@@ -2,7 +2,14 @@
 
 notify-send "[wal-set] init" -t 1
 
-WALLP="${HOME}/Wallpapers/Originals-1920x1080"
+sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
+notify-send "Detected screen dimensions: ${sdim}"
+
+WALLP="${HOME}/Wallpapers-${sdim}/Originals"
+if [ ! -d "$WALLP" ]; then
+    notify-send "Directory ${WALLP} not found. Exiting."
+    exit 1
+fi
 
 if [[ "$1" == 'list' ]]; then
     printf '%s\n' "$(ls "$WALLP")"

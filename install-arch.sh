@@ -34,7 +34,7 @@ sudo pacman -Syu
 
 notify "Installing base software..."
 sudo pacman --noconfirm -S base-devel \
-    cmake cryptsetup curl git gnupg2 htop ncdu openssh stow wget
+    cmake cryptsetup curl git gnupg2 htop ncdu openssh stow wget xorg-xinit xorg-server
 
 # TODO switch to yay or trizen in the future
 if ! command -v pacaur > /dev/null 2>&1; then
@@ -119,7 +119,12 @@ fi
 notify "Installing wallpapers..."
 $paci imgp
 git clone https://github.com/JoshuaRLi/papes "${HOME}/Wallpapers"
-bash "${HERE}/universal/bin/scripts/wallcrunch" "${HOME}/Wallpapers"
+printf 'Screen width in pixels: ' ; read swidth
+printf 'Screen height in pixels: ' ; read sheight
+notify "Processing wallpapers."
+cd "$HOME"
+bash "${HERE}/scripts/bin/scripts/wallcrunch" \
+    "${HOME}/Wallpapers" "$swidth" "$sheight"
 
 notify "Installing zsh and changing the login shell..."
 $paci zsh
