@@ -1,3 +1,21 @@
 #!/usr/bin/env mksh
 
 . "${HOME}/.commonrc"
+
+cur_path () {
+    local wd="$(basename "$PWD")"
+    printf "${wd/$USER/\~}"
+}
+
+cur_branch () {
+    local cb="$(git branch 2>/dev/null | grep \*)"
+    [[ -n "$cb" ]] && printf "(${cb:2:-1})"
+}
+
+HN="$(hostname)"
+PS1='${HN} #'
+(( USER_ID )) && PS1='[${USER}@${HN} $(cur_path) $(cur_branch)]$ '
+
+alias hist='fc -l'
+export HISTFILE="${HOME}/.mksh_history"
+export HISTSIZE=100000
