@@ -9,3 +9,4 @@ perl.conf
 exec.conf
 script.conf
 iset.conf
+colorize_nicks.conf
