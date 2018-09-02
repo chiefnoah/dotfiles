@@ -1,14 +1,17 @@
+# TODO adjust geometry when bar script is finished such that
+# dunst notifs pop up directly to the right of bspwm window listings
+
 [global]
-    font = Tewi 8
+    font = Lucy Tewi 8
     alignment = left
     word_wrap = yes
-    geometry = "400x18-0+0"
+    geometry = "400x24+200+0"
     monitor = 0
     sticky_history = yes
     history_length = 10
     line_height = 0
     separator_height = 1
-    padding = 4
+    padding = 6
     horizontal_padding = 6
     separator_color = auto
     startup_notification = false

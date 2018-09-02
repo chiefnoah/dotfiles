@@ -1,8 +1,8 @@
 super + Escape
     pkill -USR1 -x sxhkd ;\
-    notify-send "[sxhkd] config reloaded" -t 1 ;\
+    notify-send "[sxhkd] config reloaded" -t 1000 ;\
     sh "${HOME}/.config/bspwm/bspwmrc" ;\
-    notify-send "[bspwm] config reloaded" -t 1
+    notify-send "[bspwm] config reloaded" -t 1000
 
 #
 # SHORTCUTS
@@ -29,15 +29,15 @@ alt + Return
 
 Print
     scrot "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
-        notify-send "[scrot] Screenshot saved." -t 1
+        notify-send "[scrot] Screenshot saved." -t 1000
 
 shift + Print
     scrot -s "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
-        notify-send "[scrot] Screenshot selection saved." -t 1
+        notify-send "[scrot] Screenshot selection saved." -t 1000
 
 alt + Print
     scrot -s -q 100 -e 'xclip $f && rm $f' && \
-        notify-send "[scrot] Screenshot selection saved to xclip buffer." -t 1
+        notify-send "[scrot] Screenshot selection saved to xclip buffer." -t 1000
 
 XF86AudioMute
     amixer set Master toggle

@@ -12,7 +12,7 @@
     "crystal-formatter": "",
     "csharp-formatter": "",
     "css-formatter": "",
-    "cursorline": true,
+    "cursorline": false,
     "d-formatter": "",
     "dart-formatter": "",
     "elm-formatter": "",

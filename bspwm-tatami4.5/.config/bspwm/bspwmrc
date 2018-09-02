@@ -50,4 +50,5 @@ dunst \
     -nf "$color15" &
 
 pkill lemonbar
-"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
+"${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -g x24 \
+    -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
