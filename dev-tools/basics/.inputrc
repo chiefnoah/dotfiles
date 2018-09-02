@@ -1,6 +1,17 @@
 $include /etc/inputrc
 
-set completion-ignore-case on
-set completion-map-case on
-set show-all-if-ambiguous on
-set mark-symlinked-directories on
+"\C-r": reverse-search-history
+"\C-l": alias-expand-line
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+# TODO move by words
+
+"\C-f": nop
+"\C-b": nop
+
+set match-hidden-files Off
+set completion-ignore-case On
+set completion-map-case On
+set bell-style none
+set horizontal-scroll-mode Off
+set show-all-if-ambiguous On

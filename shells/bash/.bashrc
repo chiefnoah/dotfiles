@@ -4,10 +4,12 @@ export SHELL="$(which bash)"
 # prompt
 df_export_PS1
 
-# load GNU readline configuration
+# configure GNU readline
+set -o emacs
 bind -f "${HOME}/.inputrc"
 
 # options
+export FIGNORE=".:.."
 set -o noclobber  # use >| to force redirection overwrite
 shopt -s extglob
 shopt -s nullglob
