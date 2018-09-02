@@ -34,7 +34,7 @@ if
         $stow -d shells bash mksh zsh
         ;;
     baseg)
-        $stow -d applications cava mpv redshift
+        $stow -d applications cava mpv redshift rofi-pass
         ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
@@ -47,7 +47,7 @@ if
 	og)
 		$stow base bin 'os-arch' 'rice-og'
         $stow -d applications weechat \
-            cava mpv redshift
+            cava mpv redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
         $stow -d shells zsh

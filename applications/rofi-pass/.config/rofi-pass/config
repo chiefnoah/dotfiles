@@ -1,0 +1,9 @@
+_rofi () {
+    rofi -i -no-auto-select "$@"
+}
+
+clip=clipboard
+
+copy_name="Alt+u"
+copy_pass="Alt+p"
+show="Alt+o"

@@ -7,6 +7,9 @@ super + Escape
 ctrl + Return
     urxvt
 
+ctrl + alt + Return
+    rofi-pass
+
 shift + Return
     bspwm-draw-urxvt
 
