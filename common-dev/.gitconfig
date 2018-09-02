@@ -18,7 +18,7 @@
 [core]
     autocrlf = input
     compression = 9
-    editor = vim
+    editor = nano
     pager = less -RS
 
 [commit]
@@ -31,6 +31,8 @@
     bed = branch --edit-description
     ca = commit --amend -v
     cleanall = clean -fdx  # dangerous!!
+    dt = difftool
+    dtc = difftool --cached
     pullrb = pull --rebase
     root = rev-parse --show-toplevel
     show = show --format=fuller --show-signature
@@ -42,11 +44,11 @@
 
 [diff]
     renames = copies
-    tool = vimdiff
+    tool = meld
 
 [merge]
     log = true
-    tool = vimdiff
+    tool = meld
 
 [push]
     default = current
