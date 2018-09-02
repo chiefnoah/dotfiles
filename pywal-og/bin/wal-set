@@ -52,10 +52,10 @@ else
     fi
 fi
 
-# NOTE: wal automatically reloads polybar. Only dunst needs to be reloaded.
+# Reload bspwm and dunst with the new colors.
+# NOTE: wal automatically reloads polybar.
 pkill dunst
 
-# Reload bspwm and dunst colors.
 xrdb -merge "${HOME}/.Xresources"
 source "${HOME}/.cache/wal/colors.sh"
 
