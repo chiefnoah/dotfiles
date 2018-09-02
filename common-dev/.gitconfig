@@ -3,29 +3,23 @@
     email = joshua.r.li.98@gmail.com
     signingkey = C44E942716F2C9D3
 
-[github]
-    user = JoshuaRLi
+[commit]
+    gpgsign = true
 
-# ssh config block:
-# Host github.com
-# IdentitiesOnly yes
-# PreferredAuthentications publickey
-# User git
-# IdentityFile ~/.ssh/joshuarli-github
+[gpg]
+    program = gpg2
+
 [url "git@github.com:"]
     insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
 
 [core]
     autocrlf = input
     compression = 9
     editor = nano
     pager = less -RS
-
-[commit]
-    gpgsign = true
-
-[gpg]
-    program = gpg2
 
 [alias]
     bed = branch --edit-description
