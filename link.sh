@@ -46,7 +46,7 @@ case "$1" in
 		$stow_cmd $p_base $p_baseg \
             alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5 ;;
     cash)
-		$stow_cmd $p_base $p_baseg \
+		$stow_cmd $p_base $p_baseg $p_dev \
             macos-cash ;;
 	*)
 		usage ;;
