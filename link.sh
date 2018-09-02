@@ -22,9 +22,9 @@ EOF
 	exit 1
 }
 
-p_base="common bin sh mksh bash zsh nano micro ranger weechat"
+p_base="common bin sh mksh bash zsh nano micro ranger weechat tools"
 p_baseg="atom mpv rofi redshift cava"
-p_dev="python golang rust nodejs ruby"
+p_dev="tools-dev python golang rust nodejs ruby"
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
