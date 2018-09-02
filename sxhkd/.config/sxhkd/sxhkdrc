@@ -45,11 +45,11 @@ alt + Print
         notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1
 
 XF86AudioMute
-    pactl set-sink-mute 0 toggle
+    # note: to only toggle pulseaudio, pass -D pulse
+    amixer set Master toggle
 
 XF86Audio{LowerVolume,RaiseVolume}
-    amixer sset Master 5%{-,+}
-    # pactl set-sink-volume 0 {-5%,+5%}
+    amixer set Master 5%{-,+}
 
 XF86MonBrightness{Down,Up}
     light -{U,A} 10
@@ -67,6 +67,10 @@ super + {c,k}
 # toggle tiled / monocle layout
 super + m
     bspc desktop -l next
+
+# toggle node between floating and tiled
+super + {f,t}
+    bspc node -t {floating,tiled}
 
 # cycle through nodes, useful during monocle layout
 ctrl + shift + Return
