@@ -4,10 +4,10 @@
 # Navigation
 if command -v exa > /dev/null 2>&1; then
     alias ls='exa'
-    alias l='exa -l'
-    alias ll='exa -la'
-    alias llt='exa -lar --sort=modified'
-    alias lll='exa -bghliSm --time-style=long-iso --git'
+    alias l='exa -Fl'
+    alias ll='exa -Fla'
+    alias llt='exa -Flar --sort=modified'
+    alias lll='exa -FlbghiSm --time-style=long-iso --git'
 else
     alias ls='ls -F --color=always'
     alias l='ls -lph'
