@@ -1,8 +1,9 @@
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
+export PYENV_ROOT="${HOME}/.pyenv"
+pathprepend "${PYENV_ROOT}/bin"
+
 if command -v pyenv > /dev/null 2>&1; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    pathprepend "${PYENV_ROOT}/bin"
     eval "$(pyenv init -)"
     usep () {
         pyenv global "$1" && \
@@ -12,10 +13,14 @@ else
     df_warn 'pyenv not found'
 fi
 
-# these aliases are more like reminders that are nice to have around.
+if command -v pipenv > /dev/null 2>&1; then
+    alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
+else
+    df_warn 'pipenv not found'
+fi
+
 alias p='python'
 alias pip='python -m pip'
 alias mkvenv='virtualenv -p $(pyenv which python3)'
-alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
 
 export PATH
