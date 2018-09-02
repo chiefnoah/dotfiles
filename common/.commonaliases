@@ -36,11 +36,6 @@ alias sitemirror='wget --no-config -mpkKE -e robots=off'
 alias tailf='tail -f -n 100'
 alias vi='vim'
 
-# mpv
-alias v='mpv --profile=vid-hq'
-alias mp3='mpv --profile=enc-a-mp3'
-alias m4a='mpv --profile=enc-a-aac'
-
 # Docker
 alias alp='sudo docker run -it --rm alpine'
 alias dcp='sudo docker container prune -f'
