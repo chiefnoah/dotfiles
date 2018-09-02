@@ -2,8 +2,13 @@
 
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
-export EDITOR='nano'
 export PAGER='less -irS'
+
+if command -v micro > /dev/null 2>&1; then
+    export EDITOR='micro'
+else
+    export EDITOR='nano'
+fi
 
 pathprepend() {
   for DIR in "$@"
