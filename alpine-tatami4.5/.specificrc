@@ -1,6 +1,5 @@
 #!/usr/bin/env mksh
 
-# TODO
 alias aa='apk add'
 alias aaup='apk update && apk add --upgrade'
 alias ad='apk del'
