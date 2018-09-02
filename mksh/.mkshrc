@@ -4,8 +4,7 @@
 . "${HOME}/.commonrc"
 
 # prompt
-PS1='$(hostname) #'
-(( USER_ID )) && shlib_export_PS1
+shlib_export_PS1
 
 # history
 alias hist='fc -l'

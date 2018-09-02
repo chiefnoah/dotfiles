@@ -5,8 +5,7 @@
 . "${HOME}/.commonrc"
 
 # prompt
-PS1='$(hostname) #'
-(( UID )) && shlib_export_PS1
+shlib_export_PS1
 
 # load GNU readline configuration
 bind -f "${HOME}/.inputrc"

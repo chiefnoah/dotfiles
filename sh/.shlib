@@ -25,14 +25,15 @@ shlib_c_reset='\e[0m'
 shlib_cur_path () {
     local wd="$(basename "$PWD")"
     [ "$1" = 'nocolor' ] && shlib_c_fg_cyan= shlib_c_reset=
-    printf "${shlib_c_fg_cyan}${wd/$USER/\~}${shlib_c_reset}"
+    local dummy=''  # prevents bash, mksh from expanding ~, preserves zsh behavior
+    printf "${shlib_c_fg_cyan}${wd/$USER/${dummy}~}${shlib_c_reset}"
 }
 
 shlib_git_branch () {
     printf "$(git branch 2>/dev/null | grep \* | cut -c3-)"
 }
 
-_git_dirty () {
+shlib_git_dirty () {
     [ -z "$(git status --porcelain)" ] || printf '* '
 }
 
@@ -40,17 +41,17 @@ shlib_git_prompt_info () {
     [ -d '.git' ] || return
     local cur_branch="$(shlib_git_branch)"
     [ "$1" = 'nocolor' ] && unset shlib_c_fg_green shlib_c_reset
-    [ -n "$cur_branch" ] && printf " $(_git_dirty)${shlib_c_fg_green}${cur_branch}${shlib_c_reset}"
+    [ -n "$cur_branch" ] && printf " $(shlib_git_dirty)${shlib_c_fg_green}${cur_branch}${shlib_c_reset}"
 }
 
-_user () {
+shlib_username () {
     printf "${shlib_c_fg_white_bold}${USER}${shlib_c_reset}"
 }
 
-_hn () {
+shlib_hostname () {
     printf "${shlib_c_fg_red_bold}$(hostname)${shlib_c_reset}"
 }
 
 shlib_export_PS1 () {
-    export PS1='$(_user)@$(_hn) $(shlib_cur_path)$(shlib_git_prompt_info) $ '
+    export PS1='$(shlib_username)@$(shlib_hostname) $(shlib_cur_path)$(shlib_git_prompt_info) $ '
 }
