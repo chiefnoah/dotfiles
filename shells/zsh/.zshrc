@@ -1,6 +1,16 @@
 export SHELL="$(which zsh)"
 . "${HOME}/.dotfiles-base/all"
 
+# keybindings
+bindkey -e
+bindkey '\C-H'  backward-kill-word
+bindkey '\C-K'  kill-whole-line
+bindkey '\e[1;5D'  backward-word            # ctrl+left
+bindkey '\e\e[D'  backward-word             # alt+left
+bindkey '\e[1;5C'  forward-word             # ctrl+right
+bindkey '\e\e[C'  forward-word              # alt+right
+bindkey '\e[3~'  backward-delete-char       # del
+
 # completion adjustments
 autoload -Uz compinit && compinit
 zstyle ':completion:*:*:*:*:*' menu select
@@ -8,6 +18,14 @@ zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:*:*:users' ignored-patterns '_*'
+zstyle ':completion:*' rehash true
+
+setopt COMPLETE_ALIASES
+setopt COMPLETE_IN_WORD
+setopt PATH_DIRS
+unsetopt CASE_GLOB
+setopt AUTO_CD
+setopt NULL_GLOB
 
 # prompt
 # need to redefine colors so zsh knows the control characters don't need to show up in terminal
@@ -26,9 +44,9 @@ globalias () {
    zle self-insert
 }
 zle -N globalias
-bindkey " " globalias
-bindkey "^ " magic-space            # control-space to bypass completion
-bindkey -M isearch " " magic-space  # normal space during history searches
+bindkey ' ' globalias
+bindkey '^ ' magic-space            # control-space to bypass completion
+bindkey -M isearch ' ' magic-space  # normal space during history searches
 
 # history
 alias history='fc -l'
@@ -46,10 +64,3 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
-
-# other
-setopt COMPLETE_IN_WORD
-setopt PATH_DIRS
-unsetopt CASE_GLOB
-setopt AUTO_CD
-setopt NULL_GLOB
