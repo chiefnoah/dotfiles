@@ -28,3 +28,24 @@ bspc config pointer_follows_focus   false
 # Monitor stuff
 bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
+
+# Load wallpaper with pywal
+wal -i "${HOME}/wallpaper.png" -a 75
+
+# NOTE: wal automatically reloads polybar. Only dunst needs to be reloaded.
+pkill dunst
+
+# Reload bspwm and dunst colors.
+xrdb -merge "${HOME}/.Xresources"
+source "${HOME}/.cache/wal/colors.sh"
+
+bspc config normal_border_color "$color0"
+bspc config focused_border_color "$color15"
+dunst \
+    -lb "$color0"  \
+    -nb "$color0"  \
+    -cb "#ff0000"  \
+    -lf "$color15" \
+    -bf "$color15" \
+    -cf "#000000"  \
+    -nf "$color15" &
