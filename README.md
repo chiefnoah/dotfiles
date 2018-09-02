@@ -13,7 +13,7 @@ Simply execute `link.sh base|arch|debian`. If you want to uninstall (unlink syml
 
 Additionally, the `install-{distribution-name}.sh` scripts are useful to provision a fresh distribution install with the software that my dotfiles configure.
 
-* `install-arch` assumes a fresh Arch install with nothing but tty access.
+* `install-arch` assumes a fresh Arch install with nothing but tty access, which it turns into [this](https://github.com/JoshuaRLi/essentials/blob/master/README.md#arch-linux).
 * `install-debian` assumes a fresh Debian install preconfigured with a functional desktop environment running on X.
 
 
