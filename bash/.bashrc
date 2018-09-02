@@ -5,9 +5,8 @@
 . "${HOME}/.commonrc"
 
 # prompt
-HN="$(hostname)"
-PS1='${HN} #'
-(( UID )) && PS1='${USER}@${HN} $(shlib_posix_cur_path)$(shlib_posix_git_branch) $ '
+PS1='$(hostname) #'
+(( UID )) && shlib_export_PS1
 
 # load GNU readline configuration
 bind -f "${HOME}/.inputrc"

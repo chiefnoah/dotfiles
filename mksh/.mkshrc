@@ -4,10 +4,8 @@
 . "${HOME}/.commonrc"
 
 # prompt
-HN="$(hostname)"
-PS1='${HN} #'
-(( USER_ID )) && \
-    PS1='${USER}@${HN} $(shlib_posix_cur_path)$(shlib_mksh_git_branch) $ '
+PS1='$(hostname) #'
+(( USER_ID )) && shlib_export_PS1
 
 # history
 alias hist='fc -l'
