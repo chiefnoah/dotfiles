@@ -1,2 +1,22 @@
 #include ".config/.Xresources.d/xft"
 #include ".config/.Xresources.d/urxvt"
+#include ".config/.Xresources.d/colors"
+
+*background:  BG
+*foreground:  FG
+*color0:      blk
+*color8:      bblk
+*color1:      red
+*color9:      bred
+*color2:      grn
+*color10:     bgrn
+*color3:      ylw
+*color11:     bylw
+*color4:      blu
+*color12:     bblu
+*color5:      mag
+*color13:     bmag
+*color6:      cyn
+*color14:     bcyn
+*color7:      wht
+*color15:     bwht

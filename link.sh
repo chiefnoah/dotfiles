@@ -10,8 +10,9 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - all non-graphical, non-dev configs
-baseg       - all X/graphical configs
+baseg       - all X/graphical, non-dev configs
 dev         - blanket development environment config
+devg        - X/graphical dev tools
 og          - config for Arch Linux rice "og"
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
 work        - config for work [currently: sentry.io]
@@ -34,12 +35,14 @@ if
         ;;
     baseg)
         $stow -d applications cava mpv redshift
-        $stow -d dev-tools atom
         ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
         $stow -d shells bash mksh zsh
+        ;;
+    devg)
+        $stow -d dev-tools atom
         ;;
 	og)
 		$stow base bin 'os-arch' 'rice-og'
@@ -53,6 +56,8 @@ if
 		$stow base bin 'os-alpine' 'rice-tatami4.5'
         $stow -d applications ranger weechat \
             mpv
+        $stow -d dev-langs python golang rust ruby nodejs
+        $stow -d dev-tools basics nano micro tmux
         $stow -d shells mksh
         ;;
     work)
@@ -61,7 +66,7 @@ if
             mpv
         $stow -d dev-langs python nodejs
         $stow -d dev-tools basics nano micro tmux
-        $stow -d shells zsh bash mksh
+        $stow -d shells zsh
         ;;
 	*)
 		usage ;;

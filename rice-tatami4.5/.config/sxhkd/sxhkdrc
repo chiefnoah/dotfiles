@@ -4,12 +4,8 @@ super + Escape
     sh "${HOME}/.config/bspwm/bspwmrc" ;\
     notify-send "[bspwm] config reloaded" -t 1000
 
-#
-# SHORTCUTS
-#
-
 ctrl + Return
-    urxvt
+    urxvtc
 
 super + Return
     urxvtc -e "ranger"
@@ -24,8 +20,8 @@ ctrl + shift + l
     exec pm-suspend
 
 alt + Return
-    . "${HOME}/.cache/wal/colors.sh" && \
-    dmenu_run -b -fn 'lucy tewi' -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"
+    . "${HOME}/bin/custom/source-xcolors" && \
+    dmenu_run -b -fn 'lucy tewi' -nb "$bg" -nf "$fg" -sb "$color1" -sf "$fg"
 
 Print
     scrot "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
