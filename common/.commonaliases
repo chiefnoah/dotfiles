@@ -2,6 +2,7 @@
 
 # Uncategorized
 alias serve='python3 -m http.server 8888'
+alias aur='pushd "${HOME}/dev/projects/maintaining/aur/PKGBUILDs" && source aur-devel.sh && cat aur-devel.sh'
 
 
 # Navigation
