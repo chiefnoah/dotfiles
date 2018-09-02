@@ -14,7 +14,3 @@ else
 fi
 
 source "${PYENV_ROOT}/versions/3.6.5/bin/virtualenvwrapper.sh"
-
-# GNU coreutils
-pathprepend /usr/local/opt/coreutils/libexec/gnubin
-export PATH

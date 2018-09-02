@@ -1,0 +1,3 @@
+# use GNU coreutils
+pathprepend /usr/local/opt/coreutils/libexec/gnubin
+export PATH

@@ -17,6 +17,7 @@ if xhost > /dev/null 2>&1; then
     ssource "${HOME}/.dotfiles-base/x"
 fi
 
-ssource "${HOME}/.specificrc"
+ssource "${HOME}/.os-specificrc"
+ssource "${HOME}/.rice-specificrc"
 
 unset -f ssource

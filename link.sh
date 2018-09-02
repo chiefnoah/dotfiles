@@ -14,7 +14,7 @@ baseg       - basic config for generic graphical environment [inherits base]
 dev         - blanket development environment config
 og          - config for Arch Linux rice "og" [inherits base, baseg]
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
-cash        - config for generic MacOS systems used at work [currently: sentry.io]
+work        - config for work [currently: sentry.io]
 
 Pass d as the second argument if you want to unlink the dotfiles belonging
 to the specified macro.
@@ -41,14 +41,11 @@ if
     dev)
         $stow_cmd $p_dev ;;
 	og)
-		$stow_cmd $p_base $p_baseg \
-            arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og ;;
+		$stow_cmd $p_base $p_baseg 'os-arch' 'rice-og' ;;
     tatami4.5)
-		$stow_cmd $p_base $p_baseg \
-            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5 ;;
-    cash)
-		$stow_cmd $p_base $p_baseg $p_dev \
-            macos-cash ;;
+		$stow_cmd $p_base $p_baseg 'os-alpine' 'rice-tatami4.5' ;;
+    work)
+		$stow_cmd $p_base $p_baseg $p_dev 'os-mac' 'rice-work' ;;
 	*)
 		usage ;;
     esac
