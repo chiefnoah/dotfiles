@@ -18,8 +18,6 @@
 [core]
     autocrlf = input
     compression = 9
-    editor = nano
-    pager = less -irS
 
 [alias]
     ca = commit --amend -v
