@@ -2,25 +2,35 @@ $include /etc/inputrc
 
 set keymap emacs
 
-"\C-r": reverse-search-history
-"\C-l": alias-expand-line
-"\C-a": beginning-of-line
-"\C-e": end-of-line
-"\e[1;5D": backward-word  # ctrl+left
-"\e[1;5C": forward-word  # ctrl+right
-"\C-K": kill-whole-line
-"\e[3~": backward-kill-word  # del
-"\C-/": backward-kill-word  # possible ctrl+backspace terminal mapping
-"\C-_": backward-kill-word  # possible ctrl+backspace terminal mapping
-"\C-H": backward-kill-word  # possible ctrl+backspace terminal mapping
-
-"\C-b": nop
-"\C-f": nop
-"\C-p": nop
-
 set match-hidden-files Off
 set completion-ignore-case On
 set completion-map-case On
 set bell-style none
 set horizontal-scroll-mode Off
 set show-all-if-ambiguous On
+
+"\C-r": reverse-search-history
+"\C-l": alias-expand-line
+"\C-a": beginning-of-line
+"\e[;5D": beginning-of-line         # home
+"\C-e": end-of-line
+"\e[;5C": end-of-line               # end
+"\C-H": backward-kill-word
+"\C-K": kill-whole-line
+"\e[1;5D": backward-word            # ctrl+left
+"\e\e[D": backward-word             # alt+left
+"\e[1;5C": forward-word             # ctrl+right
+"\e\e[C": forward-word              # alt+right
+"\e[3~": backward-delete-char       # del
+
+# disable some emacs defaults that i don't use
+"\C-b": nop
+"\C-d": nop
+"\C-f": nop
+"\C-p": nop
+"\C-t": nop
+"\el": nop
+"\eu": nop
+"\e&": nop
+"\e#": nop
+"\e^": nop
