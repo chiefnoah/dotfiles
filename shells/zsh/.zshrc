@@ -3,7 +3,8 @@ export SHELL="$(which zsh)"
 
 # keybindings
 bindkey -e
-bindkey '\C-H'  backward-kill-word
+bindkey '\C-?'  backward-kill-word          # possible ctrl+backspace (iTerm2)
+bindkey '\C-H'  backward-kill-word          # possible ctrl+backspace (urxvt)
 bindkey '\C-K'  kill-whole-line
 bindkey '\e[1;5D'  backward-word            # ctrl+left
 bindkey '\e\e[D'  backward-word             # alt+left
