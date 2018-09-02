@@ -126,8 +126,8 @@ alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gi='git show'
 alias gcm='git commit -S -m'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-alias gls='gl --show-signature'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>'"
+alias gll="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>%Creset %GK (%G?)'"
 alias gp='git push'
 alias gpf='git push --force'
 alias gb='git branch -vv --all'
@@ -137,7 +137,7 @@ alias master='git checkout master'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias grao='git remote add origin'
-alias grsuo='git remote set-url origin'
+alias grso='git remote set-url origin'
 alias grv='git remote -v'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
