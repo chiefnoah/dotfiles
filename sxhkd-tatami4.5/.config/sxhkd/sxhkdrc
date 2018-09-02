@@ -23,32 +23,25 @@ ctrl + alt + Delete
 
 alt + Return
     . "${HOME}/.cache/wal/colors.sh" && \
-    dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"
+    dmenu_run -b -fn 'lucy tewi' -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"
 
 Print
-    mkdir -p "${HOME}/Screenshots" && \
-    maim "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 5 && \
-        notify-send "[maim] Screenshot saved." -t 1
+    scrot "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
+        notify-send "[scrot] Screenshot saved." -t 1
 
 shift + Print
-    mkdir -p "${HOME}/Screenshots" && \
-    maim -s "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 10 && \
-        notify-send "[maim] Screenshot selection saved." -t 1
+    scrot -s "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
+        notify-send "[scrot] Screenshot selection saved." -t 1
 
 alt + Print
-    maim -s --quality 10 | xclip -selection clipboard -t image/png && \
-        notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1
+    scrot -s -q 100 -e 'xclip $f && rm $f' && \
+        notify-send "[scrot] Screenshot selection saved to xclip buffer." -t 1
 
 XF86AudioMute
-    # note: to only toggle pulseaudio, pass -D pulse
     amixer set Master toggle
 
 XF86Audio{LowerVolume,RaiseVolume}
     amixer set Master 5%{-,+}
-
-XF86MonBrightness{Down,Up}
-    light -{U,A} 10
-    # xbacklight -{dec,inc} 10
 
 
 #
