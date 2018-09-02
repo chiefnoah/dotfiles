@@ -105,6 +105,8 @@ pedump () {
 alias pipi='p -m pip install --user'
 alias pipl='p -m pip freeze'
 alias pipu='p -m pip uninstall'
+alias pypir='p setup.py register -r pypi'
+alias pypip='p setup.py sdist bdist_wheel upload -r pypi'
 
 # Node.js/npm
 alias node='nvm use node'
