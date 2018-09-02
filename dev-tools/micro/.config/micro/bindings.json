@@ -4,6 +4,8 @@
     "CtrlL": "SelectLine",
     "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
+    "CtrlY": "Redo",
+    "CtrlU": "Undo",
     "CtrlLeft": "WordLeft",
     "CtrlRight": "WordRight",
     "CtrlT": "AddTab",
