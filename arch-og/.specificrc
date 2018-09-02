@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-alias pacu='yay -Sy'
-alias pacup='yay -Syu'
+alias pacup='yay -Sy --noconfirm pacman yay && yay'
 alias paci='yay --needed -S'
 alias pacii='yay --noconfirm --needed -S'
 alias pacrm='yay -Rs'
