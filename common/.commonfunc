@@ -95,7 +95,7 @@ imgfix () {
 
 # upload stdin or a file to pb.
 pb () {
-    curl -F "c=@${1:--}" -F p=1 "https://ptpb.pw/"
+    curl -F "c=@${1:--}" "https://ptpb.pw/"
 }
 
 
