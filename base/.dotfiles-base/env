@@ -22,6 +22,8 @@ fi
 export GIT_EDITOR="$EDITOR"
 export GIT_PAGER="$PAGER"
 
+export TMUXP_CONFIGDIR="${HOME}/.config/tmuxp"
+
 pathprepend() {
   for DIR in "$@"
   do

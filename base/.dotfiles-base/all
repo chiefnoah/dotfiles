@@ -15,6 +15,9 @@ for f in "${HOME}/.dev/".*; do
     ssource "$f"
 done
 
+# other dev tooling checks
+command -v tmuxp > /dev/null 2>&1 || df_warn 'tmuxp not found'
+
 if xhost > /dev/null 2>&1; then
     ssource "${HOME}/.dotfiles-base/x"
 fi
