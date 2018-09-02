@@ -1,16 +1,21 @@
 # See also: https://github.com/JoshuaRLi/bin
 
-# helper function to enforce argc and display provided description
-# and usage string when violated.
-_require () {
+# enforce argc and display usage when violated.
+_usage () {
     if [ "$1" -lt "$2" ]; then
-        printf "${3}\nUSAGE: ${4}\n" ; return 1
+        cat <<EOF
+${3}
+
+    USAGE: ${4}
+
+EOF
+        return 1
     fi
 }
 
 
 lnc () {
-    _require $# 1 'Creates a symlink to the target in pwd.' \
+    _usage $# 1 'Creates a symlink to the target in pwd.' \
         "$0 path/to/target" || return 1
     ln -sv "$(readlink -f "$1")" "$(pwd)"
 }
@@ -32,15 +37,35 @@ h () {
 }
 
 
+wscan () {
+    _usage $# 1 'Uses the interface to scan for wireless AP SSIDs.' \
+        "$0 interface" || return 1
+    sudo iw dev "$1" scan | grep SSID | awk '{print $2}'
+}
+
+
+# print local and external ip.
+myip () {
+    local lip="$(ip route get 1.1.1.1 | awk '{print $(NF-2); exit}')"
+    local eip="$(command -v dig 2>&1 >/dev/null && \
+        dig +short myip.opendns.com @resolver1.opendns.com || \
+         curl -s http://whatismyip.akamai.com)"
+    cat <<EOF
+Local: $lip
+External: $eip
+EOF
+}
+
+
 killtty () {
-    _require $# 1 'Kills the specified tty by number.' \
+    _usage $# 1 'Kills the specified tty by number.' \
         "$0 [tty number]" || return 1
     sudo kill "$(who -u | grep "tty${1}" | tr -s ' ' | cut -d ' ' -f 6)"
 }
 
 
 gitignore () {
-    _require $# 1 'gitignore.io download wrapper.' \
+    _usage $# 1 'gitignore.io download wrapper.' \
         "$0 [directive ...]" || return 1
     local URL="https://www.gitignore.io/api/${1}"
     shift; for d in "$@"; do URL="${URL},${d}"; done
@@ -49,7 +74,7 @@ gitignore () {
 
 
 sshnew () {
-    _require $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
+    _usage $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
         "$0 [keypair name] [optional comment]" || return 1
     ssh-keygen -o -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
@@ -58,7 +83,7 @@ sshnew () {
 
 
 instassh () {
-    _require $# 4 'Automates ssh keypair generation and installation.' \
+    _usage $# 4 'Automates ssh keypair generation and installation.' \
         "$0 [keypair name] [username] [ipv4 addr] [ssh port]" || return 1
     (
     set -eu
@@ -81,7 +106,7 @@ EOF
 
 # Use this only for compatibility with older or embedded systems.
 sshnewrsa () {
-    _require $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
+    _usage $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
         "$0 [keypair name] [optional comment]" || return 1
     ssh-keygen -o -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
@@ -106,7 +131,7 @@ lockdown () {
 # TODO remove this when I finish wiki archive project
 # download an entire mediawiki to a single XML file (text-only).
 wikimirror () {
-    _require $# 2 'Download a mediawiki.' \
+    _usage $# 2 'Download a mediawiki.' \
         "$0 [base url] [outfile.xml]" || return 1
     curl -d "&pages=Main_Page&offset=1&action=submit"   \
         --compressed -H 'Accept-Encoding: gzip,deflate' \
@@ -123,7 +148,7 @@ pb () {
 
 
 rmirror () {
-    _require $# 2 'rsync shortcut for backup/sync. results in path/to/destdir/srcdir.' \
+    _usage $# 2 'rsync shortcut for backup/sync. results in path/to/destdir/srcdir.' \
         "$0 path/to/srcdir path/to/destdir" || return 1
     # reflect deleted file changes in the destination
     rsync -aAXhP --delete "$1" "$2"
@@ -131,7 +156,7 @@ rmirror () {
 
 
 hmirror () {
-    _require $# 1 'rsync shortcut for home backup/sync. make sure backup dir is encrypted!' \
+    _usage $# 1 'rsync shortcut for home backup/sync. make sure backup dir is encrypted!' \
         "$0 /path/to/backup/dir" || return 1
     rsync -aAXhP --delete       \
         --exclude '.cache'      \
@@ -141,7 +166,7 @@ hmirror () {
 
 
 smirror () {
-    _require $# 1 'rsync shortcut for system backup/sync.' \
+    _usage $# 1 'rsync shortcut for system backup/sync.' \
         "$0 /path/to/backup/dir" || return 1
     sudo rsync -aAXhP --delete \
         --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/home/*","/lost+found"} \
