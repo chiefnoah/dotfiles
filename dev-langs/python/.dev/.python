@@ -3,7 +3,7 @@ export PYTHONSTARTUP="${HOME}/.pythonrc"
 export PYENV_ROOT="${HOME}/.pyenv"
 pathprepend "${PYENV_ROOT}/bin"
 
-if command -v pyenv > /dev/null 2>&1; then
+if df_require pyenv; then
     eval "$(pyenv init -)"
     usep () {
         pyenv global "$1" && \
@@ -13,7 +13,7 @@ else
     df_warn 'pyenv not found'
 fi
 
-if command -v pipenv > /dev/null 2>&1; then
+if df_require pipenv; then
     alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
 else
     df_warn 'pipenv not found'

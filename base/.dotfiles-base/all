@@ -1,28 +1,22 @@
-ssource () {
-    for s in "$@"; do
-        [ -f "$s" ] && . "$s" && break
-    done
-}
+# source this file to apply all my dotfiles/configs for configuring a shell.
 
-ssource "${HOME}/.dotfiles-base/lib"
+# lib defines some useful df_* routines used by the rest of these files
+. "${HOME}/.dotfiles-base/lib"
 
-ssource "${HOME}/.dotfiles-base/env"
-ssource "${HOME}/.dotfiles-base/aliases"
-ssource "${HOME}/.dotfiles-base/functions"
+. "${HOME}/.dotfiles-base/env"
+. "${HOME}/.dotfiles-base/aliases"
+. "${HOME}/.dotfiles-base/functions"
 
 # dev environments
 for f in "${HOME}/.dev/".*; do
-    ssource "$f"
+    . "$f"
 done
 
 # other dev tooling checks
-command -v tmuxp > /dev/null 2>&1 || df_warn 'tmuxp not found'
+df_require tmuxp || df_warn 'tmuxp not found'
 
 if xhost > /dev/null 2>&1; then
-    ssource "${HOME}/.dotfiles-base/x"
+    . "${HOME}/.dotfiles-base/x"
 fi
 
-ssource "${HOME}/.os-specificrc"
-ssource "${HOME}/.rice-specificrc"
-
-unset -f ssource
+. "${HOME}/.os-specificrc"

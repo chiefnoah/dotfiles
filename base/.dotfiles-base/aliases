@@ -6,7 +6,7 @@ alias sudo='sudo '  # allow aliases to be executed with sudo
 
 
 # navigation
-if command -v exa > /dev/null 2>&1; then
+if df_require exa; then
     alias ls='exa'
     alias l='exa -Fl'
     alias ll='exa -Fla'
@@ -24,7 +24,7 @@ alias r='ranger'
 
 
 # info/introspection/search
-if command -v fd > /dev/null 2>&1; then
+if df_require fd; then
     alias f='fd'
     alias fe='fd -e'
     alias fh='fd -H'
@@ -36,20 +36,20 @@ else
     }
 fi
 
-if command -v ncdu > /dev/null 2>&1; then
+if df_require ncdu; then
     alias du='ncdu -rr'
     alias dum='ncdu'
 else
     alias du='du -skh .??* * | sort -rh ; printf "\nYou should install ncdu.\n"'
 fi
 
-if command -v dfc > /dev/null 2>&1; then
+if df_require dfc; then
     alias df='dfc -p /dev,-tmpfs'
 else
     alias df='df --exclude-type=tmpfs -h ; printf "\nYou should install dfc.\n"'
 fi
 
-if command -v tree > /dev/null 2>&1; then
+if df_require tree; then
     alias tree='exa --tree'
     alias treea='exa --tree -aI .git'
 else
@@ -70,14 +70,6 @@ alias watchdir='inotifywait -e create,modify,delete -mr'
 
 
 # networking
-myip () {
-    cat <<EOF
-Local: $(hostname -i)
-External: $(dig +short myip.opendns.com @resolver1.opendns.com)
-EOF
-}
-# Alternatively, local: ip route get 1.1.1.1 | awk '{print $(NF-2); exit}'
-# And external: curl -s http://whatismyip.akamai.com
 alias ns='sudo netstat -tulpn'
 
 

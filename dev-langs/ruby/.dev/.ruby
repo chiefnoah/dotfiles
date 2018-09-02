@@ -1,4 +1,4 @@
-if command -v rbenv > /dev/null 2>&1; then
+if df_require rbenv; then
     export RBENV_ROOT="${HOME}/.rbenv"
     pathprepend "${PYENV_ROOT}/bin"
     eval "$(rbenv init -)"

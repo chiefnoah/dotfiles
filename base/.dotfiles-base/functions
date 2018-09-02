@@ -47,7 +47,7 @@ wscan () {
 # print local and external ip.
 myip () {
     local lip="$(ip route get 1.1.1.1 | awk '{print $(NF-2); exit}')"
-    local eip="$(command -v dig 2>&1 >/dev/null && \
+    local eip="$(df_require dig && \
         dig +short myip.opendns.com @resolver1.opendns.com || \
          curl -s http://whatismyip.akamai.com)"
     cat <<EOF
