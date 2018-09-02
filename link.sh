@@ -24,7 +24,6 @@ EOF
 
 p_base="base bin mksh bash zsh nano micro ranger weechat tools"
 p_baseg="atom mpv rofi redshift cava"
-p_dev="tools-dev python golang rust nodejs ruby"
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
@@ -39,13 +38,17 @@ if
     baseg)
         $stow_cmd $p_base $p_baseg ;;
     dev)
-        $stow_cmd $p_dev ;;
+        $stow_cmd dev-tools
+        $stow_cmd -d dev-langs python golang rust ruby nodejs
+        ;;
 	og)
 		$stow_cmd $p_base $p_baseg 'os-arch' 'rice-og' ;;
     tatami4.5)
 		$stow_cmd $p_base $p_baseg 'os-alpine' 'rice-tatami4.5' ;;
     work)
-		$stow_cmd $p_base $p_baseg $p_dev 'os-mac' 'rice-work' ;;
+		$stow_cmd $p_base $p_baseg 'os-mac' 'rice-work'
+        $stow_cmd -d dev-langs python nodejs
+        ;;
 	*)
 		usage ;;
     esac
