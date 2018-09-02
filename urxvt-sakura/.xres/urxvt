@@ -1,7 +1,7 @@
 URxvt*termName: rxvt
-URxvt.letterSpace: -1
+URxvt.letterSpace: 1
 URxvt.internalBorder: 25
-URxvt.font: xft:tewi:medium:size=11:antialias=false
+URxvt.font: xft:lucy tewi:medium:pixelsize=11:antialias=false
 
 ! scrolling adjustments
 URxvt.scrollBar: false
