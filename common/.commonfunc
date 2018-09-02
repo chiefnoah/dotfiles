@@ -28,13 +28,6 @@ cd () {
 }
 
 
-f () {
-    _require $# 1 'Dumb find by name substring.' \
-        "$0 substring" || return 1
-    find . -iname "*$1*"
-}
-
-
 killtty () {
     _require $# 1 'Kills the specified tty by number.' \
         "$0 [tty number]" || return 1
@@ -71,31 +64,6 @@ lockdown () {
     chmod 444 -vR "${HOME}/.ssh/"*.pub
     chmod 600 -v "${HOME}/.ssh/config"
     chmod 600 -v "${HOME}/.ssh/known_hosts"
-}
-
-
-# TODO move this to scripts. Also add gpg decrypt support.
-alias e='extract'
-extract () {
-    _require $# 1 'Archive extraction based on file extension.' \
-        "$0 path/to/archive" || return 1
-    if [ -f "$1" ]; then
-        case $1 in
-            *.tgz|*.tar.gz)     tar xvzf "$1"    ;;
-            *.tbz2|*.tar.bz2)   tar xvjf "$1"    ;;
-            *.txz|*.tar.xz)     tar xvJf "$1"    ;;
-            *.tar)       tar xvf "$1"     ;;
-            *.bz2)       bunzip2 -v "$1"  ;;
-            *.gz)        gunzip -v "$1"   ;;
-            *.xz)        unxz -v "$1"     ;;
-            *.zip)       unzip "$1"       ;;
-            *.rar)       rar x "$1"       ;;
-            *.7z)        7z x "$1"        ;;
-            *)           printf "%s\n" "Can't recognize file extension on '${1}'" ;;
-        esac
-    else
-        printf "%s\n" "'${1}' is not a valid file!"
-    fi
 }
 
 
@@ -139,8 +107,8 @@ rec () {
 
 
 rmirror () {
-    _require $# 2 'rsync shortcut for backup/sync.' \
-        "$0 /path/to/source/dir /path/to/dest/dir" || return 1
+    _require $# 2 'rsync shortcut for backup/sync. results in path/to/destdir/srcdir.' \
+        "$0 path/to/srcdir path/to/destdir" || return 1
     # reflect deleted file changes in the destination
     rsync -aAXhP --delete "$1" "$2"
 }
@@ -152,6 +120,7 @@ hmirror () {
     rsync -aAXhP --delete       \
         --exclude '.cache'      \
         --exclude '.thumbnails' \
+        --exclude '.android'    \
         --exclude '.gnupg'      \
         --exclude '.ssh'        \
         --exclude '.openvpn'    \
