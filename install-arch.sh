@@ -89,6 +89,10 @@ WantedBy=sleep.target
 EOF"
 sudo systemctl enable /etc/systemd/system/physlock.service
 
+if ask "Install udisks2 + udiskie?"; then
+    $paci udisks2 udiskie
+fi
+
 if ask "Install python?"; then
     $paci python3 python-pip pyenv flake8
 fi
@@ -119,12 +123,12 @@ fi
 notify "Installing wallpapers..."
 $paci imgp
 git clone https://github.com/JoshuaRLi/papes "${HOME}/Wallpapers"
-printf 'Screen width in pixels: ' ; read swidth
-printf 'Screen height in pixels: ' ; read sheight
+printf 'Enter screen width in pixels: ' ; read swidth
+printf 'Enter screen height in pixels: ' ; read sheight
 notify "Processing wallpapers."
 cd "$HOME"
 bash "${HERE}/scripts/bin/scripts/wallcrunch" \
-    "${HOME}/Wallpapers" "$swidth" "$sheight"
+    "${HOME}/Wallpapers/Originals" "$swidth" "$sheight"
 
 notify "Installing zsh and changing the login shell..."
 $paci zsh
