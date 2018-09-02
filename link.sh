@@ -21,7 +21,6 @@ EOF
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
-# configuration presets
 p_base="common common-dev bin bash zsh nano micro ranger"
 p_baseg="atom mpv rofi redshift cava"
 
@@ -50,6 +49,7 @@ case "$1" in
 		;;
     cash)
 		$stow_cmd $p_base \
+            macos-cash
 		;;
 	*)
 		usage ;;

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+alias bi='brew install'
+alias bu='brew uninstall'
+
+# work @ sentry.io
+alias python2='/usr/local/bin/python'
+alias venva='workon sentry'
+
+# override .commonaliases git commit - do not sign commits
+alias gcm="git commit -m"
+
+source /usr/local/bin/virtualenvwrapper.sh
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
