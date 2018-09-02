@@ -13,6 +13,3 @@ pacfiles () { yay -Fl "$1" | less ; }
 pacwhich () { yay -Qo "$(which "$1")" ; }
 alias pacinfo='yay -Si'
 alias pacstats='yay -Ps'
-
-# aur/nvm installs nvm differently than nvm's default install script in git
-alias snvm='source /usr/share/nvm/init-nvm.sh'
