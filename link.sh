@@ -38,7 +38,7 @@ if
         ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools basics nano micro
+        $stow -d dev-tools basics nano micro tmux
         $stow -d shells bash mksh zsh
         ;;
 	og)
@@ -46,7 +46,7 @@ if
         $stow -d applications ranger weechat \
             cava mpv redshift
         $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools basics nano micro
+        $stow -d dev-tools basics nano micro tmux
         $stow -d shells zsh
         ;;
     tatami4.5)
@@ -56,12 +56,12 @@ if
         $stow -d shells mksh
         ;;
     work)
-		$stow base bin tools 'os-mac' 'rice-work'
+		$stow --ignore='Brewfile' base bin tools 'os-mac' 'rice-work'
         $stow -d applications weechat \
             mpv
         $stow -d dev-langs python nodejs
-        $stow -d dev-tools basics nano micro
-        $stow -d shells zsh
+        $stow -d dev-tools basics nano micro tmux
+        $stow -d shells zsh bash mksh
         ;;
 	*)
 		usage ;;
