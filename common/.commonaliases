@@ -129,7 +129,8 @@ alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gi='git show'
 alias gcm='git commit -S -m'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias gls='gl --show-signature'
 alias gp='git push'
 alias gpf='git push --force'
 alias gb='git branch -vv --all'

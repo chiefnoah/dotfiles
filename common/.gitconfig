@@ -24,6 +24,7 @@
     info = show --format=fuller --show-signature
     stat = show --format=fuller --show-signature --stat
     unstage = reset --
+    resign = rebase --exec 'git commit --amend --no-edit -n -S' -i
 
 [apply]
     whitespace = fix
