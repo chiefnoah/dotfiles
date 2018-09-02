@@ -1,4 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
+# Uncategorized
+alias gpg='gpg2'
+alias gpgl='gpg2 --list-keys --keyid-format 0xlong'
+alias pgp='gpg2 --export -a joshua.r.li.98@gmail.com'
+alias serve='python3 -m http.server 8888'
 
 
 # Navigation
@@ -62,27 +68,29 @@ alias treea='tree -aI .git'
 alias watchdir='inotifywait -e create,modify,delete -mr'
 
 
-# General
+# Filesystem
 alias a='atool -Ea'
-alias al='atool -El'
-alias c='tput reset'
-alias cl='c && ll'
 alias e='atool -Ex'
-alias gpg='gpg2'
-alias gpgl='gpg2 --list-keys --keyid-format 0xlong'
-alias less='less -irS'
-alias m='micro'
-alias pgp='gpg2 --export -a joshua.r.li.98@gmail.com'
-alias pls='sudo !!'
-alias q='exit'
 alias rd='rmdir'
-alias serve='python3 -m http.server 8888'
 alias shred='shred -zun 10'
-alias sitemirror='wget --no-config -mpkKE -e robots=off'
-alias sshc='$EDITOR ~/.ssh/config'
-alias tailf='tail -f -n 100'
 alias um='udiskie-mount'
 alias uu='udiskie-umount'
+
+
+# Editing/View
+alias c='tput reset'
+alias cl='c && ll'
+alias al='atool -El'
+alias less='less -irS'
+alias m='micro'
+alias sshc='$EDITOR ~/.ssh/config'
+alias tailf='tail -f -n 100'
+
+
+# Web Scraping
+alias sitemirror='wget --no-config -mpkKE -e robots=off'
+alias ytm='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass -f bestaudio -f m4a --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'
+alias sc='youtube-dl --ignore-config --ignore-errors --no-continue -f bestaudio --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'
 
 
 # Docker
@@ -179,10 +187,3 @@ alias tad='tmux attach -d -t'
 alias tks='tmux kill-session -t'
 alias tkill='tmux kill-server'
 alias tl='tmux list-sessions'
-
-
-# Other
-# YouTube. For batch scraping: https://github.com/JoshuaRLi/ytmcd
-alias ytm='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass -f bestaudio -f m4a --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'
-# Soundcloud. Most songs don't have m4a audio, usually gets MP3s.
-alias sc='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass -f bestaudio --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'

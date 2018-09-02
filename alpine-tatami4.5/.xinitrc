@@ -4,7 +4,7 @@ urxvtd -q -f -o &
 sxhkd &
 dunst &
 
-# TODO lemonbar + slstatus
+# TODO lemonbar + bin script
 # TODO udisks2 + udiskie
 
 exec bspwm
