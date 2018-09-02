@@ -62,7 +62,7 @@ mkdir -p "${HOME}/bin"
 paci='pacaur --noedit --noconfirm -S'
 
 notify "Installing software..."
-$paci bspwm compton sxhkd polybar rofi rxvt-unicode ttf-font-awesome ttf-hack \
+$paci bspwm compton sxhkd polybar rofi rxvt-unicode ttf-font-awesome-4 ttf-hack \
     dunst libnotify \
     python-pywal feh neofetch \
     editorconfig-core-c micro-bin \
