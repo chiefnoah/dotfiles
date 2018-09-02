@@ -32,7 +32,6 @@ export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST="$HISTSIZE"
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:ls:history"
-setopt BANG_HIST
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
