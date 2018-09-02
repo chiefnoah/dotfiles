@@ -6,10 +6,12 @@ set keymap emacs
 "\C-l": alias-expand-line
 "\C-a": beginning-of-line
 "\C-e": end-of-line
-# TODO move by words
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
 
-"\C-f": nop
 "\C-b": nop
+"\C-f": nop
+"\C-p": nop
 
 set match-hidden-files Off
 set completion-ignore-case On
