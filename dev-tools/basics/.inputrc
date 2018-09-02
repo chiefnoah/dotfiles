@@ -6,8 +6,13 @@ set keymap emacs
 "\C-l": alias-expand-line
 "\C-a": beginning-of-line
 "\C-e": end-of-line
-"\e[1;5D": backward-word
-"\e[1;5C": forward-word
+"\e[1;5D": backward-word  # ctrl+left
+"\e[1;5C": forward-word  # ctrl+right
+"\C-K": kill-whole-line
+"\e[3~": backward-kill-word  # del
+"\C-/": backward-kill-word  # possible ctrl+backspace terminal mapping
+"\C-_": backward-kill-word  # possible ctrl+backspace terminal mapping
+"\C-H": backward-kill-word  # possible ctrl+backspace terminal mapping
 
 "\C-b": nop
 "\C-f": nop
