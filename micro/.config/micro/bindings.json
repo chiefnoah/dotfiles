@@ -1,0 +1,11 @@
+{
+    "CtrlA": "StartOfLine",
+    "CtrlE": "EndOfLine",
+    "CtrlL": "CutLine",
+    "CtrlK": "DeleteLine",
+    "CtrlJ": "JumpLine",
+    "CtrlT": "NewTab",
+    "CtrlLeft": "PreviousTab",
+    "CtrlRight": "NextTab",
+    "CtrlSpace": "CommandMode"
+}

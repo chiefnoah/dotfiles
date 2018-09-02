@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+. "${HOME}/.commonexports"
+. "${HOME}/.commonaliases"
+. "${HOME}/.commonfunc"
+. "${HOME}/.specificrc"  # https://github.com/JoshuaRLi/dotfiles
+
+if xhost > /dev/null 2>&1; then
+    . "${HOME}/.xsrc"
+fi

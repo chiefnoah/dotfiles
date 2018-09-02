@@ -1,0 +1,50 @@
+[user]
+    name = Joshua Li
+    email = joshua.r.li.98@gmail.com
+    signingkey = C44E942716F2C9D3
+
+[github]
+    user = JoshuaRLi
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[core]
+    autocrlf = input
+    compression = 9
+    editor = vim
+    pager = less -RS
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = gpg2
+
+[alias]
+    bed = branch --edit-description
+    ca = commit --amend -v
+    cleanall = clean -fdx  # dangerous!!
+    pullrb = pull --rebase
+    root = rev-parse --show-toplevel
+    show = show --format=fuller --show-signature
+    shows = show --format=fuller --stat
+    versions = tag -l --sort=version:refname
+
+[apply]
+    whitespace = fix
+
+[diff]
+    renames = copies
+    tool = vimdiff
+
+[merge]
+    log = true
+    tool = vimdiff
+
+[push]
+    default = current
+    followTags = true
+
+[color]
+    ui = auto

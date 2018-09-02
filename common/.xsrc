@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Stuff specifically for X sessions.
+
+alias ssel='maim -s | xclip -selection clipboard -t image/png'

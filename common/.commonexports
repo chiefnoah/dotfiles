@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+export LANG='en_US.UTF-8'
+export LANGUAGE='en_US.UTF-8'
+export EDITOR='nano'
+export PAGER='less -irS'
+
+pathprepend() {
+  for DIR in "$@"
+  do
+    if [[ -d "$DIR" ]] && [[ ":${PATH}:" != *":${DIR}:"* ]]; then
+      PATH="${DIR}${PATH:+":$PATH"}"
+    fi
+  done
+}
+
+export PYTHONSTARTUP="${HOME}/.pythonrc"
+export PIP_DOWNLOAD_CACHE="${HOME}/.pip/cache"
+export GPG_TTY="$(tty)"
+export GOPATH="${HOME}/.go"
+
+PATH=
+pathprepend "/bin"
+pathprepend "/sbin"
+pathprepend "/usr/bin"
+pathprepend "/usr/sbin"
+pathprepend "/usr/local/bin"
+pathprepend "/usr/local/sbin"
+pathprepend "${HOME}/bin"
+pathprepend "${HOME}/bin/scripts" # https://github.com/JoshuaRLi/scripts
+pathprepend "${HOME}/.local/bin"  # pip --user installed executables
+pathprepend "${GOPATH}/bin"       # go workspace binaries
+export PATH

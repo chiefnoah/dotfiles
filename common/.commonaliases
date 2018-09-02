@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+
+# Navigation
+alias ..='cd ..'
+alias ls='ls -F --color=always'
+alias l='ls -lph'
+alias ll='ls -Alph'
+alias llt='ll -rt'
+alias r='ranger'
+
+# Info/Introspection/Search
+alias ag='ag -a'
+alias agh='ag -a --hidden'
+alias badlinks='find . -xtype l'
+alias df='df --exclude-type=tmpfs -h'
+alias dmesg='dmesg -xHw'
+alias lsblk='lsblk --output=NAME,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID,MOUNTPOINT'
+alias lsusb='lsusb -t'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias ns='sudo netstat -tulpn'
+
+# General
+alias c='clear'
+alias cl='c && ll'
+alias gpg='gpg2'
+alias gpgl='gpg2 --list-keys --keyid-format 0xlong'
+alias less='less -irS'
+alias m='micro'
+alias pgp='gpg2 --export -a joshua.r.li.98@gmail.com'
+alias pls='sudo !!'
+alias q='exit'
+alias rd='rmdir'
+alias serve='python3 -m http.server 8888'
+alias shred='shred -zun 10'
+alias sitemirror='wget --no-config -mpkKE -e robots=off'
+alias tailf='tail -f -n 100'
+alias vi='vim'
+
+# mpv
+alias v='mpv --profile=vid-hq'
+alias mp3='mpv --profile=enc-a-mp3'
+alias m4a='mpv --profile=enc-a-aac'
+
+# Docker
+alias alp='sudo docker run -it --rm alpine'
+alias dcp='sudo docker container prune -f'
+alias dls='sudo docker images && printf '\n' && sudo docker ps'
+alias dclean='sudo docker stop $(sudo docker ps -a -q) ; dcp ; sudo docker rmi $(sudo docker images -q)'
+
+# Git (also see .gitconfig for some fancier aliases)
+alias g='git'
+alias ga='g add'
+alias gaa='ga --all'
+alias gb='g branch -vv'
+alias gbv='g branch -vv --all'
+alias gc='g clone --recursive'
+alias gch='g checkout'
+alias gchb='g checkout -b'
+alias gchm='g checkout master'
+alias gcm='g commit -S -m'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gf='fetch --tags --prune'
+alias gfa='fetch --all --tags --prune'
+alias gl="g log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gp='g push'
+alias gpf='gp --force'
+alias gpom='gp -u origin master'
+alias gpomf='gp -u origin master --force'
+gr () {
+    [[ "$1" ]] && git reset HEAD~"$1" || git reset
+}
+alias gra='g remote add'
+alias grao='gra origin'
+alias grsu='g remote set-url'
+alias grsuo='grsu origin'
+alias grv='g remote -v'
+alias gs='g status -sb'
+alias gst='g stash'
+alias gsta='g stash apply'
+gt () {
+    # lazy git tag, message is same as tagname
+    git tag -s -m "$1" "$1"
+}
+alias gu='g submodule update --init --recursive --remote'
+
+# Go
+alias gocd='cd "$GOPATH"'
+alias godl='go get -d'
+alias goi='go install'
+alias gog='go get -u -v'
+
+# Python
+alias p='/usr/bin/env python3'
+alias pe='pipenv'
+alias pei='pe install'
+alias penew='pe --rm ; pe install --dev ; pe check ; pe shell'
+alias perm='pe --rm'
+alias peu='pe uninstall'
+alias peup='pe update && pe check'
+pedump () {
+    printf '%s\n' "pwd:  "$(pwd)""
+    printf '%s\n' "venv: "$(pipenv --venv)""
+    printf '%s\n' "py:   "$("$(pipenv --py)" --version)""
+    printf 'packages:\n%s\n' "$(pipenv graph)"
+}
+alias pipi='p -m pip install --user'
+alias pipl='p -m pip freeze'
+alias pipu='p -m pip uninstall'
+
+# Node.js/npm
+alias node='nvm use node'
+alias npmi='npm install'
+alias npmig='npm install -g'
+
+# Tmux
+alias tn='tmux new-session -s'
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias tks='tmux kill-session -t'
+alias tkill='tmux kill-server'
+alias tl='tmux list-sessions'
+
+# Other
+# YouTube. For batch scraping: https://github.com/JoshuaRLi/ytmcd
+alias ytm='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass -f bestaudio -f m4a --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'
+# Soundcloud. Most songs don't have m4a audio, usually gets MP3s.
+alias sc='youtube-dl --ignore-config --ignore-errors --no-continue --geo-bypass -f bestaudio --add-metadata --prefer-ffmpeg -o "%(title)s [%(id)s].%(ext)s"'

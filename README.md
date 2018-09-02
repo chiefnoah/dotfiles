@@ -32,7 +32,9 @@ There are a few special directories worth noting.
 
 * `arch/` - contains the `.specificrc` for arch-based distros
 * `debian/` - contains the `.specificrc` for debian-based distros
+* `common/` - contains common shell aliases, functions, environment, and more, for all distros
 * `manual-configs/` - configuration files that require a more manual, involved installation process than merely symlinking
+* `scripts/` - useful scripts that i've written
 
 
 ### Backup/Restore/Uninstall

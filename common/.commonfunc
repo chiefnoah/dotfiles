@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+
+# For more advanced scripts: https://github.com/JoshuaRLi/scripts
+
+# helper function to enforce argc and display provided description
+# and usage string when violated.
+_require () {
+    if [[ "$1" -ne "$2" ]]; then
+        printf "${3}\nUSAGE: ${4}\n" ; return 1
+    fi
+}
+
+
+lnc () {
+    _require $# 1 'Creates a symlink to the target in pwd.' \
+        "$0 path/to/target" || return 1
+    ln -sv "$(readlink -f "$1")" "$(pwd)"
+}
+
+
+# auto-ls after cd. Does not show hidden files.
+cd () {
+    if [[ -n "$1" ]]; then
+        builtin cd "$1" && ls -lph
+    else
+        builtin cd "$HOME" && ls -lph
+    fi
+}
+
+
+f () {
+    _require $# 1 'Dumb find by name substring.' \
+        "$0 substring" || return 1
+    find . -iname "*$1*"
+}
+
+
+killtty () {
+    _require $# 1 'Kills the specified tty by number.' \
+        "$0 [tty number]" || return 1
+    sudo kill "$(who -u | grep "tty${1}" | tr -s ' ' | cut -d ' ' -f 6)"
+}
+
+
+# enforce permissions and ownership on important files.
+lockdown () {
+    sudo chown -R "$(whoami)" "${HOME}/."{ssh,gnupg}
+    sudo chmod 700 "${HOME}/."{ssh,gnupg}
+    sudo chmod 600 -R "${HOME}/.gnupg/"*
+    sudo chmod 700 "${HOME}/.gnupg/private-keys-v1.d"
+    sudo chmod 600 -R "${HOME}/.ssh/"*
+    sudo chmod 400 -R "${HOME}/.ssh/"*.pem
+    sudo chmod 400 "${HOME}/.ssh/id_rsa"*
+}
+
+
+# TODO move this to scripts. Also add gpg decrypt support.
+alias e='extract'
+extract () {
+    _require $# 1 'Archive extraction based on file extension.' \
+        "$0 path/to/archive" || return 1
+    if [ -f "$1" ]; then
+        case $1 in
+            *.tgz|*.tar.gz)     tar xvzf "$1"    ;;
+            *.tbz2|*.tar.bz2)   tar xvjf "$1"    ;;
+            *.txz|*.tar.xz)     tar xvJf "$1"    ;;
+            *.tar)       tar xvf "$1"     ;;
+            *.bz2)       bunzip2 -v "$1"  ;;
+            *.gz)        gunzip -v "$1"   ;;
+            *.xz)        unxz -v "$1"     ;;
+            *.zip)       unzip -v "$1"    ;;
+            *.rar)       rar x "$1"       ;;
+            *.7z)        7z x "$1"        ;;
+            *)           printf "%s\n" "Can't recognize file extension on '${1}'" ;;
+        esac
+    else
+        printf "%s\n" "'${1}' is not a valid file!"
+    fi
+}
+
+
+# TODO move an improved version to scripts
+imgfix () {
+    _require $# 1 'Recursively corrects image extensions based on `file`.' \
+        "$0 path/to/dir" || return 1
+    find "$1" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | \
+    while read fp; do
+        ext="$(file -0 -F" " "$fp" | grep -aPo '\0\s*\K\S+' | tr '[:upper:]' '[:lower:]')"
+        # ${ext,,} is bash 4+ and will not work in zsh, unfortunately.
+        nfp="${fp%.*}.${ext}"
+        mv -iv "$fp" "$nfp"
+    done
+}
+
+
+# upload stdin or a file to pb.
+pb () {
+    curl -F "c=@${1:--}" -F p=1 "https://ptpb.pw/"
+}
+
+
+# record and upload asciinema.
+rec () {
+    asciinema rec "/tmp/$$.json"  && \
+    pb "/tmp/$$.json"             && \
+    printf "Prepend t/ to view the asciinema!\n"
+}
+
+
+rmirror () {
+    _require $# 2 'rsync shortcut for backup/sync.' \
+        "$0 /path/to/source/dir /path/to/dest/dir" || return 1
+    # reflect deleted file changes in the destination
+    rsync -aAXhP --delete "$1" "$2"
+}
+
+
+hmirror () {
+    _require $# 1 'Special rsync shortcut for home backup/sync.' \
+        "$0 /path/to/backup/dir" || return 1
+    rsync -aAXhP --delete       \
+        --exclude '.cache'      \
+        --exclude '.thumbnails' \
+        --exclude '.gnupg'      \
+        --exclude '.ssh'        \
+        --exclude '.openvpn'    \
+        "$HOME" "$1"
+}
+
+
+smirror () {
+    _require $# 1 'Special rsync shortcut for system backup/sync.' \
+        "$0 /path/to/backup/dir" || return 1
+    sudo rsync -aAXhP --delete \
+        --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/home/*","/lost+found"} \
+        "/" "$1"
+}
