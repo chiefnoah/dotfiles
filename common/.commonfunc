@@ -73,20 +73,6 @@ lockdown () {
 }
 
 
-# TODO move an improved version to scripts
-imgfix () {
-    _require $# 1 'Recursively corrects image extensions based on `file`.' \
-        "$0 path/to/dir" || return 1
-    find "$1" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) | \
-    while read fp; do
-        ext="$(file -0 -F" " "$fp" | grep -aPo '\0\s*\K\S+' | tr '[:upper:]' '[:lower:]')"
-        # ${ext,,} is bash 4+ and will not work in zsh, unfortunately.
-        nfp="${fp%.*}.${ext}"
-        mv -iv "$fp" "$nfp"
-    done
-}
-
-
 # TODO remove this when I finish wiki archive project
 # download an entire mediawiki to a single XML file (text-only).
 wikimirror () {
@@ -99,7 +85,7 @@ wikimirror () {
 }
 
 
-# TODO replace this with tb when I finish the rewrite
+# TODO replace this with an alias to tb-client when I finish the rewrite
 # upload stdin or a file to pb.
 pb () {
     curl -F "c=@${1:--}" "https://ptpb.pw/"
@@ -115,21 +101,17 @@ rmirror () {
 
 
 hmirror () {
-    _require $# 1 'Special rsync shortcut for home backup/sync.' \
+    _require $# 1 'rsync shortcut for home backup/sync. make sure backup dir is encrypted!' \
         "$0 /path/to/backup/dir" || return 1
     rsync -aAXhP --delete       \
         --exclude '.cache'      \
         --exclude '.thumbnails' \
-        --exclude '.android'    \
-        --exclude '.gnupg'      \
-        --exclude '.ssh'        \
-        --exclude '.openvpn'    \
         "$HOME" "$1"
 }
 
 
 smirror () {
-    _require $# 1 'Special rsync shortcut for system backup/sync.' \
+    _require $# 1 'rsync shortcut for system backup/sync.' \
         "$0 /path/to/backup/dir" || return 1
     sudo rsync -aAXhP --delete \
         --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/home/*","/lost+found"} \
