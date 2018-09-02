@@ -1,3 +1,10 @@
+ldd () {
+    otool -L "$(which "$1")"
+}
+
+alias copy=pbcopy
+alias paste=pbpaste
+
 # use GNU coreutils, findutils
 pathprepend /usr/local/opt/coreutils/libexec/gnubin
 pathprepend /usr/local/opt/findutils/libexec/gnubin
