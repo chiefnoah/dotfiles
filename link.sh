@@ -8,7 +8,6 @@ usage () {
 # dotfile presets
 p_base="common common-dev scripts bash zsh nano micro ranger"
 p_baseg="atom mpv rofi redshift"
-p_debian="debian"
 p_rice_og="arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og"
 
 
@@ -25,9 +24,6 @@ case "$1" in
     baseg)
         $stow_cmd $p_base $p_baseg
         ;;
-	debian)
-		$stow_cmd $p_debian
-		;;
 	rice_og)
 		$stow_cmd $p_base $p_baseg $p_rice_og
 		;;
