@@ -4,7 +4,7 @@
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
-export SHELL='zsh'
+export SHELL="$(which zsh)"
 
 # completion adjustments
 autoload -Uz compinit && compinit

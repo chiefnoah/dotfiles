@@ -3,7 +3,7 @@
 . "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
-export SHELL='mksh'
+export SHELL="$(which mksh)"
 
 # prompt
 shlib_export_PS1
