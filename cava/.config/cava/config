@@ -1,0 +1,14 @@
+[general]
+framerate = 60
+autosens = 1
+sensitivity = 5
+
+[output]
+method = ncurses
+channels = stereo
+
+[smoothing]
+integral = 90
+monstercat = 1
+waves = 1
+gravity = 200

@@ -20,7 +20,7 @@ command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
 # configuration presets
 p_base="common common-dev bin bash zsh nano micro ranger"
-p_baseg="atom mpv rofi redshift"
+p_baseg="atom mpv rofi redshift cava"
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
