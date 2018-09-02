@@ -9,10 +9,10 @@ usage () {
 USAGE: $0 PRESET [d]
 
 PRESETS:
-base        - basic config for non-graphical environment
-baseg       - basic config for generic graphical environment [inherits base]
+base        - non-graphical, non-dev configs
+baseg       - X/graphical configs
 dev         - blanket development environment config
-og          - config for Arch Linux rice "og" [inherits base, baseg]
+og          - config for Arch Linux rice "og"
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
 work        - config for work [currently: sentry.io]
 
@@ -22,8 +22,8 @@ EOF
 	exit 1
 }
 
-p_base="base bin mksh bash zsh nano micro ranger weechat tools"
-p_baseg="atom mpv rofi redshift cava"
+p_base="base bin mksh bash zsh ranger weechat tools"
+p_baseg="mpv rofi redshift cava"
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
@@ -36,9 +36,10 @@ if
 	base)
 	    $stow_cmd $p_base ;;
     baseg)
-        $stow_cmd $p_base $p_baseg ;;
+        $stow_cmd -d dev-tools atom
+        $stow_cmd $p_baseg ;;
     dev)
-        $stow_cmd dev-tools
+        $stow_cmd -d dev-tools basics nano micro
         $stow_cmd -d dev-langs python golang rust ruby nodejs
         ;;
 	og)
@@ -47,6 +48,7 @@ if
 		$stow_cmd $p_base $p_baseg 'os-alpine' 'rice-tatami4.5' ;;
     work)
 		$stow_cmd $p_base $p_baseg 'os-mac' 'rice-work'
+        $stow_cmd -d dev-tools basics nano micro
         $stow_cmd -d dev-langs python nodejs
         ;;
 	*)
