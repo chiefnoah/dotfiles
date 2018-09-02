@@ -30,19 +30,15 @@ shlib_cur_path () {
     echo -e "${shlib_c_fg_cyan}${wd/$USER/${dummy}~}${shlib_c_reset}"
 }
 
-shlib_git_branch () {
-    printf "$(git branch 2>/dev/null | grep \* | cut -c3-)"
-}
-
 shlib_git_dirty () {
     [ -z "$(git status --porcelain)" ] || printf '* '
 }
 
 shlib_git_prompt_info () {
-    [ -d '.git' ] || return
-    local cur_branch="$(shlib_git_branch)"
+    local cur_branch="$(git branch 2>/dev/null | grep \* | cut -c3-)"
+    [ -n "$cur_branch" ] || return
     [ "$1" = 'nocolor' ] && unset shlib_c_fg_green shlib_c_reset
-    [ -n "$cur_branch" ] && echo -e " $(shlib_git_dirty)${shlib_c_fg_green}${cur_branch}${shlib_c_reset}"
+    echo -e " $(shlib_git_dirty)${shlib_c_fg_green}${cur_branch}${shlib_c_reset}"
 }
 
 shlib_username () {
