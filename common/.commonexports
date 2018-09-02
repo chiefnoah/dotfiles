@@ -28,5 +28,6 @@ pathprepend "/usr/local/sbin"
 pathprepend "${HOME}/bin"
 pathprepend "${HOME}/bin/scripts" # https://github.com/JoshuaRLi/scripts
 pathprepend "${HOME}/.local/bin"  # pip --user installed executables
+pathprepend "${HOME}/.cargo/bin"  # cargo (rust) installed executables
 pathprepend "${GOPATH}/bin"       # go workspace binaries
 export PATH
