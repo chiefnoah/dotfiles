@@ -26,7 +26,10 @@ if command -v fd > /dev/null 2>&1; then
     alias fh='fd -H'
     alias fha='fd -HI'
 else
-    f () { find -iname "*${1}*"; printf "\nYou should install fd.\n" }
+    f () {
+        find -iname "*${1}*"
+        printf "\nYou should install fd.\n"
+    }
 fi
 
 if command -v ncdu > /dev/null 2>&1; then
