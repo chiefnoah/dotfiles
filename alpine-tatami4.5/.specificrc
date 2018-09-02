@@ -1,5 +1,3 @@
-#!/usr/bin/env mksh
-
 alias aa='sudo apk add'
 alias aaup='sudo apk update && sudo apk add --upgrade'
 alias ad='sudo apk del'

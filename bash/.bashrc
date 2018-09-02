@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 export SHELL="$(which bash)"
 
 # bring in common shell aliases, environment and functions

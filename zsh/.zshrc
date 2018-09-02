@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 export SHELL="$(which zsh)"
 
 # bring in common shell aliases, environment and functions

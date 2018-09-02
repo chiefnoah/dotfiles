@@ -1,12 +1,8 @@
-#!/usr/bin/env sh
-
-# allow aliases to be executed with sudo
-alias sudo='sudo '
-
 # Uncategorized
 alias socks5='ssh -vfnCTN -D 6969 proxy.jrl.ninja'
 alias serve='python3 -m http.server 8888'
 alias aur='pushd "${HOME}/dev/projects/maintaining/aur/PKGBUILDs" && source aur-devel.sh && cat aur-devel.sh'
+alias sudo='sudo '  # allow aliases to be executed with sudo
 
 
 # Navigation

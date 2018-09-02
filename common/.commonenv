@@ -1,11 +1,8 @@
-#!/usr/bin/env sh
-
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 export PAGER='less'
 export LESS='-irS'
 export GPG_TTY="$(tty)"
-# TODO shell and term
 
 # colored man pages
 export LESS_TERMCAP_mb=$'\e[1;32m'

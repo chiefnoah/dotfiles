@@ -1,6 +1,4 @@
-#!/usr/bin/env sh
-
-# Stuff specifically for X sessions (graphical desktop environments)
+# graphical/X specific configs
 
 copy () {
     xclip -i -sel clipboard "$1"
@@ -12,5 +10,5 @@ alias imgv='sxiv -tp'
 # list fontconfig fonts (for XLFD, use xfontsel or xlsfonts)
 alias fonts='fc-list | cut -f2 -d: | sort -u'
 
-# For audio, see .commonaliases
+# see also .commonaliases for audio
 alias vp='mpv -ao alsa --profile=vid-hq'

@@ -1,6 +1,4 @@
-#!/usr/bin/env sh
-
-# For more advanced scripts: https://github.com/JoshuaRLi/scripts
+# See also: https://github.com/JoshuaRLi/bin
 
 # helper function to enforce argc and display provided description
 # and usage string when violated.
