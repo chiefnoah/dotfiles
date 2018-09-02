@@ -9,9 +9,10 @@ usage () {
     cat <<EOF
 USAGE: $0 base|baseg|rice_og [d]
 
-base    - basic configuration for non-graphical environment
-baseg   - basic configuration for graphical environment, inherits base
-rice_og - configuration for Arch Linux rice "og", inherits base, baseg
+base        - basic config for non-graphical environment
+baseg       - basic config for graphical environment, inherits base
+rice_og     - config for Arch Linux rice "og", inherits base, baseg
+rice_sakura - config for Alpine Linux rice "sakura"
 
 Pass d as second arg if you want to unlink instead of link.
 EOF
@@ -41,6 +42,10 @@ case "$1" in
         ;;
 	rice_og)
 		$stow_cmd $p_base $p_baseg $p_rice_og
+		;;
+    rice_sakura)
+		$stow_cmd common common-dev scripts mksh nano micro ranger \
+            alpine-sakura bspwm-sakura sxhkd-sakura urxvt-sakura
 		;;
 	*)
 		usage

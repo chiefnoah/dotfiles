@@ -1,0 +1,30 @@
+#!/bin/sh
+
+bspc monitor -d I II III IV V
+
+bspc config border_width            2
+bspc config window_gap              12
+
+bspc config split_ratio             0.50
+bspc config top_padding             20
+bspc config bottom_padding          20
+bspc config left_padding            20
+bspc config right_padding           20
+
+# Use super + mouse to resize (left-click) and swap (right-click) nodes
+bspc config pointer_modifier        mod4
+bspc config pointer_action1         resize_corner
+bspc config pointer_action3         move
+
+# Monocle mode imitates fullscreen
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bspc config paddingless_monocle     true
+
+# Focus under pointer, but do not alter cursor position
+bspc config focus_follows_pointer   true
+bspc config pointer_follows_focus   false
+
+# Monitor stuff
+bspc config remove_disabled_monitors  true
+bspc config remove_unplugged_monitors true
