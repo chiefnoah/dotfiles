@@ -17,12 +17,14 @@
     compression = 9
 
 [alias]
-    ca = commit --amend -v
-    dt = difftool
-    dtc = difftool --cached
+    amend = commit --amend -v
+    c = checkout @{-1}
+    d = difftool
+    dc = difftool --cached
     root = rev-parse --show-toplevel
     info = show --format=fuller --show-signature
     stat = show --format=fuller --show-signature --stat
+    peek = show --format=fuller --show-signature HEAD
     unstage = reset --
     resign = rebase --exec 'git commit --amend --no-edit -n -S' -i
 
