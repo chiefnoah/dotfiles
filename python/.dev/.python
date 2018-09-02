@@ -1,3 +1,7 @@
+export PYENV_ROOT="${HOME}/.pyenv"
+pathprepend "${PYENV_ROOT}/bin"
+eval "$(pyenv init -)"
+
 usep () {
     pyenv global "$1" && \
     printf "$(python -c 'import sys; print("Switched to", sys.executable)')\n"
@@ -5,10 +9,7 @@ usep () {
 
 alias p='python'
 alias pip='python -m pip'
+alias mkvenv='virtualenv -p $(pyenv which python3)'
 alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
-
-export PYENV_ROOT="${HOME}/.pyenv"
-pathprepend "${PYENV_ROOT}/bin"
-eval "$(pyenv init -)"
 
 export PATH
