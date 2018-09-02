@@ -22,19 +22,15 @@ EOF
 	exit 1
 }
 
-p_base="base bin mksh bash zsh tools"
-
-if [ "$2" = 'd' ]; then
-    stow="stow -vDt ${HOME}"
-else
-    stow="stow -vt ${HOME}"
-fi
+stow="stow -vt ${HOME}"
+[ "$2" = 'd' ] && stow="stow -vDt ${HOME}"
 
 if
     ! case "$1" in
 	base)
-	    $stow $p_base
+	    $stow base bin tools
         $stow -d applications ranger weechat
+        $stow -d shells bash mksh zsh
         ;;
     baseg)
         $stow -d applications cava mpv redshift
@@ -43,23 +39,27 @@ if
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro
+        $stow -d shells bash mksh zsh
         ;;
 	og)
-		$stow $p_base 'os-arch' 'rice-og'
+		$stow base bin tools 'os-arch' 'rice-og'
         $stow -d applications ranger weechat \
             cava mpv redshift
+        $stow -d shells zsh
         ;;
     tatami4.5)
-		$stow $p_base 'os-alpine' 'rice-tatami4.5'
+		$stow base bin tools 'os-alpine' 'rice-tatami4.5'
         $stow -d applications ranger weechat \
             mpv
+        $stow -d shells mksh
         ;;
     work)
-		$stow $p_base 'os-mac' 'rice-work'
+		$stow base bin tools 'os-mac' 'rice-work'
         $stow -d applications weechat \
             mpv
         $stow -d dev-langs python nodejs
         $stow -d dev-tools basics nano micro
+        $stow -d shells zsh
         ;;
 	*)
 		usage ;;
