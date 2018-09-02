@@ -32,25 +32,18 @@ fi
 
 case "$1" in
 	base)
-        touch "${HOME}/.specificrc"
-	    $stow_cmd $p_base
-		;;
+	    $stow_cmd $p_base ;;
     baseg)
-        touch "${HOME}/.specificrc"
-        $stow_cmd $p_base $p_baseg
-        ;;
+        $stow_cmd $p_base $p_baseg ;;
 	og)
 		$stow_cmd $p_base $p_baseg \
-            arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og
-		;;
+            arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og ;;
     tatami4.5)
 		$stow_cmd $p_base $p_baseg \
-            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5
-		;;
+            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5 ;;
     cash)
 		$stow_cmd $p_base $p_baseg \
-            macos-cash
-		;;
+            macos-cash ;;
 	*)
 		usage ;;
 esac

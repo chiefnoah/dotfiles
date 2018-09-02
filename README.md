@@ -20,4 +20,4 @@ Alternatively, consider using `stow -v[D]t` to cherry-pick and link/unlink indiv
 
 ### `.specificrc`
 
-This file, sourced by `common/.commonrc`, defines shell aliases, functions and environment exports specific to the *nix distribution and software I usually use with it (e.g. package managers). `link.sh` will `touch ~/.specificrc` when installing the base or baseg distro-agnostic preset - this prevents the error message that is displayed when attempting to source a nonexistent file.
+This file, sourced by `common/.commonrc`, defines shell aliases, functions and environment exports specific to the *nix distribution and software I usually use with it (e.g. package managers).
