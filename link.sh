@@ -7,7 +7,7 @@ fi
 
 usage () {
     cat <<EOF
-USAGE: $0 base|baseg|rice_og [d]
+USAGE: $0 base|baseg|rice_og|rice_sakura [d]
 
 base        - basic config for non-graphical environment
 baseg       - basic config for graphical environment, inherits base
@@ -45,7 +45,8 @@ case "$1" in
 		;;
     rice_sakura)
 		$stow_cmd common common-dev scripts mksh nano micro ranger \
-            alpine-sakura bspwm-sakura sxhkd-sakura urxvt-sakura
+            alpine-sakura bspwm-sakura sxhkd-sakura urxvt-sakura \
+            slstatus-sakura dmenu-sakura dunst-sakura
 		;;
 	*)
 		usage
