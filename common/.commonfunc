@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # For more advanced scripts: https://github.com/JoshuaRLi/scripts
 
@@ -87,6 +87,7 @@ imgfix () {
 }
 
 
+# TODO remove this when I finish wiki archive project
 # download an entire mediawiki to a single XML file (text-only).
 wikimirror () {
     _require $# 2 'Download a mediawiki.' \
@@ -98,17 +99,10 @@ wikimirror () {
 }
 
 
+# TODO replace this with tb when I finish the rewrite
 # upload stdin or a file to pb.
 pb () {
     curl -F "c=@${1:--}" "https://ptpb.pw/"
-}
-
-
-# record and upload asciinema.
-rec () {
-    asciinema rec "/tmp/$$.json"  && \
-    pb "/tmp/$$.json"             && \
-    printf "Prepend t/ to view the asciinema!\n"
 }
 
 
