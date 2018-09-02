@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+# TODO: move into separate repository and add unit tests
+
+_git_dirty () {
+    [ -z "$(git status --porcelain)" ] || printf '* '
+}
+
+# probably not posix lol
+shlib_posix_cur_path () {
+    local wd="$(basename "$PWD")"
+    printf "${wd/$USER/\~}"
+}
+
+shlib_posix_git_branch () {
+    [ -d '.git' ] || return
+    local cb="$(git branch 2>/dev/null | grep \* | cut -c3-)"
+    [ -n "$cb" ] && printf " ($(_git_dirty)${cb})"
+}
+
+shlib_mksh_git_branch () {
+    [ -d '.git' ] || return
+    local cb="$(git branch 2>/dev/null | grep \*)"
+    [ -n "$cb" ] && printf " ($(_git_dirty)${cb:2:-1})"
+}

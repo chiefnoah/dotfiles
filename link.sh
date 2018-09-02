@@ -22,7 +22,7 @@ EOF
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
-p_base="common bin mksh bash zsh nano micro ranger weechat"
+p_base="common bin sh mksh bash zsh nano micro ranger weechat"
 p_baseg="atom mpv rofi redshift cava"
 p_dev="python golang rust nodejs ruby"
 

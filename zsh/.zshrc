@@ -8,7 +8,8 @@ ZSH_THEME="gianu"
 unalias -m "*"
 
 # bring in common shell aliases, environment and functions
-source "${HOME}/.commonrc"
+. "${HOME}/.shlib"
+. "${HOME}/.commonrc"
 
 autoload -Uz compinit
 

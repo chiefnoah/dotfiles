@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 # bring in common shell aliases, environment and functions
-source "${HOME}/.commonrc"
+. "${HOME}/.shlib"
+. "${HOME}/.commonrc"
+
+# prompt
+HN="$(hostname)"
+PS1='${HN} #'
+(( UID )) && PS1='${USER}@${HN} $(shlib_posix_cur_path)$(shlib_posix_git_branch) $ '
 
 # load GNU readline configuration
 bind -f "${HOME}/.inputrc"
@@ -11,15 +17,13 @@ set -o noclobber  # use >| to force redirection overwrite
 shopt -s extglob
 shopt -s nullglob
 shopt -s nocaseglob
-shopt -s cdspell
 shopt -s no_empty_cmd_completion
 shopt -s checkwinsize
 
 # options, 4+ only
 if [ "${BASH_VERSINFO}" -ge 4 ]; then
-    shopt -s globstar
+    # shopt -s globstar  # recurse all directories with **
     shopt -s autocd
-    shopt -s dirspell
 fi
 
 # history
@@ -32,4 +36,3 @@ export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoreboth
 shopt -s cmdhist
 shopt -s histappend
-bind Space:magic-space  # expand history on space

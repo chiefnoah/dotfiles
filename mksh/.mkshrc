@@ -1,26 +1,15 @@
 #!/usr/bin/env mksh
 
+. "${HOME}/.shlib"
 . "${HOME}/.commonrc"
 
-cur_path () {
-    local wd="$(basename "$PWD")"
-    printf "${wd/$USER/\~}"
-}
-
-__git_dirty () {
-    [ -z "$(git status --porcelain)" ] || printf '* '
-}
-
-git_branch () {
-    [ -d '.git' ] || return
-    local cb="$(git branch 2>/dev/null | grep \*)"
-    [ -n "$cb" ] && printf " ($(__git_dirty)${cb:2:-1})"
-}
-
+# prompt
 HN="$(hostname)"
 PS1='${HN} #'
-(( USER_ID )) && PS1='${USER}@${HN} $(cur_path)$(git_branch) $ '
+(( USER_ID )) && \
+    PS1='${USER}@${HN} $(shlib_posix_cur_path)$(shlib_mksh_git_branch) $ '
 
+# history
 alias hist='fc -l'
 export HISTFILE="${HOME}/.mksh_history"
 export HISTSIZE=100000
