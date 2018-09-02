@@ -1,8 +1,8 @@
 super + Escape
     pkill -USR1 -x sxhkd ;\
-    notify-send "[sxhkd] config reloaded" -t 1 ;\
+    notify-send "[sxhkd] config reloaded" -t 1000 ;\
     sh "${HOME}/.config/bspwm/bspwmrc" ;\
-    notify-send "[bspwm] config reloaded" -t 1
+    notify-send "[bspwm] config reloaded" -t 1000
 
 #
 # SHORTCUTS
@@ -33,16 +33,16 @@ shift + Return
 Print
     mkdir -p "${HOME}/Screenshots" && \
     maim "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 5 && \
-        notify-send "[maim] Screenshot saved." -t 1
+        notify-send "[maim] Screenshot saved." -t 1000
 
 shift + Print
     mkdir -p "${HOME}/Screenshots" && \
     maim -s "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 10 && \
-        notify-send "[maim] Screenshot selection saved." -t 1
+        notify-send "[maim] Screenshot selection saved." -t 1000
 
 alt + Print
     maim -s --quality 10 | xclip -selection clipboard -t image/png && \
-        notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1
+        notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1000
 
 XF86AudioMute
     # note: to only toggle pulseaudio, pass -D pulse
