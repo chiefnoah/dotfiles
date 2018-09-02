@@ -43,10 +43,15 @@ eval "$(pyenv init -)"
 export GOPATH="${HOME}/.go"
 pathprepend "${GOPATH}/bin"
 
+# node
+export NVM_DIR="$HOME/.nvm"
+source "${NVM_DIR}/nvm.sh"
+
 # rust
 pathprepend "${HOME}/.cargo/bin"
 
 # ruby
 pathprepend "${HOME}/.gem/ruby/2.5.0/bin"
+
 
 export PATH

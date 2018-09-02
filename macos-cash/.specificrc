@@ -2,16 +2,11 @@
 
 # work @ sentry.io
 
-alias python2='/usr/local/bin/python'
-alias venva='workon sentry'
 # override .commonaliases git commit - do not sign commits
 alias gcm="git commit -m"
 
 source "$HOME/google-cloud-sdk/path.zsh.inc"
 source "$HOME/google-cloud-sdk/completion.zsh.inc"
-source /usr/local/bin/virtualenvwrapper.sh
-export NVM_DIR="$HOME/.nvm"
-source "/usr/local/opt/nvm/nvm.sh"
 
-pathprepend "~/Library/Python/3.6/bin/"
-export PATH
+alias venva='workon sentry'
+source "${PYENV_ROOT}/versions/3.6.5/bin/virtualenvwrapper.sh"
