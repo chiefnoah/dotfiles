@@ -33,11 +33,9 @@
 
 [diff]
     renames = copies
-    tool = meld
 
 [merge]
     log = true
-    tool = meld
 
 [push]
     default = current
