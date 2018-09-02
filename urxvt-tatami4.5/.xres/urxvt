@@ -1,13 +1,17 @@
 URxvt*termName: rxvt
+
+! appearance
 URxvt.letterSpace: 1
 URxvt.internalBorder: 25
 URxvt.font: xft:lucy tewi:medium:pixelsize=11:antialias=false
+URxvt*fading: 25
 
 ! scrolling adjustments
 URxvt.scrollBar: false
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
+URxvt*saveLines: 255
 
 ! esc sequences for word jumping
 URxvt.keysym.Control-Left: \033[1;5D
@@ -16,3 +20,6 @@ URxvt.keysym.Control-Right: \033[1;5C
 ! disable ctrl-shift
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+
+! xft rendering fixes
+URxvt*buffered: false
