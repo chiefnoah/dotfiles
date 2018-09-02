@@ -1,10 +1,16 @@
 [user]
     name = Joshua Li
-    email = joshua.r.li.98@gmail.com
-    signingkey = C44E942716F2C9D3
+    email = josh@jrl.ninja
+    signingkey = 846B322709634596!
 
 [gpg]
     program = gpg2
+
+[commit]
+    gpgSign = true
+
+[tag]
+    forceSignAnnotated = true
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
