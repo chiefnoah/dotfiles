@@ -2,7 +2,7 @@
 
 ***"you are your dotfiles."***
 
-For a general list of software I use and recommend, refer to [essentials](https://github.com/JoshuaRLi/essentials). See also: rice (todo).
+These are all my dotfiles for gnu/linux. Some of them are rice-specific - check out my ricing work [here](https://tildeslash.io/rice.html). Also, see [here](https://tildeslash.io/software.html) for a general list of software I use and recommend.
 
 
 ### Install/Uninstall
