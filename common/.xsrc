@@ -2,6 +2,8 @@
 
 # Stuff specifically for X sessions (graphical desktop environments)
 
+alias imgv='sxiv -tp'
+
 # list fontconfig fonts (for XLFD, use xfontsel or xlsfonts)
 alias fonts='fc-list | cut -f2 -d: | sort -u'
 
