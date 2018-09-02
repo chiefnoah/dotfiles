@@ -43,7 +43,7 @@ case "$1" in
             arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og
 		;;
     rice_tatami4.5)
-		$stow_cmd common common-dev scripts mksh nano micro ranger \
+		$stow_cmd common common-dev bin mksh nano micro ranger mpv cava \
             alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5
 		;;
 	*)

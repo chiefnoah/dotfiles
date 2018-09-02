@@ -1,0 +1,43 @@
+*.color0: #000000
+*color0:  #000000
+*.color1: #A8A8A8
+*color1:  #A8A8A8
+*.color2: #B8B8B8
+*color2:  #B8B8B8
+*.color3: #C7C7C7
+*color3:  #C7C7C7
+*.color4: #D8D8D8
+*color4:  #D8D8D8
+*.color5: #E8E8E8
+*color5:  #E8E8E8
+*.color6: #F4F4F4
+*color6:  #F4F4F4
+*.color7: #f4f4f4
+*color7:  #f4f4f4
+*.color8: #aaaaaa
+*color8:  #aaaaaa
+*.color9: #A8A8A8
+*color9:  #A8A8A8
+*.color10: #B8B8B8
+*color10:  #B8B8B8
+*.color11: #C7C7C7
+*color11:  #C7C7C7
+*.color12: #D8D8D8
+*color12:  #D8D8D8
+*.color13: #E8E8E8
+*color13:  #E8E8E8
+*.color14: #F4F4F4
+*color14:  #F4F4F4
+*.color15: #f4f4f4
+*color15:  #f4f4f4
+
+! color7
+URxvt*foreground:   #f4f4f4
+URxvt*cursorColor:  #f4f4f4
+! color0
+URxvt*background:   [100]#000000
+URxvt*borderColor:  [100]#000000
+
+! Black color that will not be affected by bold highlighting.
+*.color66: #000000
+*color66:  #000000

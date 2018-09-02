@@ -29,22 +29,17 @@ bspc config pointer_follows_focus   false
 bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
-# Reload fonts
+
+# Load and apply ~/.{X,}colors
 xset +fp "${HOME}/.local/share/fonts/tewi"
+xrdb -merge -quiet "${HOME}/.Xresources"
+xrdb -merge -quiet "${HOME}/.Xcolors"
 
-# Load wallpaper with pywal
-wal -i "${HOME}/wallpaper.png"
-
-# Reload bspwm, dunst, and lemonbar with the new colors.
-pkill lemonbar
-pkill dunst
-
-xrdb -merge "${HOME}/.Xresources"
-source "${HOME}/.cache/wal/colors.sh"
-
+source "${HOME}/.colors"
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
 
+pkill dunst
 dunst \
     -lb "$color0"  \
     -nb "$color0"  \
@@ -54,4 +49,5 @@ dunst \
     -cf "#000000"  \
     -nf "$color15" &
 
+pkill lemonbar
 "${HOME}/bin/bar" | lemonbar -B "$color0" -F "$color8" -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
