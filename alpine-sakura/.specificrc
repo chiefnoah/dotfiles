@@ -1,3 +1,17 @@
 #!/usr/bin/env mksh
 
 # TODO
+alias aa='apk add'
+alias aaup='apk update && apk add --upgrade'
+alias ad='apk del'
+alias ai='apk info -a'
+alias aii='apk -vv info|sort'
+alias au='apk update'
+alias aup='apk update && apk upgrade'
+alias ast='apk stats'
+alias agrep='apk search -v'
+alias agrepd='apk search -v --description'
+
+# TODO local cache mgmt
+# https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management
+# e.g. alias aclean='apk -v cache clean'
