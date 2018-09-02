@@ -4,10 +4,6 @@ super + Escape
     sh "${HOME}/.config/bspwm/bspwmrc" ;\
     notify-send "[bspwm] config reloaded" -t 1000
 
-#
-# SHORTCUTS
-#
-
 ctrl + Return
     urxvt
 
@@ -20,9 +16,8 @@ ctrl + shift + l
 ctrl + alt + Delete
     systemctl suspend
 
-# TODO fix sh environment issues, have to manually source for now
 alt + Return
-    . ~/.commonenv && . ~/.specificrc && rofi -show run
+    rofi -show run
 
 ctrl + alt + Return
     rofi -show window
@@ -55,10 +50,7 @@ XF86MonBrightness{Down,Up}
     light -{U,A} 10
     # xbacklight -{dec,inc} 10
 
-
-#
 # BSPWM
-#
 
 # close or kill
 super + {c,k}

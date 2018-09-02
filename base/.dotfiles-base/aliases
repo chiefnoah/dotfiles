@@ -113,6 +113,9 @@ alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-form
 alias audiols='aplay -l ; cat /proc/asound/cards'
 alias play='mplayer -vo null -ao alsa'
 alias playj='mplayer -vo null -ao jack'
+sine () {
+    [ -n "$1" ] && speaker-test -c1 -l1 -tsine -P64 -f "$1"
+}
 # for video aliases (mpv), refer to .xsrc
 
 
