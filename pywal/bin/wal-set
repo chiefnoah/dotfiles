@@ -15,43 +15,42 @@ notify-err () {
 }
 
 notify 'init'
-if [[ -z "$1" ]]; then
-    notify-err 'Please specify one of the subdirectories in wal-set list.'
-    exit 1
-fi
 
-sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
-notify "Detected screen dimensions: ${sdim}"
-
-WALLP="${HOME}/Wallpapers/Originals-${sdim}"
-notify "Searching in ${WALLP}"
-if [ ! -d "$WALLP" ]; then
-    notify-err "Directory ${WALLP} not found."
-    exit 1
-fi
-
-if [[ "$1" == 'list' ]]; then
-    notify "Subdirectories: $(ls -1 "$WALLP" | tr '\n' ' ')"
-    exit 1
-elif [[ "$1" == 'useprev' ]]; then
-    if [[ -f "${HOME}/.cache/wal/wal" ]]; then
-        WALLP="$(< "${HOME}/.cache/wal/wal")"
-    else
-        notify-err "pywal's cache is empty. You have not loaded a wallpaper before."
-        exit 1
-    fi
+if [[ -f "${HOME}/.cache/wal/wal" ]] && [[ -z "$1" ]]; then
+    # If wal-set is invoked standalone and a cached wallpaper from a previous invocation is present, use that.
+    walcache="$(< "${HOME}/.cache/wal/wal")"
+    notify 'Using cached wallpaper.'
+    wal -i "$walcache" -a 75
 else
-    CATEGORY="${WALLP}/${1}"
-    if [[ -d "$CATEGORY" ]]; then
-        WALLP="$CATEGORY"
-        notify "Using wallpaper subdirectory ${1}"
+    sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
+    notify "Detected screen dimensions: ${sdim}"
+    walldir="${HOME}/Wallpapers/Originals-${sdim}"
+    if [[ ! -d "$walldir" ]]; then
+        notify-err "Directory ${walldir} not found."
+        exit 1
+    fi
+    notify "Retrieving category dirs in ${walldir}"
+    categories=($(ls -1 "$walldir" | tr '\n' ' '))
+    if [[ ${#categories[@]} -eq 0 ]]; then
+        notify-err "Wallpaper dir ${walldir} contains no category dirs."
+        exit 1
+    fi
+    notify "Categories: ${categories[*]}"
+    if [[ -z "$1" ]]; then
+        # A category is chosen at random if wal-set is invoked standalone and there is no cached wallpaper.
+        notify 'No category specified; choosing one randomly.'
+        category="${walldir}/${categories[$RANDOM % ${#categories[@]}]}"
     else
-        notify-err "Directory ${CATEGORY} does not exist."
+        category="${walldir}/${1}"
+    fi
+    if [[ -d "$category" ]]; then
+        notify "Using category dir ${category}"
+        wal -i "$category" -a 75
+    else
+        notify-err "Category dir ${category} does not exist."
         exit 1
     fi
 fi
-
-wal -i "$WALLP" -a 75
 
 # NOTE: wal automatically reloads polybar. Only dunst needs to be reloaded.
 pkill dunst
