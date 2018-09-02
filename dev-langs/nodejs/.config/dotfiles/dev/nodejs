@@ -1,8 +1,12 @@
+# manually installed nvm
+export NVM_DIR="$HOME/.nvm"
+. "${NVM_DIR}/nvm.sh" > /dev/null 2>&1
+
+# arch linux nvm
+. "/usr/share/nvm/init-nvm.sh" > /dev/null 2>&1
+
 if df_require nvm; then
-    export NVM_DIR="$HOME/.nvm"
-    # git manual install, arch linux nvm
-    . "${NVM_DIR}/nvm.sh"
-    . "/usr/share/nvm/init-nvm.sh"
+    true
 else
     df_warn 'nvm not found'
 fi

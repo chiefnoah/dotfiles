@@ -1,3 +1,5 @@
+alias gols='ls "${GOPATH}/src/github.com/JoshuaRLi/"'
+
 gocd () {
     [ -n "$1" ] && pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}" || pushd "$GOPATH"
 }
