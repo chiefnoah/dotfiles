@@ -1,11 +1,11 @@
-# Uncategorized
+# uncategorized
 alias socks5='ssh -vfnCTN -D 6969 proxy.jrl.ninja'
 alias serve='python3 -m http.server 8888'
 alias aur='pushd "${HOME}/dev/projects/maintaining/aur/PKGBUILDs" && source aur-devel.sh && cat aur-devel.sh'
 alias sudo='sudo '  # allow aliases to be executed with sudo
 
 
-# Navigation
+# navigation
 if command -v exa > /dev/null 2>&1; then
     alias ls='exa'
     alias l='exa -Fl'
@@ -23,7 +23,7 @@ alias ..='cd ..'
 alias r='ranger'
 
 
-# Info/Introspection/Search
+# info/introspection/search
 if command -v fd > /dev/null 2>&1; then
     alias f='fd'
     alias fe='fd -e'
@@ -69,7 +69,7 @@ alias rgh='rg -a --hidden'
 alias watchdir='inotifywait -e create,modify,delete -mr'
 
 
-# Networking
+# networking
 myip () {
     cat <<EOF
 Local: $(hostname -i)
@@ -81,7 +81,7 @@ EOF
 alias ns='sudo netstat -tulpn'
 
 
-# Filesystem
+# filesystem
 alias a='atool -Ea'
 alias e='atool -Ex'
 alias rd='rmdir'
@@ -90,26 +90,26 @@ alias um='udiskie-mount'
 alias uu='udiskie-umount'
 
 
-# Editing/View
+# viewing/editing
 alias c='tput reset'
 alias al='atool -El'
 alias m='micro'
 alias tailf='tail -fn 100'
 
 
-# Identity / Authentication
+# identity/auth
 alias sshc='$EDITOR ~/.ssh/config'
 alias gpgl='gpg2 --list-secret-keys --keyid-format 0xlong'
 alias gpgll='gpg2 --list-keys --keyid-format 0xlong'
 alias pgp='gpg2 --export -a joshua.r.li.98@gmail.com'
 
 
-# Web
+# web
 alias sitemirror='wget --no-config -mpkKE -e robots=off'
 alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
 
 
-# Audio
+# audio
 alias audiols='aplay -l ; cat /proc/asound/cards'
 alias play='mplayer -vo null -ao alsa'
 alias playj='mplayer -vo null -ao jack'
@@ -119,7 +119,7 @@ sine () {
 # for video aliases (mpv), refer to .xsrc
 
 
-# Git
+# git
 # See also ~/.gitconfig
 alias gc='git clone'
 alias gcr='git clone --recursive'
@@ -153,7 +153,7 @@ vbump () {
 }
 
 
-# Docker
+# docker
 alias alpine='docker run -it --rm alpine'
 alias dls='docker images && printf '\n' && docker ps'
 alias dcp='docker container prune -f'
@@ -161,6 +161,8 @@ alias dclean='docker stop $(docker ps -a -q) ; dcp ; docker rmi $(docker images 
 
 
 # tmux
-alias tl='tmux list-sessions'
-alias ta='tmux attach-session -t'
+alias t='tmux a'
+alias tl='tmux ls'
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
 alias tk='tmux kill-session -t'
