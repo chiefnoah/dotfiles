@@ -1,0 +1,5 @@
+# See ~/.cargo/config for cargo aliases
+
+pathprepend "${HOME}/.cargo/bin"
+
+export PATH

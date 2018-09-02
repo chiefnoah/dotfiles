@@ -9,6 +9,11 @@ ssource "${HOME}/.commonaliases"
 ssource "${HOME}/.commonfunc"
 ssource "${HOME}/.specificrc"
 
+# dev environments
+for f in "${HOME}/.dev/".*; do
+    ssource "$f"
+done
+
 if xhost > /dev/null 2>&1; then
     ssource "${HOME}/.xsrc"
 fi

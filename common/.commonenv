@@ -34,24 +34,4 @@ pathprepend "/usr/local/sbin"
 pathprepend "${HOME}/bin"
 pathprepend "${HOME}/bin/custom"  # github.com:JoshuaRLi/bin
 
-# python
-export PYENV_ROOT="${HOME}/.pyenv"
-pathprepend "${PYENV_ROOT}/bin"
-eval "$(pyenv init -)"
-
-# golang
-export GOPATH="${HOME}/.go"
-pathprepend "${GOPATH}/bin"
-
-# node
-export NVM_DIR="$HOME/.nvm"
-source "${NVM_DIR}/nvm.sh"
-
-# rust
-pathprepend "${HOME}/.cargo/bin"
-
-# ruby
-pathprepend "${HOME}/.gem/ruby/2.5.0/bin"
-# TODO: look into rbenv and rvm
-
 export PATH

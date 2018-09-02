@@ -151,31 +151,6 @@ vbump () {
         git tag -s -m "v${1}" "v${1}"
 }
 
-
-# Go
-gocd () {
-    [ -n "$1" ] && pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}" || pushd "$GOPATH"
-}
-alias goi='go install'
-alias godl='go get -d -v'
-alias gog='go get -u -v'
-alias depi='dep ensure -add'
-
-
-# Python
-usep () {
-    pyenv global "$1" && \
-    printf "$(python -c 'import sys; print("Switched to", sys.executable)')\n"
-}
-alias p='python'
-alias pip='python -m pip'
-alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
-
-
-# Rust
-# See ~/.cargo/config for cargo aliases
-
-
 # Docker
 alias alpine='docker run -it --rm alpine'
 alias dls='docker images && printf '\n' && docker ps'

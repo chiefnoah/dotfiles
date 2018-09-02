@@ -10,6 +10,7 @@ These are all my dotfiles for *nix.
 ```
 base        - basic config for non-graphical environment
 baseg       - basic config for generic graphical environment, inherits base
+dev         - blanket config for all development environments
 og          - config for Arch Linux rice "og", inherits base, baseg
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
 cash        - config for generic MacOS systems used at work (currently: sentry.io)

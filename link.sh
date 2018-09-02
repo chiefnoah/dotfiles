@@ -9,6 +9,7 @@ USAGE: $0 PRESET [d]
 PRESETS:
 base        - basic config for non-graphical environment
 baseg       - basic config for generic graphical environment, inherits base
+dev         - blanket config for all development environments
 og          - config for Arch Linux rice "og", inherits base, baseg
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
 cash        - config for generic MacOS systems used at work (currently: sentry.io)
@@ -21,8 +22,9 @@ EOF
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
-p_base="common common-dev bin mksh bash zsh nano micro ranger weechat"
+p_base="common bin mksh bash zsh nano micro ranger weechat"
 p_baseg="atom mpv rofi redshift cava"
+p_dev="python golang rust nodejs ruby"
 
 if [ "$2" = 'd' ]; then
     stow_cmd="stow -vDt ${HOME}"
@@ -35,6 +37,8 @@ case "$1" in
 	    $stow_cmd $p_base ;;
     baseg)
         $stow_cmd $p_base $p_baseg ;;
+    dev)
+        $stow_cmd $p_dev ;;
 	og)
 		$stow_cmd $p_base $p_baseg \
             arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og ;;

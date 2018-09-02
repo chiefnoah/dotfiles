@@ -1,0 +1,13 @@
+gocd () {
+    [ -n "$1" ] && pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}" || pushd "$GOPATH"
+}
+
+alias goi='go install'
+alias godl='go get -d -v'
+alias gog='go get -u -v'
+alias depi='dep ensure -add'
+
+export GOPATH="${HOME}/.go"
+pathprepend "${GOPATH}/bin"
+
+export PATH
