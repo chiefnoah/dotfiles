@@ -2,3 +2,13 @@
 name = "Joshua Li"
 email = "joshua.r.li.98@gmail.com"
 vcs = "none"
+
+[term]
+verbose = false
+color = 'always'
+
+[alias]
+b = "build"
+br = "build --release"
+t = "test"
+r = "run"

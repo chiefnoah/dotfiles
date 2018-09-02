@@ -19,18 +19,15 @@
     autocrlf = input
     compression = 9
     editor = nano
-    pager = less -RS
+    pager = less -irS
 
 [alias]
-    bed = branch --edit-description
     ca = commit --amend -v
-    cleanall = clean -fdx  # dangerous!!
     dt = difftool
     dtc = difftool --cached
-    pullrb = pull --rebase
     root = rev-parse --show-toplevel
-    show = show --format=fuller --show-signature
-    shows = show --format=fuller --stat
+    ci = show --format=fuller --show-signature
+    cs = show --format=fuller --show-signature --stat
     versions = tag -l --sort=version:refname
 
 [apply]
