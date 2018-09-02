@@ -4,14 +4,17 @@ die () { printf "ERROR: ${1}\n"; exit 1; }
 
 usage () {
     cat <<EOF
-USAGE: $0 base|baseg|rice_og|rice_tatami4.5 [d]
+USAGE: $0 PRESET [d]
 
-base            - basic config for non-graphical environment
-baseg           - basic config for graphical environment, inherits base
-rice_og         - config for Arch Linux rice "og", inherits base, baseg
-rice_tatami4.5  - config for Alpine Linux rice "tatami4.5"
+PRESETS:
+base        - basic config for non-graphical environment
+baseg       - basic config for generic graphical environment, inherits base
+og          - config for Arch Linux rice "og", inherits base, baseg
+tatami4.5   - config for Alpine Linux rice "tatami4.5"
+cash        - config for generic MacOS systems used at work (currently: sentry.io)
 
-Pass d as second arg if you want to unlink instead of link.
+Pass d as the second argument if you want to unlink the dotfiles belonging
+to the specified macro.
 EOF
 	exit 1
 }
@@ -30,7 +33,6 @@ fi
 
 case "$1" in
 	base)
-        # see dotfiles README on why this is touched
         touch "${HOME}/.specificrc"
 	    $stow_cmd $p_base
 		;;
@@ -38,13 +40,16 @@ case "$1" in
         touch "${HOME}/.specificrc"
         $stow_cmd $p_base $p_baseg
         ;;
-	rice_og)
+	og)
 		$stow_cmd $p_base $p_baseg \
             arch-og bspwm-og sxhkd-og urxvt-og dunst-og polybar-og pywal-og
 		;;
-    rice_tatami4.5)
+    tatami4.5)
 		$stow_cmd common common-dev bin mksh nano micro ranger mpv cava \
             alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5
+		;;
+    cash)
+		$stow_cmd $p_base \
 		;;
 	*)
 		usage ;;
