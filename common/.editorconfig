@@ -14,6 +14,6 @@ indent_size = 2
 [{*.c,Makefile}]
 indent_style = tab
 
-[{*.md,LICENSE}]
+[{*.md,*.rst,LICENSE,VERSION}]
 insert_final_newline = false
 trim_trailing_whitespace = false
