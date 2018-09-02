@@ -2,7 +2,6 @@
 
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="gianu"
-plugins=(globalias wd colored-man-pages)
 
 # load oh-my-zsh default configuration and clear all aliases
 . "${ZSH}/oh-my-zsh.sh"
@@ -13,7 +12,17 @@ source "${HOME}/.commonrc"
 
 autoload -Uz compinit
 
-# oh-my-zsh default overrides (or not, I haven't checked)
+globalias () {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+
+zle -N globalias
+bindkey " " globalias
+bindkey "^ " magic-space            # control-space to bypass completion
+bindkey -M isearch " " magic-space  # normal space during history searches
+
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
