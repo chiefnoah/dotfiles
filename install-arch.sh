@@ -62,25 +62,15 @@ mkdir -p "${HOME}/bin"
 paci='pacaur --noedit --noconfirm -S'
 
 notify "Installing software..."
-$paci bspwm             \
-    compton             \
-    dunst               \
-    libnotify           \
-    light-git           \
-    maim                \
-    micro-bin           \
-    mpv                 \
-    neofetch            \
-    polybar             \
-    python-pywal feh    \
+$paci bspwm compton sxhkd polybar rofi rxvt-unicode ttf-font-awesome ttf-hack \
+    dunst libnotify \
+    python-pywal feh neofetch \
+    editorconfig-core-c micro-bin \
     ranger highlight w3m \
-    redshift-minimal    \
-    rofi                \
-    rxvt-unicode        \
-    sxhkd               \
-    sxiv                \
-    ttf-font-awesome    \
-    ttf-hack            \
+    light-git redshift-minimal \
+    maim \
+    mpv \
+    sxiv \
     xclip
 
 notify "Installing physlock..."
