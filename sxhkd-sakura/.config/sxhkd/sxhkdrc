@@ -17,18 +17,21 @@ super + Return
 ctrl + shift + l
     physlock -sdp 'This computer is locked.'
 
+# TODO suspend with openrc
 ctrl + alt + Delete
-    systemctl suspend
+    false
 
-# TODO fix sh environment issues, have to manually source for now
+# TODO dmenu
 alt + Return
-    . ~/.commonexports && . ~/.specificrc && rofi -show run
+    false
 
+# TODO dmenu
 ctrl + alt + Return
-    rofi -show window
+    false
 
+# TODO dmenu
 shift + Return
-    rofi -show ssh
+    false
 
 Print
     mkdir -p "${HOME}/Screenshots" && \
