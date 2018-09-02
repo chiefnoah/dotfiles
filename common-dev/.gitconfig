@@ -21,9 +21,9 @@
     dt = difftool
     dtc = difftool --cached
     root = rev-parse --show-toplevel
-    ci = show --format=fuller --show-signature
-    cs = show --format=fuller --show-signature --stat
-    versions = tag -l --sort=version:refname
+    info = show --format=fuller --show-signature
+    stat = show --format=fuller --show-signature --stat
+    unstage = reset --
 
 [apply]
     whitespace = fix

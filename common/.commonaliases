@@ -110,20 +110,21 @@ alias playj='mplayer -vo null -ao jack'
 
 
 # Git
-# See also ~/.gitconfig for more advanced aliases
+# See also ~/.gitconfig
 alias gc='git clone'
 alias gcr='git clone --recursive'
 alias gup='git submodule update --init --recursive --remote'
 alias ga='git add'
 alias gaa='git add --all'
-alias gs='git status -sb'
+alias gs='git status -sb -uall'
+alias gi='git show'
 alias gcm='git commit -S -m'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gp='git push'
 alias gpf='git push --force'
 alias gb='git branch -vv --all'
-alias gch='git checkout'
 alias gnb='git checkout -b'
+alias gch='git checkout'
 alias master='git checkout master'
 alias gd='git diff'
 alias gdc='git diff --cached'
