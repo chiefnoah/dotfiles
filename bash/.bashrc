@@ -1,8 +1,6 @@
 export SHELL="$(which bash)"
-
-# bring in common shell aliases, environment and functions
 . "${HOME}/.shlib"
-. "${HOME}/.commonrc"
+. "${HOME}/.dotfiles-base/all"
 
 # prompt
 shlib_export_PS1

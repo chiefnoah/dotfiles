@@ -4,9 +4,9 @@ ssource () {
     done
 }
 
-ssource "${HOME}/.commonenv"
-ssource "${HOME}/.commonaliases"
-ssource "${HOME}/.commonfunc"
+ssource "${HOME}/.dotfiles-base/env"
+ssource "${HOME}/.dotfiles-base/aliases"
+ssource "${HOME}/.dotfiles-base/functions"
 
 # dev environments
 for f in "${HOME}/.dev/".*; do
@@ -14,7 +14,7 @@ for f in "${HOME}/.dev/".*; do
 done
 
 if xhost > /dev/null 2>&1; then
-    ssource "${HOME}/.xsrc"
+    ssource "${HOME}/.dotfiles-base/x"
 fi
 
 ssource "${HOME}/.specificrc"

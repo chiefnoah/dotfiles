@@ -1,8 +1,6 @@
 export SHELL="$(which zsh)"
-
-# bring in common shell aliases, environment and functions
 . "${HOME}/.shlib"
-. "${HOME}/.commonrc"
+. "${HOME}/.dotfiles-base/all"
 
 # completion adjustments
 autoload -Uz compinit && compinit
