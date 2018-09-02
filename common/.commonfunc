@@ -113,6 +113,17 @@ imgfix () {
 }
 
 
+# download an entire mediawiki to a single XML file (text-only).
+wikimirror () {
+    _require $# 2 'Download a mediawiki.' \
+        "$0 [base url] [outfile.xml]" || return 1
+    curl -d "&pages=Main_Page&offset=1&action=submit"   \
+        --compressed -H 'Accept-Encoding: gzip,deflate' \
+        "${1}/index.php?title=Special:Export"           \
+        -o "$2"
+}
+
+
 # upload stdin or a file to pb.
 pb () {
     curl -F "c=@${1:--}" "https://ptpb.pw/"
