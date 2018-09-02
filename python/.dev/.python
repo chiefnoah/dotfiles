@@ -9,9 +9,10 @@ if command -v pyenv > /dev/null 2>&1; then
         printf "$(python -c 'import sys; print("Switched to", sys.executable)')\n"
     }
 else
-    printf 'WARNING (dev dotfiles): pyenv is not installed.\n'
+    printf 'WARNING (dev dotfiles): pyenv not found.\n'
 fi
 
+# these aliases are more like reminders that are nice to have around.
 alias p='python'
 alias pip='python -m pip'
 alias mkvenv='virtualenv -p $(pyenv which python3)'

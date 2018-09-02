@@ -61,7 +61,7 @@ else
 fi
 
 alias badlinks='find . -xtype l'
-alias dmesg='dmesg -xHw'
+alias dmesg='dmesg -Tkw'
 alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
 alias pg='pgrep -f'
 psi () {
