@@ -1,14 +1,14 @@
 # source this file to apply all my dotfiles/configs for configuring a shell.
 
 # lib defines some useful df_* routines used by the rest of these files
-. "${HOME}/.dotfiles-base/lib"
+. "${HOME}/.config/dotfiles/base/lib"
 
-. "${HOME}/.dotfiles-base/env"
-. "${HOME}/.dotfiles-base/aliases"
-. "${HOME}/.dotfiles-base/functions"
+. "${HOME}/.config/dotfiles/base/env"
+. "${HOME}/.config/dotfiles/base/aliases"
+. "${HOME}/.config/dotfiles/base/functions"
 
 # dev environments
-for f in "${HOME}/.dev/".*; do
+for f in "${HOME}/.config/dotfiles/dev/"*; do
     . "$f"
 done
 
@@ -16,7 +16,7 @@ done
 df_require tmuxp || df_warn 'tmuxp not found'
 
 if xhost > /dev/null 2>&1; then
-    . "${HOME}/.dotfiles-base/x"
+    . "${HOME}/.config/dotfiles/base/x"
 fi
 
-. "${HOME}/.os-specificrc"
+. "${HOME}/.config/dotfiles/base/specific"

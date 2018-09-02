@@ -1,9 +1,9 @@
 export SHELL="$(which zsh)"
-. "${HOME}/.dotfiles-base/all"
+. "${HOME}/.config/dotfiles/base/all"
 
 # keybindings
 bindkey -e
-bindkey '\C-?'  backward-kill-word          # possible ctrl+backspace (iTerm2)
+#bindkey '\C-?'  backward-kill-word          # possible ctrl+backspace (iTerm2)
 bindkey '\C-H'  backward-kill-word          # possible ctrl+backspace (urxvt)
 bindkey '\C-K'  kill-whole-line
 bindkey '\e[1;5D'  backward-word            # ctrl+left

@@ -1,5 +1,5 @@
 export SHELL="$(which bash)"
-. "${HOME}/.dotfiles-base/all"
+. "${HOME}/.config/dotfiles/base/all"
 
 # prompt
 df_export_PS1

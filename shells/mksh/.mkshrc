@@ -1,5 +1,5 @@
 export SHELL="$(which mksh)"
-. "${HOME}/.dotfiles-base/all"
+. "${HOME}/.config/dotfiles/base/all"
 
 # TODO mksh keybindings (mksh does not use GNU readline)
 
