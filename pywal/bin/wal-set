@@ -23,17 +23,15 @@ fi
 
 wal -i "$WALLP" -a 75
 
-# NOTE: wal automatically reloads polybar.
+# NOTE: wal automatically reloads polybar. Only dunst needs to be reloaded.
 pkill dunst
-pkill compton
 
+# Reload bspwm and dunst colors.
 xrdb -merge "${HOME}/.Xresources"
 . "${HOME}/.cache/wal/colors.sh"
 
-# Reload bspwm border colors.
 bspc config normal_border_color "$color0"
-bspc config focused_border_color "$color5"
-
+bspc config focused_border_color "$color15"
 dunst \
     -lb "$color0"  \
     -nb "$color0"  \
@@ -42,7 +40,5 @@ dunst \
     -bf "$color15" \
     -cf "#000000"  \
     -nf "$color15" &
-
-compton --config "${HOME}/.config/compton/compton.conf" &
 
 notify-send "[wal-set] done" -t 1

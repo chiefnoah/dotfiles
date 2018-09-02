@@ -7,7 +7,7 @@ usage () {
 
 base_dots="common scripts bash zsh nano micro redshift ranger"
 baseg_dots="atom mpv rofi"
-arch_dots="arch bspwm sxhkd urxvt dunst compton polybar pywal"
+arch_dots="arch bspwm sxhkd urxvt dunst polybar pywal"
 debian_dots="debian"
 
 if [ "$2" = 'd' ]; then
