@@ -14,12 +14,14 @@ ctrl + Return
 super + Return
     urxvtc -e "ranger"
 
-ctrl + shift + l
-    physlock -sdp 'This computer is locked.'
-
-# TODO suspend with openrc
+# suspend
 ctrl + alt + Delete
-    false
+    exec pm-suspend
+
+# lock then suspend
+# TODO physlock: physlock -sdp 'This computer is locked.'
+ctrl + shift + l
+    exec pm-suspend
 
 alt + Return
     . "${HOME}/.cache/wal/colors.sh" && \

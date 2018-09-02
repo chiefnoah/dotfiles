@@ -2,9 +2,9 @@
 
 urxvtd -q -f -o &
 sxhkd &
-# dunst & TODO
-# TODO slstatus
+dunst &
 
-# TODO udisks2 (and maybe udiskie)
+# TODO slstatus
+# TODO udisks2 + udiskie
 
 exec bspwm
