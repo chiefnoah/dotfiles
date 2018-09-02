@@ -1,7 +1,7 @@
 {
     "CtrlA": "StartOfLine",
     "CtrlE": "EndOfLine",
-    "CtrlL": "CutLine",
+    "CtrlL": "SelectLine",
     "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
     "CtrlLeft": "WordLeft",
