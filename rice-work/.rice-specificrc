@@ -10,7 +10,7 @@ elif [ "$SHELL" = "$(which bash)" ]; then
     source "$HOME/google-cloud-sdk/path.bash.inc"
     source "$HOME/google-cloud-sdk/completion.bash.inc"
 else
-    printf "%s\\n" "WARNING (dotfiles): google-cloud-sdk not initiated; use zsh or bash."
+    df_warn "google-cloud-sdk not initiated; use zsh or bash"
 fi
 
 source "${PYENV_ROOT}/versions/3.6.5/bin/virtualenvwrapper.sh"

@@ -2,7 +2,7 @@ export SHELL="$(which bash)"
 . "${HOME}/.dotfiles-base/all"
 
 # prompt
-shlib_export_PS1
+df_export_PS1
 
 # load GNU readline configuration
 bind -f "${HOME}/.inputrc"

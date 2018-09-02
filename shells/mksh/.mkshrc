@@ -2,7 +2,7 @@ export SHELL="$(which mksh)"
 . "${HOME}/.dotfiles-base/all"
 
 # prompt
-shlib_export_PS1
+df_export_PS1
 
 # history
 alias hist='fc -l'

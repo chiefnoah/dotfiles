@@ -3,7 +3,7 @@ if command -v rbenv > /dev/null 2>&1; then
     pathprepend "${PYENV_ROOT}/bin"
     eval "$(rbenv init -)"
 else
-    printf 'WARNING (dev dotfiles): rbenv not found.\n'
+    df_warn 'rbenv not found'
 fi
 
 # these aliases are more like reminders that are nice to have around.

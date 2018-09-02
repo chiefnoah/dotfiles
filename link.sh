@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-die () { printf '%s\\n' "ERROR: ${1}"; exit 1; }
+die () { printf "%s\\n" "ERROR: ${1}"; exit 1; }
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 

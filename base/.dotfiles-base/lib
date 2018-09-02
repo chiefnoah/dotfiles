@@ -1,54 +1,53 @@
-#!/usr/bin/env sh
-
-# TODO: move into separate repository and add unit tests
-# TODO printf or posix equivalent of echo -e, necessary for printing the ansi escapes and zsh %{ %}
-
-shlib_c_fg_default='\e[39m'
-shlib_c_fg_black='\e[30m'
-shlib_c_fg_red='\e[31m'
-shlib_c_fg_green='\e[32m'
-shlib_c_fg_yellow='\e[33m'
-shlib_c_fg_blue='\e[34m'
-shlib_c_fg_magenta='\e[35m'
-shlib_c_fg_cyan='\e[36m'
-shlib_c_fg_white='\e[97m'
-shlib_c_fg_default_bold='\e[1;39m'
-shlib_c_fg_black_bold='\e[1;30m'
-shlib_c_fg_red_bold='\e[1;31m'
-shlib_c_fg_green_bold='\e[1;32m'
-shlib_c_fg_yellow_bold='\e[1;33m'
-shlib_c_fg_blue_bold='\e[1;34m'
-shlib_c_fg_magenta_bold='\e[1;35m'
-shlib_c_fg_cyan_bold='\e[1;36m'
-shlib_c_fg_white_bold='\e[1;97m'
-shlib_c_reset='\e[0m'
-
-shlib_cur_path () {
-    local wd="$(basename "$PWD")"
-    [ "$wd" = "$USER" ] && wd='~'
-    [ "$1" = 'nocolor' ] && shlib_c_fg_cyan= shlib_c_reset=
-    echo -e "${shlib_c_fg_cyan}${wd}${shlib_c_reset}"
+df_warn () {
+    printf "%s\\n" "WARNING (dotfiles): ${1}"
 }
 
-shlib_git_dirty () {
+df_c_fg_default='\e[39m'
+df_c_fg_black='\e[30m'
+df_c_fg_red='\e[31m'
+df_c_fg_green='\e[32m'
+df_c_fg_yellow='\e[33m'
+df_c_fg_blue='\e[34m'
+df_c_fg_magenta='\e[35m'
+df_c_fg_cyan='\e[36m'
+df_c_fg_white='\e[97m'
+df_c_fg_default_bold='\e[1;39m'
+df_c_fg_black_bold='\e[1;30m'
+df_c_fg_red_bold='\e[1;31m'
+df_c_fg_green_bold='\e[1;32m'
+df_c_fg_yellow_bold='\e[1;33m'
+df_c_fg_blue_bold='\e[1;34m'
+df_c_fg_magenta_bold='\e[1;35m'
+df_c_fg_cyan_bold='\e[1;36m'
+df_c_fg_white_bold='\e[1;97m'
+df_c_reset='\e[0m'
+
+df_cur_path () {
+    local wd="$(basename "$PWD")"
+    [ "$wd" = "$USER" ] && wd='~'
+    [ "$1" = 'nocolor' ] && df_c_fg_cyan= df_c_reset=
+    echo -e "${df_c_fg_cyan}${wd}${df_c_reset}"
+}
+
+df_git_dirty () {
     [ -z "$(git status --porcelain)" ] || printf '* '
 }
 
-shlib_git_prompt_info () {
+df_git_prompt_info () {
     local cur_branch="$(git branch 2>/dev/null | grep \* | cut -c3-)"
     [ -n "$cur_branch" ] || return
-    [ "$1" = 'nocolor' ] && unset shlib_c_fg_green shlib_c_reset
-    echo -e " $(shlib_git_dirty)${shlib_c_fg_green}${cur_branch}${shlib_c_reset}"
+    [ "$1" = 'nocolor' ] && unset df_c_fg_green df_c_reset
+    echo -e " $(df_git_dirty)${df_c_fg_green}${cur_branch}${df_c_reset}"
 }
 
-shlib_username () {
-    echo -e "${shlib_c_fg_white_bold}${USER}${shlib_c_reset}"
+df_username () {
+    echo -e "${df_c_fg_white_bold}${USER}${df_c_reset}"
 }
 
-shlib_hostname () {
-    echo -e "${shlib_c_fg_red_bold}$(hostname)${shlib_c_reset}"
+df_hostname () {
+    echo -e "${df_c_fg_red_bold}$(hostname)${df_c_reset}"
 }
 
-shlib_export_PS1 () {
-    export PS1='$(shlib_username)@$(shlib_hostname) $(shlib_cur_path)$(shlib_git_prompt_info) $ '
+df_export_PS1 () {
+    export PS1='$(df_username)@$(df_hostname) $(df_cur_path)$(df_git_prompt_info) $ '
 }

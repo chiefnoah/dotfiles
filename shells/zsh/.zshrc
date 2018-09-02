@@ -11,13 +11,13 @@ zstyle ':completion:*:*:*:users' ignored-patterns '_*'
 
 # prompt
 # need to redefine colors so zsh knows the control characters don't need to show up in terminal
-shlib_c_fg_green='%{\e[32m%}'
-shlib_c_fg_cyan='%{\e[36m%}'
-shlib_c_fg_red_bold='%{\e[1;31m%}'
-shlib_c_fg_white_bold='%{\e[1;97m%}'
-shlib_c_reset='%{\e[0m%}'
+df_c_fg_green='%{\e[32m%}'
+df_c_fg_cyan='%{\e[36m%}'
+df_c_fg_red_bold='%{\e[1;31m%}'
+df_c_fg_white_bold='%{\e[1;97m%}'
+df_c_reset='%{\e[0m%}'
 setopt prompt_subst
-shlib_export_PS1
+df_export_PS1
 
 # auto-expand aliases inline
 globalias () {
