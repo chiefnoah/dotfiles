@@ -10,9 +10,6 @@ ctrl + Return
 shift + Return
     bspwm-draw-urxvt
 
-super + Return
-    urxvtc -e "ranger"
-
 ctrl + shift + l
     physlock -sdp 'This computer is locked.'
 

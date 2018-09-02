@@ -24,7 +24,6 @@ cask 'keepassxc'
 brew 'weechat', args: ['--with-perl --with-python']
 brew 'mpv'
 brew 'neofetch'
-brew 'ranger'
 brew 'pv'
 brew 'upx'
 brew 'stress'

@@ -7,9 +7,6 @@ super + Escape
 ctrl + Return
     urxvtc
 
-super + Return
-    urxvtc -e "ranger"
-
 # suspend
 ctrl + alt + Delete
     exec pm-suspend

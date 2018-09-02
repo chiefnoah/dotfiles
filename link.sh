@@ -30,7 +30,7 @@ if
     ! case "$1" in
 	base)
 	    $stow base bin
-        $stow -d applications ranger weechat
+        $stow -d applications weechat
         $stow -d shells bash mksh zsh
         ;;
     baseg)
@@ -46,7 +46,7 @@ if
         ;;
 	og)
 		$stow base bin 'os-arch' 'rice-og'
-        $stow -d applications ranger weechat \
+        $stow -d applications weechat \
             cava mpv redshift
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
@@ -54,7 +54,7 @@ if
         ;;
     tatami4.5)
 		$stow base bin 'os-alpine' 'rice-tatami4.5'
-        $stow -d applications ranger weechat \
+        $stow -d applications weechat \
             mpv
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools basics nano micro tmux
