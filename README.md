@@ -13,7 +13,7 @@ These are all my dotfiles for gnu/linux. Some of them are rice-specific - check 
 base        - basic configuration for non-graphical environment
 baseg       - basic configuration for graphical environment, inherits base
 rice_og     - configuration for Arch Linux rice "og", inherits base, baseg
-rice_sakura - config for Alpine Linux rice "sakura"
+tatami4.5   - config for Alpine Linux rice "tatami4.5"
 ```
 
 Alternatively, you may consider using `stow` to cherry-pick and link individual dotfile folders of your choosing - `link.sh` is convenience.

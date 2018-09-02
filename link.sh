@@ -7,12 +7,12 @@ fi
 
 usage () {
     cat <<EOF
-USAGE: $0 base|baseg|rice_og|rice_sakura [d]
+USAGE: $0 base|baseg|rice_og|rice_tatami4.5 [d]
 
-base        - basic config for non-graphical environment
-baseg       - basic config for graphical environment, inherits base
-rice_og     - config for Arch Linux rice "og", inherits base, baseg
-rice_sakura - config for Alpine Linux rice "sakura"
+base            - basic config for non-graphical environment
+baseg           - basic config for graphical environment, inherits base
+rice_og         - config for Arch Linux rice "og", inherits base, baseg
+rice_tatami4.5  - config for Alpine Linux rice "tatami4.5"
 
 Pass d as second arg if you want to unlink instead of link.
 EOF
@@ -43,10 +43,10 @@ case "$1" in
 	rice_og)
 		$stow_cmd $p_base $p_baseg $p_rice_og
 		;;
-    rice_sakura)
+    rice_tatami4.5)
 		$stow_cmd common common-dev scripts mksh nano micro ranger \
-            alpine-sakura bspwm-sakura sxhkd-sakura urxvt-sakura \
-            slstatus-sakura dmenu-sakura dunst-sakura
+            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 \
+            slstatus-tatami4.5 dmenu-tatami4.5 dunst-tatami4.5
 		;;
 	*)
 		usage
