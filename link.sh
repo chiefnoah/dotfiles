@@ -45,8 +45,7 @@ case "$1" in
 		;;
     rice_tatami4.5)
 		$stow_cmd common common-dev scripts mksh nano micro ranger \
-            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 \
-            slstatus-tatami4.5 dmenu-tatami4.5 dunst-tatami4.5
+            alpine-tatami4.5 bspwm-tatami4.5 sxhkd-tatami4.5 urxvt-tatami4.5 dunst-tatami4.5
 		;;
 	*)
 		usage
