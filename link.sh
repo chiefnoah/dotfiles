@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-die () { printf "ERROR: ${1}\n"; exit 1; }
+die () { printf '%s\\n' "ERROR: ${1}"; exit 1; }
+
+command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
 usage () {
     cat <<EOF
@@ -8,19 +10,17 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - basic config for non-graphical environment
-baseg       - basic config for generic graphical environment, inherits base
-dev         - blanket config for all development environments
-og          - config for Arch Linux rice "og", inherits base, baseg
+baseg       - basic config for generic graphical environment [inherits base]
+dev         - blanket development environment config
+og          - config for Arch Linux rice "og" [inherits base, baseg]
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
-cash        - config for generic MacOS systems used at work (currently: sentry.io)
+cash        - config for generic MacOS systems used at work [currently: sentry.io]
 
 Pass d as the second argument if you want to unlink the dotfiles belonging
 to the specified macro.
 EOF
 	exit 1
 }
-
-command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
 p_base="common bin sh mksh bash zsh nano micro ranger weechat"
 p_baseg="atom mpv rofi redshift cava"
@@ -32,7 +32,8 @@ else
     stow_cmd="stow -vt ${HOME}"
 fi
 
-case "$1" in
+if
+    ! case "$1" in
 	base)
 	    $stow_cmd $p_base ;;
     baseg)
@@ -50,7 +51,7 @@ case "$1" in
             macos-cash ;;
 	*)
 		usage ;;
-esac
-
-[ ! "$?" -eq 0 ] && \
-    die "\nStow exited unsuccessfully. You likely have to move or delete the files stow is conflicting with."
+    esac
+then
+    die "stow exited unsuccessfully; you probably have to move or delete the files stow is conflicting with."
+fi
