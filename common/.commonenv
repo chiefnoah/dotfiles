@@ -2,7 +2,8 @@
 
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
-export PAGER='less -irS'
+export PAGER='less'
+export LESS='-irSN'
 
 if command -v micro > /dev/null 2>&1; then
     export EDITOR='micro'
@@ -22,7 +23,6 @@ pathprepend() {
   done
 }
 
-export PIP_DOWNLOAD_CACHE="${HOME}/.pip/cache"
 export GPG_TTY="$(tty)"
 export GOPATH="${HOME}/.go"
 

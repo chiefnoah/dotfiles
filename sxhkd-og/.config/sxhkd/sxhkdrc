@@ -22,7 +22,7 @@ ctrl + alt + Delete
 
 # TODO fix sh environment issues, have to manually source for now
 alt + Return
-    . ~/.commonexports && . ~/.specificrc && rofi -show run
+    . ~/.commonenv && . ~/.specificrc && rofi -show run
 
 ctrl + alt + Return
     rofi -show window

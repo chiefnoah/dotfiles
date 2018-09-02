@@ -85,16 +85,13 @@ alias uu='udiskie-umount'
 
 # Editing/View
 alias c='tput reset'
-alias cl='c && ll'
 alias al='atool -El'
-alias less='less -irS'
 alias m='micro'
 alias tailf='tail -fn 100'
 
 
 # Identity / Authentication
 alias sshc='$EDITOR ~/.ssh/config'
-alias gpg='gpg2'
 alias gpgl='gpg2 --list-secret-keys --keyid-format 0xlong'
 alias gpgll='gpg2 --list-keys --keyid-format 0xlong'
 alias pgp='gpg2 --export -a joshua.r.li.98@gmail.com'
@@ -107,9 +104,8 @@ alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-form
 
 # Audio
 alias audiols='aplay -l ; cat /proc/asound/cards'
-alias wav='aplay'
-alias mp='mplayer -vo null -ao alsa'
-alias mpj='mplayer -vo null -ao jack'
+alias play='mplayer -vo null -ao alsa'
+alias playj='mplayer -vo null -ao jack'
 # for video aliases (mpv), refer to .xsrc
 
 
@@ -135,20 +131,19 @@ alias grao='git remote add origin'
 alias grsuo='git remote set-url origin'
 alias grv='git remote -v'
 gr () {
-    [[ "$1" ]] && git reset HEAD~"$1" || git reset
+    [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
 vbump () {
-    [[ "$1" ]] && \
-    git add --all && \
-    git commit -S -m "v${1}" && \
-    git tag -s -m "$1" "$1"
+    [ -n "$1" ]                     && \
+        git add --all               && \
+        git commit -S -m "v${1}"    && \
+        git tag -s -m "$1" "$1"
 }
 
 
 # Go
-alias goh='cd "$GOPATH"'
 gocd () {
-    pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}"
+    [ -n "$1" ] && pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}" || pushd "$GOPATH"
 }
 alias goi='go install'
 alias godl='go get -d -v'

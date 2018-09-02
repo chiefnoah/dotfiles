@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
-. "${HOME}/.commonexports"
+. "${HOME}/.commonenv"
 . "${HOME}/.commonaliases"
 . "${HOME}/.commonfunc"
-. "${HOME}/.specificrc"  # https://github.com/JoshuaRLi/dotfiles
+. "${HOME}/.specificrc"
 
 if xhost > /dev/null 2>&1; then
     . "${HOME}/.xsrc"
