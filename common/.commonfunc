@@ -5,7 +5,7 @@
 # helper function to enforce argc and display provided description
 # and usage string when violated.
 _require () {
-    if [[ "$1" -ne "$2" ]]; then
+    if [[ "$1" -lt "$2" ]]; then
         printf "${3}\nUSAGE: ${4}\n" ; return 1
     fi
 }
@@ -42,15 +42,35 @@ killtty () {
 }
 
 
+sshnew () {
+    _require $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
+        "$0 [keypair name] [optional comment]" || return 1
+    ssh-keygen -o -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
+    chmod 400 -v "${HOME}/.ssh/${1}"
+    chmod 444 -v "${HOME}/.ssh/${1}.pub"
+}
+
+
+# Use this only for compatibility with older or embedded systems.
+sshnewrsa () {
+    _require $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
+        "$0 [keypair name] [optional comment]" || return 1
+    ssh-keygen -o -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
+    chmod 400 -v "${HOME}/.ssh/${1}"
+    chmod 444 -v "${HOME}/.ssh/${1}.pub"
+}
+
+
 # enforce permissions and ownership on important files.
 lockdown () {
     sudo chown -R "$(whoami)" "${HOME}/."{ssh,gnupg}
-    sudo chmod 700 "${HOME}/."{ssh,gnupg}
-    sudo chmod 600 -R "${HOME}/.gnupg/"*
-    sudo chmod 700 "${HOME}/.gnupg/private-keys-v1.d"
-    sudo chmod 600 -R "${HOME}/.ssh/"*
-    sudo chmod 400 -R "${HOME}/.ssh/"*.pem
-    sudo chmod 400 "${HOME}/.ssh/id_rsa"*
+    chmod 700 "${HOME}/."{ssh,gnupg}
+    chmod 600 -vR "${HOME}/.gnupg/"*
+    chmod 700 "${HOME}/.gnupg/private-keys-v1.d"
+    chmod 400 -vR "${HOME}/.ssh/"*
+    chmod 444 -vR "${HOME}/.ssh/"*.pub
+    chmod 600 -v "${HOME}/.ssh/config"
+    chmod 600 -v "${HOME}/.ssh/known_hosts"
 }
 
 

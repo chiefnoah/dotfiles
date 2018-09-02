@@ -6,7 +6,14 @@
 [github]
     user = JoshuaRLi
 
-[url "git@github.com:"]
+# ssh config block:
+# Host joshuarli.github.com
+# IdentitiesOnly yes
+# PreferredAuthentications publickey
+# HostName github.com
+# User git
+# IdentityFile ~/.ssh/joshuarli-github
+[url "git@joshuarli.github.com:"]
     insteadOf = https://github.com/
 
 [core]
