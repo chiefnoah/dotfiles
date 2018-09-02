@@ -163,19 +163,13 @@ alias depi='dep ensure -add'
 
 
 # Python
-alias p='/usr/bin/env python3'
-alias pipi='p -m pip install --user'
-alias pipl='p -m pip freeze | less'
-alias pipu='p -m pip uninstall'
-alias venv='pipenv shell'
-alias penew='pipenv --rm ; pipenv install --dev ; pipenv check ; pipenv shell'
-alias peup='pipenv update ; pipenv check'
-pedump () {
-    printf '%s\n' "pwd:  "$(pwd)""
-    printf '%s\n' "venv: "$(pipenv --venv)""
-    printf '%s\n' "py:   "$("$(pipenv --py)" --version)""
-    printf 'packages:\n%s\n' "$(pipenv graph)"
+usep () {
+    pyenv global "$1" && \
+    printf "$(python -c 'import sys; print("Switched to", sys.executable)')\n"
 }
+alias p='python'
+alias pip='python -m pip'
+alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
 
 
 # Rust

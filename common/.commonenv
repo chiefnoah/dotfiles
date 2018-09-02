@@ -4,6 +4,8 @@ export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 export PAGER='less'
 export LESS='-irS'
+export GPG_TTY="$(tty)"
+# TODO shell and term
 
 if command -v micro > /dev/null 2>&1; then
     export EDITOR='micro'
@@ -23,9 +25,6 @@ pathprepend() {
   done
 }
 
-export GPG_TTY="$(tty)"
-export GOPATH="${HOME}/.go"
-
 pathprepend "/bin"
 pathprepend "/sbin"
 pathprepend "/usr/bin"
@@ -33,9 +32,21 @@ pathprepend "/usr/sbin"
 pathprepend "/usr/local/bin"
 pathprepend "/usr/local/sbin"
 pathprepend "${HOME}/bin"
-pathprepend "${HOME}/bin/custom"            # github.com:JoshuaRLi/bin
-pathprepend "${HOME}/.local/bin"            # pip --user installed executables
-pathprepend "${HOME}/.cargo/bin"            # cargo (rust) installed executables
-pathprepend "${GOPATH}/bin"                 # go workspace binaries
-pathprepend "${HOME}/.gem/ruby/2.5.0/bin"   # gem binaries
+pathprepend "${HOME}/bin/custom"  # github.com:JoshuaRLi/bin
+
+# python
+export PYENV_ROOT="${HOME}/.pyenv"
+pathprepend "${PYENV_ROOT}/bin"
+eval "$(pyenv init -)"
+
+# golang
+export GOPATH="${HOME}/.go"
+pathprepend "${GOPATH}/bin"
+
+# rust
+pathprepend "${HOME}/.cargo/bin"
+
+# ruby
+pathprepend "${HOME}/.gem/ruby/2.5.0/bin"
+
 export PATH
