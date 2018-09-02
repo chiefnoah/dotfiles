@@ -2,7 +2,7 @@
 
 ***"you are your dotfiles."***
 
-These are all my dotfiles for gnu/linux. Some of them are rice-specific - check out my ricing work [here](https://tildeslash.io/rice.html). Also, see [here](https://tildeslash.io/software.html) for a general list of software I use and recommend.
+These are all my dotfiles for gnu/linux. Some of them are rice-specific - check out my ricing work [here](https://tildeslash.io/rice.html).
 
 
 ### Install/Uninstall
@@ -10,9 +10,10 @@ These are all my dotfiles for gnu/linux. Some of them are rice-specific - check 
 `git clone --recursive https://github.com/JoshuaRLi/dotfiles`, install `stow`, then simply execute `link.sh PRESET` to link dotfiles for the preset that you want. Here are the current presets:
 
 ```
-base    - basic configuration for non-graphical environment
-baseg   - basic configuration for graphical environment, inherits base
-rice_og - configuration for Arch Linux rice "og", inherits base, baseg
+base        - basic configuration for non-graphical environment
+baseg       - basic configuration for graphical environment, inherits base
+rice_og     - configuration for Arch Linux rice "og", inherits base, baseg
+rice_sakura - config for Alpine Linux rice "sakura"
 ```
 
 Alternatively, you may consider using `stow` to cherry-pick and link individual dotfile folders of your choosing - `link.sh` is convenience.
