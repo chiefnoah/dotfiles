@@ -20,3 +20,4 @@ if xhost > /dev/null 2>&1; then
 fi
 
 . "${HOME}/.config/dotfiles/base/specific"
+. "${HOME}/.config/dotfiles/rice"

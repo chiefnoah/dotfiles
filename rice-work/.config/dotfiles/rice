@@ -1,0 +1,8 @@
+# work @ yelp
+
+alias work='tmuxp load yelp'
+
+# override .commonaliases git commit - do not sign commits
+alias gcm='git commit -m'
+alias gp=review-branch
+alias gl='git log'
