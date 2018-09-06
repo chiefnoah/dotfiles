@@ -38,7 +38,7 @@ if
         ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools basics nano micro tmux
+        $stow -d dev-tools basics git nano micro tmux
         $stow -d shells bash mksh zsh
         ;;
     devg)
@@ -49,7 +49,7 @@ if
         $stow -d applications weechat gnupg \
             cava mpv redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools basics nano micro tmux
+        $stow -d dev-tools basics git nano micro tmux
         $stow -d shells zsh
         ;;
     tatami4.5)
@@ -57,7 +57,7 @@ if
         $stow -d applications weechat gnupg \
             mpv
         $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools basics nano micro tmux
+        $stow -d dev-tools basics git nano micro tmux
         $stow -d shells mksh
         ;;
     work)
