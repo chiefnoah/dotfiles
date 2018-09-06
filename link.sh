@@ -15,7 +15,7 @@ dev         - blanket development environment config
 devg        - X/graphical dev tools
 og          - config for Arch Linux rice "og"
 tatami4.5   - config for Alpine Linux rice "tatami4.5"
-work        - config for work [currently: sentry.io]
+work        - config for work [currently: yelp]
 
 Pass d as the second argument if you want to unlink the dotfiles belonging
 to the specified macro.
@@ -64,9 +64,9 @@ if
 		$stow --ignore='Brewfile' base bin 'os-mac' 'rice-work'
         $stow -d applications weechat gnupg \
             mpv
-        $stow -d dev-langs python nodejs
+        $stow -d dev-langs python
         $stow -d dev-tools basics nano micro tmux
-        $stow -d shells zsh
+        $stow -d shells bash zsh
         ;;
 	*)
 		usage ;;

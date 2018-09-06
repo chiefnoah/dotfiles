@@ -1,0 +1,15 @@
+session_name: yelp-work
+windows:
+  - window_name: yelp
+    shell_command_before:
+      - true
+    layout: even-vertical
+    panes:
+      - true
+      - true
+  - window_name: josh
+    layout: even-vertical
+    panes:
+      - cd ~/Music
+      - cd ~/Music
+      - cd ~/dotfiles

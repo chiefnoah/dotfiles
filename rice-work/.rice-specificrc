@@ -1,21 +1,10 @@
-# work @ sentry.io
+# work @ yelp
 
 # override .commonaliases git commit - do not sign commits
 alias gcm="git commit -m"
 
-if [ "$SHELL" = "$(which zsh)" ]; then
-    source "$HOME/google-cloud-sdk/path.zsh.inc"
-    source "$HOME/google-cloud-sdk/completion.zsh.inc"
-elif [ "$SHELL" = "$(which bash)" ]; then
-    source "$HOME/google-cloud-sdk/path.bash.inc"
-    source "$HOME/google-cloud-sdk/completion.bash.inc"
-else
-    df_warn "google-cloud-sdk not initiated; use zsh or bash"
-fi
-
 export PYENV_VERSION=3.7.0
 source "${PYENV_ROOT}/versions/$(pyenv global)/bin/virtualenvwrapper.sh"
-
 export PYTHONDONTWRITEBYTECODE='pls no'
 
-alias work='tmuxp load sentry'
+alias work='tmuxp load yelp'
