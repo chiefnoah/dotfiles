@@ -1,20 +1,14 @@
 session_name: yelp-work
 windows:
   - window_name: yelp-main
-    shell_command_before:
-      - zsh
     layout: even-vertical
     panes:
       - cd ~/pg/yelp-main
   - window_name: scribereader
-    shell_command_before:
-      - zsh
     layout: even-vertical
     panes:
       - cd ~/pg/scribereader && source venv/bin/activate && export PATH="$(pwd)/venv/bin:${PATH}"
   - window_name: dotfiles
-    shell_command_before:
-      - zsh
     layout: even-vertical
     panes:
       - cd ~/dotfiles
