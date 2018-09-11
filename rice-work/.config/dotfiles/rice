@@ -1,5 +1,7 @@
 # work @ yelp
 
+export PATH="${HOME}/.local/bin:${PATH}"
+
 alias work='tmuxp load yelp'
 
 # override .commonaliases git commit - do not sign commits
