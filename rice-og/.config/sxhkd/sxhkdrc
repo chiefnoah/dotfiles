@@ -1,7 +1,7 @@
 super + Escape
     pkill -USR1 -x sxhkd ;\
     notify-send "[sxhkd] config reloaded" -t 1000 ;\
-    sh "${HOME}/.config/bspwm/bspwmrc" ;\
+    sh "${XDG_CONFIG_HOME}/bspwm/bspwmrc" ;\
     notify-send "[bspwm] config reloaded" -t 1000
 
 ctrl + Return

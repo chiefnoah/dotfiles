@@ -1,5 +1,6 @@
 export SHELL="$(which zsh)"
-. "${HOME}/.config/dotfiles/base/all"
+export XDG_CONFIG_HOME="${HOME}/.config"
+. "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
 # keybindings
 bindkey -e

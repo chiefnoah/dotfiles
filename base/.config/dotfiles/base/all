@@ -1,23 +1,23 @@
 # source this file to apply all my dotfiles/configs for configuring a shell.
 
 # lib defines some useful df_* routines used by the rest of these files
-. "${HOME}/.config/dotfiles/base/lib"
+source "${XDG_CONFIG_HOME}/dotfiles/base/lib"
 
-. "${HOME}/.config/dotfiles/base/env"
-. "${HOME}/.config/dotfiles/base/aliases"
-. "${HOME}/.config/dotfiles/base/functions"
+source "${XDG_CONFIG_HOME}/dotfiles/base/env"
+source "${XDG_CONFIG_HOME}/dotfiles/base/aliases"
+source "${XDG_CONFIG_HOME}/dotfiles/base/functions"
 
 # dev environments
-for f in "${HOME}/.config/dotfiles/dev/"*; do
-    . "$f"
+for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do
+    source "$f"
 done
 
 # other dev tooling checks
 df_require tmuxp || df_warn 'tmuxp not found'
 
 if xhost > /dev/null 2>&1; then
-    . "${HOME}/.config/dotfiles/base/x"
+    source "${XDG_CONFIG_HOME}/dotfiles/base/x"
 fi
 
-. "${HOME}/.config/dotfiles/base/specific"
-. "${HOME}/.config/dotfiles/rice"
+source "${XDG_CONFIG_HOME}/dotfiles/base/specific"
+source "${XDG_CONFIG_HOME}/dotfiles/rice"

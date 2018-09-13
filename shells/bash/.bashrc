@@ -1,5 +1,6 @@
 export SHELL="$(which bash)"
-. "${HOME}/.config/dotfiles/base/all"
+export XDG_CONFIG_HOME="${HOME}/.config"
+. "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
 # prompt
 df_export_PS1

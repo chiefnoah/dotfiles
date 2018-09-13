@@ -3,6 +3,7 @@ export LANGUAGE='en_US.UTF-8'
 export PAGER='less'
 export LESS='-irS'
 export GPG_TTY="$(tty)"
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 # colored man pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -22,7 +23,7 @@ fi
 export GIT_EDITOR="$EDITOR"
 export GIT_PAGER="$PAGER"
 
-export TMUXP_CONFIGDIR="${HOME}/.config/tmuxp"
+export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"
 
 pathprepend() {
   for DIR in "$@"
