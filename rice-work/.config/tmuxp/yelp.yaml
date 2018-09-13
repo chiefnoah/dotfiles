@@ -4,6 +4,10 @@ windows:
     layout: even-vertical
     panes:
       - cd ~/pg/yelp-main
+  - window_name: yelp-clog
+    layout: even-vertical
+    panes:
+      - cd ~/pg/clientlibs/yelp_clog && source venv/bin/activate
   - window_name: scribereader
     layout: even-vertical
     panes:

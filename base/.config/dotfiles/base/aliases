@@ -104,6 +104,7 @@ sine () {
 
 # git
 # See also ~/.gitconfig
+alias git-fame="git ls-files | grep '\.py$' | xargs -n1 git blame --line-porcelain HEAD | grep '^author ' | sort | uniq -c | sort -nr"
 alias gc='git clone'
 alias gcr='git clone --recursive'
 alias gup='git submodule update --init --recursive --remote'
