@@ -8,6 +8,10 @@ windows:
     layout: even-vertical
     panes:
       - cd ~/pg/clientlibs/yelp_clog && source venv/bin/activate
+  - window_name: holmes
+    layout: even-vertical
+    panes:
+      - cd ~/pg/services/client_detection && source virtualenv_run/bin/activate
   - window_name: scribereader
     layout: even-vertical
     panes:
