@@ -8,8 +8,7 @@
     "CtrlU": "Undo",
     "CtrlLeft": "WordLeft",
     "CtrlRight": "WordRight",
-    "CtrlT": "AddTab",
-    "AltLeft": "PreviousTab",
-    "AltRight": "NextTab",
-    "CtrlSpace": "CommandMode"
+    "AltLeft": "SelectWordLeft",
+    "AltRight": "SelectWordRight",
+    "CtrlSpace": "CommandMode",
 }
