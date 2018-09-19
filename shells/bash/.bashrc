@@ -2,6 +2,15 @@ export SHELL="$(which bash)"
 export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
+pathprepend "${HOME}/.fzf/bin"
+export PATH
+if df_require fzf; then
+    source "${HOME}/.fzf/shell/completion.bash"
+    source "${HOME}/.fzf/shell/key-bindings.bash"
+else
+    df_warn 'fzf not found'
+fi
+
 # prompt
 df_export_PS1
 
