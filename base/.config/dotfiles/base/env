@@ -52,6 +52,4 @@ if df_require fzf; then
     export FZF_DEFAULT_OPTS='--no-mouse'
 fi
 
-if df_require tmuxp; then
-    export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"
-fi
+export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"
