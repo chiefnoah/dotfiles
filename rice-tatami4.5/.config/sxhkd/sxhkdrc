@@ -7,18 +7,16 @@ super + Escape
 ctrl + Return
     urxvtc
 
-# suspend
-ctrl + alt + Delete
-    exec pm-suspend
-
-# lock then suspend
-# TODO physlock: physlock -sdp 'This computer is locked.'
-ctrl + shift + l
-    exec pm-suspend
-
-alt + Return
+super + Return
     . "${HOME}/bin/custom/source-xcolors" && \
     dmenu_run -b -fn 'lucy tewi' -nb "$bg" -nf "$fg" -sb "$color1" -sf "$fg"
+
+# TODO pass for dmenu
+
+# suspend
+# TODO slock or physlock before
+ctrl + alt + Delete
+    exec pm-suspend
 
 Print
     scrot "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
@@ -39,9 +37,7 @@ XF86Audio{LowerVolume,RaiseVolume}
     amixer set Master 5%{-,+}
 
 
-#
 # BSPWM
-#
 
 # close or kill
 super + {c,k}
@@ -55,16 +51,16 @@ super + m
 super + {f,t}
     bspc node -t {floating,tiled}
 
-# cycle through nodes, useful during monocle layout
-ctrl + shift + Return
-    bspc node -f next
-
 # cycle through desktops
-alt + {_,shift +} Tab
-    bspc desktop -f {next,prev}
+super + {Left,Right}
+    bspc desktop -f {prev,next}
+
+# cycle through nodes
+super + alt + {Left,Right}
+    bspc node -f {prev,next}
 
 # focus or send to the given desktop
-alt + {_,shift + }{1-9,0}
+super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
 # adjust window gap via mouse wheel

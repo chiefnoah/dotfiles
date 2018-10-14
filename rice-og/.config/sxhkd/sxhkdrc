@@ -5,25 +5,19 @@ super + Escape
     notify-send "[bspwm] config reloaded" -t 1000
 
 ctrl + Return
-    urxvt
-
-ctrl + alt + Return
-    rofi-pass
+    urxvtc
 
 shift + Return
     bspwm-draw-urxvt
 
-ctrl + shift + l
-    physlock -sdp 'This computer is locked.'
+super + Return
+    rofi -show run
+
+super + alt + Return
+    rofi-pass
 
 ctrl + alt + Delete
     systemctl suspend
-
-alt + Return
-    rofi -show run
-
-ctrl + alt + Return
-    rofi -show window
 
 Print
     mkdir -p "${HOME}/Screenshots" && \
@@ -50,6 +44,7 @@ XF86MonBrightness{Down,Up}
     light -{U,A} 10
     # xbacklight -{dec,inc} 10
 
+
 # BSPWM
 
 # close or kill
@@ -64,16 +59,16 @@ super + m
 super + {f,t}
     bspc node -t {floating,tiled}
 
-# cycle through nodes, useful during monocle layout
-ctrl + shift + Return
-    bspc node -f next
-
 # cycle through desktops
-alt + {_,shift +} Tab
-    bspc desktop -f {next,prev}
+super + {Left,Right}
+    bspc desktop -f {prev,next}
+
+# cycle through nodes
+super + alt + {Left,Right}
+    bspc node -f {prev,next}
 
 # focus or send to the given desktop
-alt + {_,shift + }{1-9,0}
+super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
 
 # adjust window gap via mouse wheel
