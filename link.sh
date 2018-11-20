@@ -42,7 +42,8 @@ if
         $stow -d shells bash mksh zsh
         ;;
     devg)
-        $stow -d dev-tools atom
+#        $stow -d dev-tools ...
+        true
         ;;
 	og)
 		$stow base bin 'os-arch' 'rice-og'

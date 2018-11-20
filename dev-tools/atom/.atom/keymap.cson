@@ -1,3 +1,0 @@
-'.editor':
-  'ctrl-a': 'editor:move-to-first-character-of-line'
-  'ctrl-e': 'editor:move-to-end-of-line'
