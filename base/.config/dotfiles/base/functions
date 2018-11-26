@@ -3,43 +3,29 @@
 # enforce argc and display usage when violated.
 _usage () {
     if [ "$1" -lt "$2" ]; then
-        cat <<EOF
+        >&2 cat <<EOF
 ${3}
-
-    USAGE: ${4}
-
+usage: ${4}
 EOF
         return 1
     fi
 }
 
-
-lnc () {
-    _usage $# 1 'Creates a symlink to the target in pwd.' \
-        "$0 path/to/target" || return 1
-    ln -sv "$(readlink -f "$1")" "$(pwd)"
-}
-
-
-# auto-ls after cd. Does not show hidden files.
-cd () {
-    if [ -n "$1" ]; then
-        builtin cd "$1" && l
-    else
-        builtin cd "$HOME" && l
-    fi
+die () {
+    printf "%s\n" "$1"
+    return 1
 }
 
 
 # man wrapper with --help fallback.
 h () {
-    man "$@" 2>/dev/null || "$@" --help 2>&1 | less -irS
+    man "$@" 2>/dev/null || "$@" --help 2>&1 | "$PAGER"
 }
 
 
 wscan () {
-    _usage $# 1 'Uses the interface to scan for wireless AP SSIDs.' \
-        "$0 interface" || return 1
+    _usage $# 1 'uses INTERFACE to scan for wireless AP SSIDs.' \
+        "$0 INTERFACE" || return 1
     sudo iw dev "$1" scan | grep SSID | awk '{print $2}'
 }
 
@@ -57,19 +43,16 @@ EOF
 }
 
 
-killtty () {
-    _usage $# 1 'Kills the specified tty by number.' \
-        "$0 [tty number]" || return 1
-    sudo kill "$(who -u | grep "tty${1}" | tr -s ' ' | cut -d ' ' -f 6)"
-}
-
-
 gitignore () {
-    _usage $# 1 'gitignore.io download wrapper.' \
-        "$0 [directive ...]" || return 1
-    local URL="https://www.gitignore.io/api/${1}"
-    shift; for d in "$@"; do URL="${URL},${d}"; done
-    wget "$URL" -O .gitignore
+    _usage $# 1 'gitignore.io download wrapper. `gitignore list` to get a types listing.' \
+        "$0 TYPE [TYPE ...]" || return 1
+    if [ "$1" == 'list' ]; then
+        curl -sL https://gitignore.io/api/list | tr ',' '\n'
+    else
+        local URL="https://www.gitignore.io/api/${1}"
+        shift; for d in "$@"; do URL="${URL},${d}"; done
+        curl -L "$URL" -fo .gitignore || die "one or more TYPE was invalid."
+    fi
 }
 
 
@@ -77,6 +60,15 @@ sshnew () {
     _usage $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
         "$0 [keypair name] [optional comment]" || return 1
     ssh-keygen -o -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
+    chmod 400 -v "${HOME}/.ssh/${1}"
+    chmod 444 -v "${HOME}/.ssh/${1}.pub"
+}
+
+
+sshnewrsa () {
+    _usage $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
+        "$0 [keypair name] [optional comment]" || return 1
+    ssh-keygen -o -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
@@ -104,16 +96,6 @@ EOF
 }
 
 
-# Use this only for compatibility with older or embedded systems.
-sshnewrsa () {
-    _usage $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
-        "$0 [keypair name] [optional comment]" || return 1
-    ssh-keygen -o -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
-    chmod 400 -v "${HOME}/.ssh/${1}"
-    chmod 444 -v "${HOME}/.ssh/${1}.pub"
-}
-
-
 # enforce permissions and ownership on important files.
 lockdown () {
     sudo chown -R "$(whoami)" "${HOME}/."{ssh,gnupg}
@@ -125,50 +107,4 @@ lockdown () {
     chmod 444 -vR "${HOME}/.ssh/"*.pub
     chmod 600 -v "${HOME}/.ssh/config"
     chmod 600 -v "${HOME}/.ssh/known_hosts"
-}
-
-
-# TODO remove this when I finish wiki archive project
-# download an entire mediawiki to a single XML file (text-only).
-wikimirror () {
-    _usage $# 2 'Download a mediawiki.' \
-        "$0 [base url] [outfile.xml]" || return 1
-    curl -d "&pages=Main_Page&offset=1&action=submit"   \
-        --compressed -H 'Accept-Encoding: gzip,deflate' \
-        "${1}/index.php?title=Special:Export"           \
-        -o "$2"
-}
-
-
-# TODO replace this with an alias to tb-client when I finish the rewrite
-# upload stdin or a file to pb.
-pb () {
-    curl -F "c=@${1:--}" "https://ptpb.pw/"
-}
-
-
-rmirror () {
-    _usage $# 2 'rsync shortcut for backup/sync. results in path/to/destdir/srcdir.' \
-        "$0 path/to/srcdir path/to/destdir" || return 1
-    # reflect deleted file changes in the destination
-    rsync -aAXhP --delete "$1" "$2"
-}
-
-
-hmirror () {
-    _usage $# 1 'rsync shortcut for home backup/sync. make sure backup dir is encrypted!' \
-        "$0 /path/to/backup/dir" || return 1
-    rsync -aAXhP --delete       \
-        --exclude '.cache'      \
-        --exclude '.thumbnails' \
-        "$HOME" "$1"
-}
-
-
-smirror () {
-    _usage $# 1 'rsync shortcut for system backup/sync.' \
-        "$0 /path/to/backup/dir" || return 1
-    sudo rsync -aAXhP --delete \
-        --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/home/*","/lost+found"} \
-        "/" "$1"
 }
