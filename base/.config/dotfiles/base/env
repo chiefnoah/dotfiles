@@ -1,20 +1,27 @@
-pathprepend() {
-  for DIR in "$@"
-  do
-    if [[ -d "$DIR" ]] && [[ ":${PATH}:" != *":${DIR}:"* ]]; then
-      PATH="${DIR}${PATH:+":$PATH"}"
-    fi
-  done
+pathappend () {
+    for DIR in "$@"; do
+        if [ ! -d "$DIR" ]; then
+            df_warn "pathappend: ${DIR} does not exist"
+            continue
+        fi
+        if [[ ":${PATH}:" == *":${DIR}:"* ]]; then
+            df_warn "pathappend: ${DIR} already somewhere in PATH, skipping"
+            continue
+        fi
+        PATH="${PATH:+"${PATH}:"}${DIR}"
+    done
 }
 
-pathprepend "/bin"
-pathprepend "/sbin"
-pathprepend "/usr/bin"
-pathprepend "/usr/sbin"
-pathprepend "/usr/local/bin"
-pathprepend "/usr/local/sbin"
-pathprepend "${HOME}/bin"
-pathprepend "${HOME}/bin/custom"  # github.com:JoshuaRLi/bin
+pathappend              \
+    /bin                \
+    /sbin               \
+    /usr/bin            \
+    /usr/sbin           \
+    /usr/local/bin      \
+    /usr/local/sbin     \
+    ${HOME}/bin         \
+    ${HOME}/bin/custom
+
 export PATH
 
 export LANG='en_US.UTF-8'

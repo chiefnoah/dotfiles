@@ -2,7 +2,7 @@ export SHELL="$(which zsh)"
 export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
-pathprepend "${HOME}/.fzf/bin"
+pathappend "${HOME}/.fzf/bin"
 export PATH
 if df_require fzf; then
     source "${HOME}/.fzf/shell/completion.zsh"

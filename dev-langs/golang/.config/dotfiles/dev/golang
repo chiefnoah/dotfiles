@@ -10,6 +10,6 @@ alias gog='go get -u -v'
 alias depi='dep ensure -add'
 
 export GOPATH="${HOME}/.go"
-pathprepend "${GOPATH}/bin"
+pathappend "${GOPATH}/bin"
 
 export PATH

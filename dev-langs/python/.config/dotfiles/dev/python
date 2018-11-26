@@ -1,7 +1,7 @@
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 export PYENV_ROOT="${HOME}/.pyenv"
-pathprepend "${PYENV_ROOT}/bin"
+pathappend "${PYENV_ROOT}/bin"
 
 if df_require pyenv; then
     eval "$(pyenv init -)"

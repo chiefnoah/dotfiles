@@ -6,8 +6,9 @@ alias copy=pbcopy
 alias paste=pbpaste
 
 # use GNU coreutils, findutils
-pathprepend /usr/local/opt/coreutils/libexec/gnubin
-pathprepend /usr/local/opt/findutils/libexec/gnubin
+pathappend                                  \
+    /usr/local/opt/coreutils/libexec/gnubin \
+    /usr/local/opt/findutils/libexec/gnubin
 
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
