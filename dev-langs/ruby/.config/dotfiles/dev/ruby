@@ -1,6 +1,6 @@
 if df_require rbenv; then
     export RBENV_ROOT="${HOME}/.rbenv"
-    pathappend "${PYENV_ROOT}/bin"
+    pathappend "${RBENV_ROOT}/bin"
     eval "$(rbenv init -)"
 else
     df_warn 'rbenv not found'
