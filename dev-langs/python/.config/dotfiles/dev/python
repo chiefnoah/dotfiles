@@ -1,7 +1,5 @@
 export PYTHONSTARTUP="${HOME}/.pythonrc"
-
 export PYENV_ROOT="${HOME}/.pyenv"
-pathappend "${PYENV_ROOT}/bin"
 
 if df_require pyenv; then
     eval "$(pyenv init -)"
@@ -13,14 +11,8 @@ else
     df_warn 'pyenv not found'
 fi
 
-if df_require pipenv; then
-    alias pe='pipenv install --dev ; pipenv check ; pipenv shell'
-else
-    df_warn 'pipenv not found'
-fi
-
 alias p='python'
 alias pip='python -m pip'
-alias mkvenv='virtualenv -p $(pyenv which python3)'
 
+pathappend "${PYENV_ROOT}/bin"
 export PATH
