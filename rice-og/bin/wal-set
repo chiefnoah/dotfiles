@@ -10,58 +10,46 @@ notify () {
     fi
 }
 
-notify-err () {
-    notify "ERROR: ${1}" 'critical'
+die () {
+    notify "fatal error: ${1}" 'critical'
+    exit 1
 }
 
-notify 'init'
-
-if [[ -f "${HOME}/.cache/wal/wal" ]] && [[ -z "$1" ]]; then
-    # If wal-set is invoked standalone and a cached wallpaper from a previous invocation is present, use that.
+if [[ -z "$1" ]] && [[ -f "${HOME}/.cache/wal/wal" ]]; then
+    # if wal-set is invoked standalone AND a cached wallpaper from a previous invocation is present, use it.
     walcache="$(< "${HOME}/.cache/wal/wal")"
-    notify 'Using cached wallpaper.'
-    wal -i "$walcache" -a 75
+    notify 'using cached wallpaper.'
+    wal -q -i "$walcache" -a 75
 else
+    command -v xdpyinfo >/dev/null 2>&1 || die 'xdpyinfo not installed'
     sdim="$(xdpyinfo | grep dimensions | tr -s ' ' | cut -d' ' -f3)"
-    notify "Detected screen dimensions: ${sdim}"
+    notify "detected screen dimensions: ${sdim}"
     walldir="${HOME}/Wallpapers-${sdim}"
-    if [[ ! -d "$walldir" ]]; then
-        notify-err "Directory ${walldir} not found."
-        exit 1
-    fi
-    notify "Retrieving category dirs in ${walldir}"
+    [[ ! -d "$walldir" ]] && die "directory ${walldir} not found."
+    notify "retrieving category dirs in ${walldir}"
     categories=($(ls -1 "$walldir" | tr '\n' ' '))
-    if [[ ${#categories[@]} -eq 0 ]]; then
-        notify-err "Wallpaper dir ${walldir} contains no category dirs."
-        exit 1
-    fi
-    notify "Categories: ${categories[*]}"
+    [[ ${#categories[@]} -eq 0 ]] && die "${walldir} contains no category directories."
     if [[ -z "$1" ]]; then
-        # A category is chosen at random if wal-set is invoked standalone and there is no cached wallpaper.
-        notify 'No category specified; choosing one randomly.'
+        # a category is chosen at random if wal-set is invoked standalone AND there is no cached wallpaper.
+        notify 'no category specified; choosing one randomly.'
         category="${walldir}/${categories[$RANDOM % ${#categories[@]}]}"
     else
         category="${walldir}/${1}"
     fi
-    if [[ -d "$category" ]]; then
-        notify "Using category dir ${category}"
-        wal -i "$category" -a 75
-    else
-        notify-err "Category dir ${category} does not exist."
-        exit 1
-    fi
+    [[ ! -d "$category" ]] && die "category dir ${category} does not exist."
+    notify "using category dir ${category}"
+    wal -q -i "$category" -a 75
 fi
 
-# Reload bspwm and dunst with the new colors.
-# NOTE: wal automatically reloads polybar.
-pkill dunst
-
+notify 'loading new colors into X.'
 xrdb -merge "${HOME}/.Xresources"
-source "${HOME}/.cache/wal/colors.sh"
 
+notify 'reloading bspwn, dunst, and polybar.'
+# NOTE: wal automatically reloads polybar, so we don't need to do it here.
+source "${HOME}/.cache/wal/colors.sh"
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
-dunst \
+pkill -x dunst && dunst \
     -lb "$color0"  \
     -nb "$color0"  \
     -cb "#ff0000"  \
