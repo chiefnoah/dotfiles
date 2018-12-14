@@ -55,7 +55,7 @@ if
         ;;
     tatami4.5)
 		$stow base bin 'os-alpine' 'rice-tatami4.5'
-        $stow -d apps weechat gnupg \
+        $stow -d apps weechat gnupg
         $stow -d appsg mpv
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
