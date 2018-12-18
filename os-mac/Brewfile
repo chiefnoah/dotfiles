@@ -1,5 +1,3 @@
-tap 'caskroom/cask'
-
 brew 'bash'  # bash 4+
 brew 'zsh'
 brew 'mksh'
@@ -27,15 +25,12 @@ brew 'atool'
 brew 'p7zip'
 brew 'youtube-dl'
 
-brew 'python'
 brew 'pyenv'
-brew 'node'
-brew 'yarn'
 brew 'nvm'
-brew 'ruby'
 brew 'rbenv'
 brew 'go'
-brew 'dep'
 brew 'rust'
 brew 'shellcheck'
+
+tap 'caskroom/cask'
 cask 'docker'

@@ -1,6 +1,6 @@
 [user]
     name = Joshua Li
-    email = joshuali@yelp.com
+    email =
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
@@ -13,25 +13,11 @@
     compression = 9
 
 [alias]
-    amend = commit --amend -v
-    c = checkout @{-1}
-    d = difftool
-    dc = difftool --cached
     root = rev-parse --show-toplevel
     info = show --format=fuller --show-signature
     stat = show --format=fuller --show-signature --stat
     peek = show --format=fuller --show-signature HEAD
     unstage = reset --
-    resign = rebase --committer-date-is-author-date --exec 'git commit --amend --reset-author --no-edit -n -S' -i
-
-[apply]
-    whitespace = fix
-
-[diff]
-    renames = copies
-
-[merge]
-    log = true
 
 [push]
     default = current

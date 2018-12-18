@@ -1,10 +1,6 @@
-# work @ yelp
+# work @ n/a
 
-export PATH="${HOME}/.local/bin:${PATH}"
-
-alias work='tmuxp load yelp'
+alias work='tmuxp load na'
 
 # override .commonaliases git commit - do not sign commits
 alias gcm='git commit -m'
-alias gp=review-branch
-alias gl='git log'
