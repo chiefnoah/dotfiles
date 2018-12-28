@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-die () { printf "%s\\n" "ERROR: ${1}"; exit 1; }
+die () { printf %s\\n "ERROR: ${1}"; exit 1; }
 
 command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
 
@@ -9,8 +9,9 @@ usage () {
 USAGE: $0 PRESET [d]
 
 PRESETS:
-base        - all non-graphical, non-dev configs
-baseg       - all graphical, non-dev configs
+base        - base, bin, and interactive shell configs
+ng          - all non-graphical, non-dev configs
+g           - all graphical, non-dev configs
 dev         - blanket dev environment config
 devg        - graphical dev tools
 og          - config for Arch Linux rice "og"
@@ -30,10 +31,13 @@ if
     ! case "$1" in
     base)
         $stow base bin
-        $stow -d apps weechat gnupg cava
+        $stow -d apps gnupg
         $stow -d shells bash mksh zsh
         ;;
-    baseg)
+    ng)
+        $stow -d apps weechat cava
+        ;;
+    g)
         $stow -d appsg mpv redshift rofi-pass
         ;;
     dev)
@@ -69,8 +73,9 @@ if
 #        $stow -d dev-tools editorconfig micro tmux
 #        $stow -d shells zsh
         ;;
-        *)
-                usage ;;
+    *)
+        usage
+        ;;
     esac
 then
     die "stow exited unsuccessfully; you probably have to move or delete the files stow is conflicting with."
