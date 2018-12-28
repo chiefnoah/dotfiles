@@ -20,7 +20,7 @@ work        - config for work [currently: n/a]
 Pass d as the second argument if you want to unlink the dotfiles
 belonging to the specified macro.
 EOF
-	exit 1
+    exit 1
 }
 
 stow="stow -vt ${HOME}"
@@ -28,8 +28,8 @@ stow="stow -vt ${HOME}"
 
 if
     ! case "$1" in
-	base)
-	    $stow base bin
+    base)
+        $stow base bin
         $stow -d apps weechat gnupg cava
         $stow -d shells bash mksh zsh
         ;;
@@ -45,8 +45,8 @@ if
 #        $stow -d dev-tools ...
         true
         ;;
-	og)
-		$stow base bin 'os-arch' 'rice-og'
+        og)
+        $stow base bin 'os-arch' 'rice-og'
         $stow -d apps weechat gnupg cava
         $stow -d appsg redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
@@ -54,7 +54,7 @@ if
         $stow -d shells zsh
         ;;
     tatami4.5)
-		$stow base bin 'os-alpine' 'rice-tatami4.5'
+        $stow base bin 'os-alpine' 'rice-tatami4.5'
         $stow -d apps weechat gnupg
         $stow -d appsg mpv
         $stow -d dev-langs python golang rust ruby nodejs
@@ -69,8 +69,8 @@ if
 #        $stow -d dev-tools editorconfig micro tmux
 #        $stow -d shells zsh
         ;;
-	*)
-		usage ;;
+        *)
+                usage ;;
     esac
 then
     die "stow exited unsuccessfully; you probably have to move or delete the files stow is conflicting with."
