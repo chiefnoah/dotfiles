@@ -11,10 +11,7 @@ EOF
     fi
 }
 
-die () {
-    printf "%s\n" "$1"
-    return 1
-}
+die () { printf %s\\n "$1"; return 1; }
 
 require () {
     df_require "$1" || die "${1} is required, but not found"
@@ -33,19 +30,18 @@ wscan () {
     require grep || return $?
     usage $# 1 'uses INTERFACE to scan for wireless AP SSIDs.' \
         "$0 INTERFACE" || return $?
-    sudo iw dev "$1" scan | grep SSID | awk '{print $2}'
+    sudo iw dev "$1" scan | grep 'SSID:' | awk '{if ($2) print $2;}'
 }
 
 
-# print local and external ip.
-myip () {
-    require ip || return $?
-    require awk || return $?
+lanip () {
+    require hostname || return $?
+    printf %s\\n "$(hostname -i)"
+}
+
+wanip () {
     require dig || return $?
-    cat <<EOF
-Local: $(ip route get 1.1.1.1 | awk '{print $(NF-2); exit}')
-External: $(dig +short myip.opendns.com @resolver1.opendns.com)
-EOF
+    printf %s\\n "$(dig @resolver1.opendns.com ANY myip.opendns.com +short)"
 }
 
 
@@ -82,7 +78,8 @@ sshnewrsa () {
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
 
-
+# todo: default to host machine username, and ssh port 22.
+# also add optional password field to sshnew and let this func pass that optionally as well.
 instassh () {
     require ssh-copy-id || return $?
     usage $# 4 'Automates ssh keypair generation and installation.' \
@@ -90,19 +87,19 @@ instassh () {
     (
     set -eu
     sshnew "$1" ''
-    printf '\ncopying pubkey...\n'
     ssh-copy-id -i "${HOME}/.ssh/${1}.pub" "${2}@${3}" -p "$4"
-    printf 'writing config stanza (also shown below)...\n'
-    tee <<EOF >> "${HOME}/.ssh/config"
+    cat <<EOF >> "${HOME}/.ssh/config"
 
 Host ${1}
-    IdentitiesOnly yes
     HostName ${3}
     Port ${4}
     User ${2}
     IdentityFile ~/.ssh/${1}
 EOF
-    ) || { printf '\nerrored.\n'; rm -vf "${HOME}/.ssh/${1}"{,.pub}; }
+    ) || {
+        rm -vf "${HOME}/.ssh/${1}"{,.pub};
+        die 'errored and cleaned up.';
+    }
 }
 
 
