@@ -52,6 +52,7 @@ gitignore () {
     if [ "$1" == 'list' ]; then
         curl -sL https://gitignore.io/api/list | tr ',' '\n'
     else
+        # local's not posix, but most shells support it
         local URL="https://www.gitignore.io/api/${1}"
         shift; for d in "$@"; do URL="${URL},${d}"; done
         curl -L "$URL" -fo .gitignore || die "one or more TYPE was invalid."

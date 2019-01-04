@@ -5,7 +5,7 @@ pathappend () {
             continue
         fi
         if [[ ":${PATH}:" == *":${DIR}:"* ]]; then
-            df_warn "pathappend: ${DIR} already somewhere in PATH, skipping"
+            df_warn "pathappend: ${DIR} already in PATH; skipping"
             continue
         fi
         PATH="${PATH:+"${PATH}:"}${DIR}"

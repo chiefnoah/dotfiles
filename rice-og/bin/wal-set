@@ -6,7 +6,7 @@ notify () {
     if pgrep dunst > /dev/null; then
         notify-send "$msg" -u "$mode"
     else
-        printf '%s\n' "$msg"
+        printf %s\\n "$msg"
     fi
 }
 

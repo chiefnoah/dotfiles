@@ -19,6 +19,8 @@ else
 fi
 
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 
 # info/introspection/search
@@ -30,21 +32,19 @@ if df_require fd; then
 else
     f () {
         find -iname "*${1}*"
-        printf "\nYou should install fd.\n"
     }
 fi
 
 if df_require ncdu; then
     alias du='ncdu -rr'
-    alias dum='ncdu'
 else
-    alias du='du -skh .??* * | sort -rh ; printf "\nYou should install ncdu.\n"'
+    alias du='du -skh .??* * | sort -rh'
 fi
 
 if df_require dfc; then
     alias df='dfc -p /dev,-tmpfs'
 else
-    alias df='df --exclude-type=tmpfs -h ; printf "\nYou should install dfc.\n"'
+    alias df='df --exclude-type=tmpfs -h'
 fi
 
 if df_require tree; then
@@ -62,8 +62,7 @@ psi () {
     ps wup $(pgrep -f "$1")
 }
 alias pst='pstree -hTp'
-alias rg='rg -a'
-alias rgh='rg -a --hidden'
+alias rgh="rg -a --hidden -g '!.git'"
 alias watchdir='inotifywait -e create,modify,delete -mr'
 
 
@@ -76,8 +75,6 @@ alias a='atool -Ea'
 alias ua='atool -Ex'
 alias rd='rmdir'
 alias shred='shred -zun 10'
-alias um='udiskie-mount'
-alias uu='udiskie-umount'
 
 
 # viewing/editing
@@ -99,54 +96,34 @@ alias playj='mplayer -vo null -ao jack'
 sine () {
     [ -n "$1" ] && speaker-test -c1 -l1 -tsine -P64 -f "$1"
 }
-# for video aliases (mpv), refer to .xsrc
+
+# for video aliases (mpv), refer to ~/.xsrc
 
 
 # git
 # See also ~/.gitconfig
 alias git-fame="git ls-files | grep '\.py$' | xargs -n1 git blame --line-porcelain HEAD | grep '^author ' | sort | uniq -c | sort -nr"
-alias gc='git clone'
-alias gcr='git clone --recursive'
+alias gc='git clone --recursive'
 alias gup='git submodule update --init --recursive --remote'
 alias ga='git add'
 alias gaa='git add --all'
 alias gs='git status -sb -uall'
-alias gi='git show'
 alias gcm='git commit -S -m'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>'"
 alias gll="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>%Creset %GK (%G?)'"
 alias gp='git push'
 alias gpf='git push --force'
 alias gb='git branch -vv --all'
-alias gnb='git checkout -b'
-alias gch='git checkout'
 alias master='git checkout master'
 alias gd='git diff'
 alias gdc='git diff --cached'
-alias grao='git remote add origin'
-alias grso='git remote set-url origin'
-alias grv='git remote -v'
 gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
+alias grv='git remote -v'
 vbump () {
     [ -n "$1" ]                     && \
         git add --all               && \
         git commit -S -m "v${1}"    && \
         git tag -s -m "v${1}" "v${1}"
 }
-
-
-# docker
-alias alpine='docker run -it --rm alpine'
-alias dls='docker images && printf '\n' && docker ps'
-alias dcp='docker container prune -f'
-alias dclean='docker stop $(docker ps -a -q) ; dcp ; docker rmi $(docker images -q)'
-
-
-# tmux
-alias t='tmux a'
-alias tl='tmux ls'
-alias ta='tmux attach -t'
-alias tn='tmux new -s'
-alias tk='tmux kill-session -t'
