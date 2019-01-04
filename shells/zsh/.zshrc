@@ -2,14 +2,7 @@ export SHELL="$(which zsh)"
 export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
-pathappend "${HOME}/.fzf/bin"
 export PATH
-if df_require fzf; then
-    source "${HOME}/.fzf/shell/completion.zsh"
-    source "${HOME}/.fzf/shell/key-bindings.zsh"
-else
-    df_warn 'fzf not found'
-fi
 
 # keybindings
 bindkey -e
