@@ -64,7 +64,7 @@ sshnew () {
     require ssh-keygen || return $?
     usage $# 1 'Generates a secure ssh keypair (openssh format) using ed25519.' \
         "$0 [keypair name] [optional comment]" || return $?
-    ssh-keygen -o -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
+    ssh-keygen -t ed25519 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
@@ -74,7 +74,7 @@ sshnewrsa () {
     require ssh-keygen || return $?
     usage $# 1 'Generates a secure ssh keypair (openssh format) using rsa-4096.' \
         "$0 [keypair name] [optional comment]" || return $?
-    ssh-keygen -o -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
+    ssh-keygen -t rsa -b 4096 -a 100 -f "${HOME}/.ssh/${1}" -N '' -C "$2"
     chmod 400 -v "${HOME}/.ssh/${1}"
     chmod 444 -v "${HOME}/.ssh/${1}.pub"
 }
