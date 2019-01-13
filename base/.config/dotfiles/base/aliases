@@ -78,7 +78,11 @@ alias shred='shred -zun 10'
 
 
 # viewing/editing
-alias c='tput reset'
+if df_require tput; then
+    alias c='tput reset'
+else
+    alias c='clear'
+fi
 alias al='atool -El'
 alias e="$EDITOR"
 alias tailf='tail -fn 100'
