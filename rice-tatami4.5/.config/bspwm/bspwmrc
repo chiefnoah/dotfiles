@@ -32,7 +32,7 @@ bspc config remove_unplugged_monitors true
 
 # Load and apply colors before relaunching other graphical processes
 xrdb -merge -quiet "${HOME}/.Xresources"
-. "${HOME}/bin/custom/source-xcolors
+. "${HOME}/bin/custom/sourceme/xcolors
 
 pkill dunst
 dunst \
