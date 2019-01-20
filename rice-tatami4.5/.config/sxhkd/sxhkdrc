@@ -9,7 +9,7 @@ ctrl + Return
 
 super + Return
     . "${HOME}/bin/custom/source-xcolors" && \
-    dmenu_run -b -fn 'lucy tewi' -nb "$bg" -nf "$fg" -sb "$color1" -sf "$fg"
+    dmenu_run -fn 'tewi:pixelsize=16' -nb "$bg" -nf "$fg" -sb "$color1" -sf "$fg"
 
 # TODO pass for dmenu
 
