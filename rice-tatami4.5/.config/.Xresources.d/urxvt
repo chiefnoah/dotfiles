@@ -1,23 +1,21 @@
-#include "colors"
-
 URxvt*termName: rxvt
 
 ! appearance
-URxvt.font: xft:lucy tewi:medium:pixelsize=11:antialias=false
+URxvt.font: xft:tewi:pixelsize=11
 URxvt.letterSpace: 1
-URxvt.internalBorder: 30
-URxvt*fading: 25
-URxvt*background:   BG
-URxvt*borderColor:  BG
-URxvt*foreground:   FG
-URxvt*cursorColor:  FG
+URxvt.internalBorder: 25
+URxvt.fading: 50
+URxvt.background:   BG
+URxvt.borderColor:  BG
+URxvt.foreground:   FG
+URxvt.cursorColor:  FG
 
 ! scrolling adjustments
 URxvt.scrollBar: false
-URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: true
-URxvt*scrollTtyKeypress: true
-URxvt*saveLines: 1024
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.saveLines: 1024
 
 ! esc sequences for word jumping
 URxvt.keysym.Control-Left: \033[1;5D
@@ -26,6 +24,3 @@ URxvt.keysym.Control-Right: \033[1;5C
 ! disable ctrl-shift
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-
-! xft rendering fixes
-URxvt*buffered: false

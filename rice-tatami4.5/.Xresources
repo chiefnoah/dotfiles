@@ -1,5 +1,3 @@
-#include ".config/.Xresources.d/xft"
-#include ".config/.Xresources.d/urxvt"
 #include ".config/.Xresources.d/colors"
 
 *background:  BG
@@ -20,3 +18,5 @@
 *color14:     bcyn
 *color7:      wht
 *color15:     bwht
+
+#include ".config/.Xresources.d/urxvt"
