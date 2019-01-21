@@ -48,3 +48,6 @@ pkill tatami-bar
 pkill lemonbar
 "${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -g x24 -u 2 \
     -f '-lucy-tewi-medium-*-*-*-11-*-*-*-*-*-*-*' &
+
+pkill stalonetray
+stalonetray -c "${XDG_CONFIG_HOME}/stalonetray/stalonetrayrc" -bg "$bg"

@@ -1,9 +1,8 @@
-transparent true
 decorations none
 window_type dock
 grow_gravity NE
 icon_gravity NE
-icon_size 12
+icon_size 8
 sticky true
-
 window_layer top
+geometry 1x1+160+5
