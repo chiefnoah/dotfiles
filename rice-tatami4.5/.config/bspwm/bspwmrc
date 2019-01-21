@@ -32,7 +32,7 @@ bspc config remove_unplugged_monitors true
 
 # Load and apply colors before relaunching other graphical processes
 xrdb -merge -quiet "${HOME}/.Xresources"
-. "${HOME}/bin/custom/sourceme/xcolors
+. "${HOME}/bin/custom/sourceme/xcolors"
 
 pkill dunst
 dunst \
@@ -47,4 +47,4 @@ dunst \
 pkill tatami-bar
 pkill lemonbar
 "${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -g x24 -u 2 \
-    -f '-lucy-tewi-medium-r-*-*-11-*-*-*-*-*-*-*' &
+    -f '-lucy-tewi-medium-*-*-*-11-*-*-*-*-*-*-*' &
