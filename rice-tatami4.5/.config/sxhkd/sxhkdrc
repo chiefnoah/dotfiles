@@ -13,10 +13,10 @@ super + Return
 
 # TODO pass for dmenu
 
-# suspend
-# TODO slock or physlock before
+# suspend, assumes nopasswd for pm-suspend in sudoers
+# TODO physlock
 ctrl + alt + Delete
-    exec pm-suspend
+    slock & sudo pm-suspend
 
 Print
     scrot "${HOME}/"$(date +%Y-%m-%d-%H-%M-%S)".png" -q 100 && \
