@@ -3,13 +3,8 @@
 bspc monitor -d I II III IV
 
 bspc config border_width            0
-bspc config window_gap              24
-
-bspc config split_ratio             0.50
-bspc config top_padding             40
-bspc config bottom_padding          20
-bspc config left_padding            20
-bspc config right_padding           20
+bspc config window_gap              0
+bspc config split_ratio             0.5
 
 # Use super + mouse to resize (left-click) and swap (right-click) nodes
 bspc config pointer_modifier        mod4

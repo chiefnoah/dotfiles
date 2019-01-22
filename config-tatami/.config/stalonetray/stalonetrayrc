@@ -5,4 +5,4 @@ icon_gravity NE
 icon_size 8
 sticky true
 window_layer top
-geometry 1x1+160+5
+geometry 1x1+64+4

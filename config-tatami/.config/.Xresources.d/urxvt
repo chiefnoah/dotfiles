@@ -3,8 +3,8 @@ URxvt*termName: rxvt
 ! appearance
 URxvt.font: xft:tewi:pixelsize=11
 URxvt.letterSpace: 1
-URxvt.internalBorder: 25
-URxvt.fading: 50
+URxvt.internalBorder: 24
+URxvt.fading: 10
 URxvt.background:   BG
 URxvt.borderColor:  BG
 URxvt.foreground:   FG

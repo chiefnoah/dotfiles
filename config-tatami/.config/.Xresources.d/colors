@@ -9,7 +9,7 @@
 #define blu   #8197bb
 #define mag   #c6b0dc
 #define cyn   #81b1bb
-#define wht   #eeeeee
+#define wht   #555555
 
 #define bred   #cc8ead
 #define bgrn   #b0dcc6
@@ -17,4 +17,4 @@
 #define bblu   #8197bb
 #define bmag   #c6b0dc
 #define bcyn   #81b1bb
-#define bwht   #eeeeee
+#define bwht   #555555
