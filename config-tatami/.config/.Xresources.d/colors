@@ -1,7 +1,7 @@
 #define BG    #eeeeee
-#define FG    #aaaaaa
-#define blk   #505c38
-#define bblk  #cfd3ca
+#define FG    #555555
+#define blk   #111111
+#define bblk  #333333
 
 #define red   #cc8ead
 #define grn   #b0dcc6

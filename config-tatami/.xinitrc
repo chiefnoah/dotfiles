@@ -5,9 +5,7 @@ sxhkd &
 dunst &
 feh --bg-center "${HOME}/wallpaper.png" &
 
-# TODO udisks2 + udiskie
-
-[ -d "${HOME}/.local/share/fonts" ] && \
-    xset +fp "${HOME}/.local/share/fonts"
+[ -d "${HOME}/.local/share/fonts/tewi" ] && \
+    xset +fp "${HOME}/.local/share/fonts/tewi"
 
 exec bspwm
