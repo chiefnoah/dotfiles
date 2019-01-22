@@ -1,6 +1,0 @@
-# work @ n/a
-
-alias work='tmuxp load na'
-
-# override .commonaliases git commit - do not sign commits
-alias gcm='git commit -m'

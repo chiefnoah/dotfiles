@@ -12,11 +12,11 @@ PRESETS:
 base        - base, bin, and interactive shell configs
 ng          - all non-graphical, non-dev configs
 g           - all graphical, non-dev configs
-dev         - blanket dev environment config
+dev         - blanket dev environment configs
 devg        - graphical dev tools
-og          - config for Arch Linux rice "og"
-tatami4.5   - config for Alpine Linux rice "tatami4.5"
-work        - config for work [currently: n/a]
+og          - Arch Linux "og" configs
+tatami      - Alpine Linux "tatami" configs
+work        - configs for work [currently: n/a]
 
 Pass d as the second argument if you want to unlink the dotfiles
 belonging to the specified macro.
@@ -49,16 +49,16 @@ if
 #        $stow -d dev-tools ...
         true
         ;;
-        og)
-        $stow base bin 'os-arch' 'rice-og'
+    og)
+        $stow base bin 'os-arch' 'config-og'
         $stow -d apps weechat gnupg cava
         $stow -d appsg redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
         $stow -d shells zsh
         ;;
-    tatami4.5)
-        $stow base bin 'os-alpine' 'rice-tatami4.5'
+    tatami)
+        $stow base bin 'os-alpine' 'config-tatami'
         $stow -d apps weechat gnupg
         $stow -d appsg mpv
         $stow -d dev-langs python golang rust ruby nodejs
@@ -67,7 +67,7 @@ if
         ;;
     work)
         true
-#        $stow --ignore='Brewfile' base bin 'os-mac' 'rice-work'
+#        $stow --ignore='Brewfile' base bin 'os-mac' 'config-work'
 #        $stow -d appsg mpv
 #        $stow -d dev-langs python
 #        $stow -d dev-tools editorconfig micro tmux

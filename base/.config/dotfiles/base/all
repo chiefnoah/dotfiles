@@ -20,4 +20,3 @@ if xhost > /dev/null 2>&1; then
 fi
 
 source "${XDG_CONFIG_HOME}/dotfiles/base/specific"
-source "${XDG_CONFIG_HOME}/dotfiles/rice" 2>/dev/null  # this is optional
