@@ -1,105 +1,80 @@
 #!/usr/bin/env sh
 
-# Use bspc query -d !.occupied -D --names (and then once again without !.occupied to get current)
-# and combine with underlines for occupied + light background for current https://misc.flogisoft.com/bash/tip_colors_and_formatting#background
-# remember to use colors0-15
+if [ "$(pgrep -cf tatami-bar)" -gt 1 ]; then
+    echo 'tatami-bar is already running.' >&2
+    exit 1
+fi
 
-#if [ $(pgrep -cx tatami-bar) -gt 1 ]; then
-#    printf "%s\n" "tatami-bar is already running" >&2
-#    exit 1
-#fi
-
-#trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
-
-fifo='/tmp/bar-fifo'
+fifo='/tmp/tatami-bar-fifo'
 [ -p "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
 
-# Config
-
-bar_timeout_desktops='0.5s'
-bar_timeout_wifi='5s'
-bar_timeout_mem='3s'
-bar_timeout_cpu='3s'
-bar_timeout_clock='15s'
-bar_timeout_bat='1m'
-
-wifi_icon='\uf1eb'
-mem_icon=''
-cpu_icon=''
+timeout_desktops='0.5s'
+timeout_wifi='5s'
+timeout_mem='3s'
+timeout_cpu='3s'
+timeout_clock='15s'
+timeout_bat='1m'
+# TODO: icon font
+wifi_icon='ap'
+mem_icon='mem'
+cpu_icon='cpu'
 clock_icon=''
+bat_icon='bat'
 
-# Routines
-
-# currently a hack, but just use this is bspwm method too hard
-# or rely on bspc to detect and then hardcode the strings
 desktops () {
-	NUMB=$(xprop -root -notype _NET_CURRENT_DESKTOP | cut -d= -f2);
-    case "$NUMB" in
-        " 0") status="%{F$RED}%{F-}     " ;;
-        " 1") status=" %{F$RED}%{F-}    " ;;
-        " 2") status="  %{F$RED}%{F-}   " ;;
-        " 3") status="   %{F$RED}%{F-}  " ;;
-        " 4") status="    %{F$RED}%{F-} " ;;
-        " 5") status="     %{F$RED}%{F-}" ;;
+	active="$(xprop -root _NET_CURRENT_DESKTOP | awk '{print $3}')"
+    case "$active" in
+        0) status="%{+o}1%{-o} 2 3 4" ;;
+        1) status="1 %{+o}2%{-o} 3 4" ;;
+        2) status="1 2 %{+o}3%{-o} 4" ;;
+        3) status="1 2 3 %{+o}4%{-o}" ;;
     esac
-	printf "%s\n" "0${status}"
+	printf %s\\n "0${status}"
 }
 
-# TODO what if not connected? check error code and print disconnected
 wifi () {
+    # TODO: what if not connected? check error code and print disconnected
     ssid="$(iwgetid -r)"
-    printf "%s\n" "1${wifi_icon} ${ssid}"
+    printf %s\\n "1${wifi_icon} ${ssid}"
 }
 
 mem () {
     mem_used="$(awk 'FNR == 1 {t = $2} FNR == 3 {printf "%2.0f\n", (t-$2)*100/t}' /proc/meminfo)"
-    printf "%s\n" "2${mem_icon} ${mem_used}"
+    printf %s\\n "2${mem_icon} ${mem_used}"
 }
 
 cpu () {
     # largely from https://stackoverflow.com/a/26791392/5348393
     cpu_used="$(awk -v a="$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 1)" '/cpu /{split(a,b," "); printf "%2.0f\n", 100*($2+$4-b[1])/($2+$4+$5-b[2])}' /proc/stat)"
-    printf "%s\n" "3${cpu_icon} ${cpu_used}"
-}
-
-clock () {
-    time_str=$(date '+%m/%d %I:%M')
-    printf "%s\n" "4${clock_icon} ${time_str}"
+    printf %s\\n "3${cpu_icon} ${cpu_used}"
 }
 
 bat () {
-    # TODO change battery icon colors
-    bat_cur="$(< /sys/class/power_supply/BAT0/capacity)"
-    bat_status="$(< /sys/class/power_supply/BAT0/status)"
-    case "$bat_cur" in
-        [0-9])  bat_icon='\uf244' ;;
-        [1-3]?) bat_icon='\uf243' ;;
-        [4-5]?) bat_icon='\uf242' ;;
-        [6-7]?) bat_icon='\uf241' ;;
-        *)      bat_icon='\uf240' ;;
-    esac
-    [[ "$bat_status" == Charging ]] && bat_icon+=" \\uf0e7"
-    printf "%s\n" "5${bat_icon} ${bat_cur}"
+    bat_cur="$(cat /sys/class/power_supply/BAT0/capacity)"
+    printf %s\\n "4${bat_icon} ${bat_cur}"
 }
 
-# Run + Parse
+clock () {
+    time_str="$(date '+%m/%d %I:%M')"
+    printf %s\\n "5${clock_icon} ${time_str}"
+}
 
-while :; do desktops;   sleep $bar_timeout_desktops;    done > "$fifo" &
-while :; do wifi;       sleep $bar_timeout_wifi;        done > "$fifo" &
-while :; do mem;        sleep $bar_timeout_mem;         done > "$fifo" &
-while :; do cpu;        sleep $bar_timeout_cpu;         done > "$fifo" &
-while :; do clock;      sleep $bar_timeout_clock;       done > "$fifo" &
-while :; do bat;        sleep $bar_timeout_bat;         done > "$fifo" &
+while :; do desktops;   sleep $timeout_desktops;    done > "$fifo" &
+while :; do wifi;       sleep $timeout_wifi;        done > "$fifo" &
+while :; do mem;        sleep $timeout_mem;         done > "$fifo" &
+while :; do cpu;        sleep $timeout_cpu;         done > "$fifo" &
+while :; do clock;      sleep $timeout_clock;       done > "$fifo" &
+while :; do bat;        sleep $timeout_bat;         done > "$fifo" &
 
 while read -r line; do
     case $line in
-        0*) desktops="${line:8}  "  ;;
-        1*) wifi="  ${line:4}  "    ;;
-        2*) mem="  ${line:3}  "     ;;
-        3*) cpu="  ${line:3}  "     ;;
-        4*) clock="  ${line:5}  "   ;;
-        5*) bat="  ${line:3}"       ;;
+        0*) desktops="${line:1}"  ;;
+        1*) wifi=" ${line:1} "    ;;
+        2*) mem=" ${line:1} "     ;;
+        3*) cpu=" ${line:1} "     ;;
+        4*) bat=" ${line:1} "     ;;
+        5*) clock=" ${line:1}"    ;;
     esac
-    printf "%s\n" "${desktops}%{r}${wifi}${mem}${cpu}${clock}${bat}"
+    printf %s\\n "  ${desktops}%{r}${wifi}${mem}${cpu}${bat}${clock}  "
 done < "$fifo"

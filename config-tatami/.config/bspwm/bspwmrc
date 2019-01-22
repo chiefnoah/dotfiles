@@ -44,9 +44,9 @@ dunst \
     -cf "#000000"  \
     -nf "$fg" &
 
-pkill tatami-bar
+pkill -f tatami-bar
 pkill lemonbar
-"${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -g x24 -u 2 \
+"${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -g x24 -u 3 \
     -f '-lucy-tewi-medium-*-*-*-11-*-*-*-*-*-*-*' &
 
 pkill stalonetray
