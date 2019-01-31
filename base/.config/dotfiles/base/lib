@@ -36,8 +36,8 @@ df_git_dirty () {
 }
 
 df_git_prompt_info () {
-    cur_branch="$(git branch 2>/dev/null | grep -m1 \* | awk '{print $2; exit}')"
-    [ -n "$cur_branch" ] || return
+    cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
     printf %s " $(df_git_dirty)${df_c_fg_green}${cur_branch}${df_c_reset}"
 }
 
@@ -63,8 +63,8 @@ df_cur_path_echo () {
 }
 
 df_git_prompt_info_echo () {
-    cur_branch="$(git branch 2>/dev/null | grep -m1 \* | awk '{print $2; exit}')"
-    [ -n "$cur_branch" ] || return
+    cur_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+    [ "$cur_branch" = HEAD ] && cur_branch='(detached HEAD)'
     builtin echo -e " $(df_git_dirty)${df_c_fg_green}${cur_branch}${df_c_reset}"
 }
 
