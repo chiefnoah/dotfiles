@@ -2,7 +2,7 @@ URxvt*termName: rxvt
 
 ! appearance
 URxvt.font: xft:tewi:pixelsize=11
-URxvt.letterSpace: 1
+URxvt.letterSpace: 0
 URxvt.internalBorder: 24
 URxvt.fading: 10
 URxvt.background:   BG
