@@ -39,7 +39,7 @@ df_c_fg_red_bold='%{\e[1;31m%}'
 df_c_fg_white_bold='%{\e[1;97m%}'
 df_c_reset='%{\e[0m%}'
 setopt prompt_subst
-df_export_PS1_zsh
+df_export_PS1_echo
 
 # auto-expand aliases inline
 globalias () {
