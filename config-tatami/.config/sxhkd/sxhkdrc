@@ -39,6 +39,10 @@ XF86Audio{LowerVolume,RaiseVolume}
 
 # BSPWM
 
+# toggle borders
+super + {0,1}
+    bspc config border_width {0,1}
+
 # close or kill
 super + {c,k}
     bspc node -{c,k}

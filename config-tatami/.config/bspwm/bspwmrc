@@ -11,19 +11,14 @@ bspc config pointer_modifier        mod4
 bspc config pointer_action1         resize_corner
 bspc config pointer_action3         move
 
-# Monocle mode imitates fullscreen
+# Monocle mode imitates fullscreen, but does not try to expand behind bar
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
-bspc config paddingless_monocle     true
+bspc config paddingless_monocle     false
 
 # Focus under pointer, but do not alter cursor position
 bspc config focus_follows_pointer   true
 bspc config pointer_follows_focus   false
-
-# Monitor stuff
-bspc config remove_disabled_monitors  true
-bspc config remove_unplugged_monitors true
-
 
 # Load and apply colors before relaunching other graphical processes
 xrdb -merge -quiet "${HOME}/.Xresources"
@@ -41,7 +36,7 @@ dunst \
 
 pkill -f tatami-bar
 pkill lemonbar
-"${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -g x24 -u 3 \
+"${HOME}/bin/tatami-bar" | lemonbar -B "$bg" -F "$fg" -U "$fg" -g x24 -u 3 \
     -f '-lucy-tewi-medium-*-*-*-11-*-*-*-*-*-*-*' &
 
 pkill stalonetray
