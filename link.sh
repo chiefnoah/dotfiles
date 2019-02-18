@@ -10,14 +10,12 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - base, bin, and interactive shell configs
-dev         - blanket dev environment configs
-devg        - graphical dev tools
 og          - Arch Linux "og" configs
 tatami      - Alpine Linux "tatami" configs
 work        - configs for work [currently: n/a]
 
 Pass d as the second argument if you want to unlink the dotfiles
-belonging to the specified macro.
+belonging to the specified preset.
 EOF
     exit 1
 }
@@ -31,15 +29,6 @@ if
         $stow base bin
         $stow -d apps gnupg
         $stow -d shells bash mksh zsh
-        ;;
-    dev)
-        $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools editorconfig git nano micro tmux sqlite
-        $stow -d shells bash mksh zsh
-        ;;
-    devg)
-#        $stow -d dev-tools ...
-        true
         ;;
     og)
         $stow base bin
