@@ -50,13 +50,4 @@ fi
 export GIT_EDITOR="$EDITOR"
 export GIT_PAGER="$PAGER"
 
-if df_require fzf; then
-    if df_require fd; then
-        export FZF_DEFAULT_COMMAND='fd -H --exclude .git'
-    else
-        export FZF_DEFAULT_COMMAND='find'
-    fi
-    export FZF_DEFAULT_OPTS='--no-mouse'
-fi
-
 export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"
