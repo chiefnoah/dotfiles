@@ -9,6 +9,3 @@ alias imgv='sxiv -tp'
 
 # list fontconfig fonts (for XLFD, use xfontsel or xlsfonts)
 alias fonts='fc-list | cut -f2 -d: | sort -u'
-
-# see also .commonaliases for audio
-alias vp='mpv -ao alsa --profile=vid-hq'

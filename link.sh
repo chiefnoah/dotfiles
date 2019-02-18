@@ -38,7 +38,7 @@ if
         $stow -d apps weechat cava
         ;;
     g)
-        $stow -d appsg mpv redshift rofi-pass
+        $stow -d appsg redshift rofi-pass
         ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
@@ -60,7 +60,6 @@ if
     tatami)
         $stow base bin 'os-alpine' 'config-tatami'
         $stow -d apps weechat gnupg
-        $stow -d appsg mpv
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
         $stow -d shells mksh
@@ -68,7 +67,6 @@ if
     work)
         true
 #        $stow --ignore='Brewfile' base bin 'os-mac' 'config-work'
-#        $stow -d appsg mpv
 #        $stow -d dev-langs python
 #        $stow -d dev-tools editorconfig micro tmux
 #        $stow -d shells zsh

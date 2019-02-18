@@ -101,8 +101,6 @@ sine () {
     [ -n "$1" ] && speaker-test -c1 -l1 -tsine -P64 -f "$1"
 }
 
-# for video aliases (mpv), refer to ~/.xsrc
-
 
 # git
 # See also ~/.gitconfig
