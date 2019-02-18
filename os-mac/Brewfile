@@ -17,7 +17,6 @@ brew 'curl'
 brew 'wget'
 brew 'editorconfig'
 brew 'micro'
-brew 'weechat', args: ['--with-perl --with-python']
 brew 'mpv'
 brew 'neofetch'
 brew 'atool'

@@ -35,7 +35,7 @@ if
         $stow -d shells bash mksh zsh
         ;;
     ng)
-        $stow -d apps weechat cava
+        $stow -d apps cava
         ;;
     g)
         $stow -d appsg redshift rofi-pass
@@ -51,7 +51,7 @@ if
         ;;
     og)
         $stow base bin 'os-arch' 'config-og'
-        $stow -d apps weechat gnupg cava
+        $stow -d apps gnupg cava
         $stow -d appsg redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
@@ -59,7 +59,7 @@ if
         ;;
     tatami)
         $stow base bin 'os-alpine' 'config-tatami'
-        $stow -d apps weechat gnupg
+        $stow -d apps gnupg
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
         $stow -d shells mksh
