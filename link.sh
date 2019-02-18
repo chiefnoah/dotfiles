@@ -10,8 +10,6 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - base, bin, and interactive shell configs
-ng          - all non-graphical, non-dev configs
-g           - all graphical, non-dev configs
 dev         - blanket dev environment configs
 devg        - graphical dev tools
 og          - Arch Linux "og" configs
@@ -34,12 +32,6 @@ if
         $stow -d apps gnupg
         $stow -d shells bash mksh zsh
         ;;
-    ng)
-        $stow -d apps cava
-        ;;
-    g)
-        $stow -d appsg redshift rofi-pass
-        ;;
     dev)
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
@@ -51,8 +43,7 @@ if
         ;;
     og)
         $stow base bin 'os-arch' 'config-og'
-        $stow -d apps gnupg cava
-        $stow -d appsg redshift rofi-pass
+        $stow -d apps gnupg cava redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
         $stow -d shells zsh
