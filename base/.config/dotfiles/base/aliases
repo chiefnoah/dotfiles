@@ -1,10 +1,31 @@
-# uncategorized
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias al='atool -El'
+alias a='atool -Ea'
+alias ua='atool -Ex'
+alias e="$EDITOR"
+alias rd='rmdir'
+alias shred='shred -zun 10'
+alias tailf='tail -fn 100'
+alias badlinks='find . -xtype l'
+alias dmesg='dmesg -Tkw'
+alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
+psi () {
+    [ -n "$1" ] && ps wup $(pgrep -f "$1")
+}
+alias pst='pstree -hTp'
+alias watchdir='inotifywait -e create,modify,delete -mr'
+
 alias serve='python3 -m http.server 8888'
-alias aur='pushd "${HOME}/dev/projects/maintaining/aur/PKGBUILDs" && source aur-devel.sh && cat aur-devel.sh'
-alias sudo='sudo '  # allow aliases to be executed with sudo
+alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
 
+if df_require tput; then
+    alias c='tput reset'
+else
+    alias c='clear'
+fi
 
-# navigation
 if df_require exa; then
     alias ls='exa'
     alias l='exa -Fl'
@@ -16,23 +37,6 @@ else
     alias l='ls -lph'
     alias ll='ls -Alph'
     alias llt='ll -rt'
-fi
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-
-# info/introspection/search
-if df_require fd; then
-    alias f='fd'
-    alias fe='fd -e'
-    alias fh='fd -H'
-    alias fha='fd -HI'
-else
-    f () {
-        find -iname "*${1}*"
-    }
 fi
 
 if df_require ncdu; then
@@ -54,67 +58,20 @@ else
     alias treea='tree -aI .git'
 fi
 
-alias badlinks='find . -xtype l'
-alias dmesg='dmesg -Tkw'
-alias lsblk='lsblk --output=NAME,MOUNTPOINT,TYPE,FSTYPE,LABEL,PARTLABEL,SIZE,UUID'
-alias pg='pgrep -f'
-psi () {
-    ps wup $(pgrep -f "$1")
-}
-alias pst='pstree -hTp'
-alias rgh="rg -a --hidden -g '!.git'"
-alias watchdir='inotifywait -e create,modify,delete -mr'
-
-
-# networking
-alias ns='sudo netstat -tulpn'
-
-
-# filesystem
-alias a='atool -Ea'
-alias ua='atool -Ex'
-alias rd='rmdir'
-alias shred='shred -zun 10'
-
-
-# viewing/editing
-if df_require tput; then
-    alias c='tput reset'
-else
-    alias c='clear'
+# AFAIK neither posix grep, gnu grep, nor git grep scratch this itch as elegantly as ripgrep does
+if df_require rg; then
+    alias rgh="rg -a --hidden -g '!.git'"
 fi
-alias al='atool -El'
-alias e="$EDITOR"
-alias tailf='tail -fn 100'
 
-
-# web
-alias sitemirror='wget --no-config -mpkKE -e robots=off'
-alias mdl='youtube-dl --ignore-config --ignore-errors --no-continue --audio-format best -x --add-metadata -o "%(title)s [%(id)s].%(ext)s"'
-
-
-# audio
-alias audiols='aplay -l ; cat /proc/asound/cards'
-alias play='mplayer -vo null -ao alsa'
-alias playj='mplayer -vo null -ao jack'
-sine () {
-    [ -n "$1" ] && speaker-test -c1 -l1 -tsine -P64 -f "$1"
-}
-
-
-# git
-# See also ~/.gitconfig
-alias git-fame="git ls-files | grep '\.py$' | xargs -n1 git blame --line-porcelain HEAD | grep '^author ' | sort | uniq -c | sort -nr"
+# see also ~/.gitconfig
 alias gc='git clone --recursive'
 alias gup='git submodule update --init --recursive --remote'
-alias ga='git add'
 alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gcm='git commit -S -m'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>'"
 alias gll="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>%Creset %GK (%G?)'"
 alias gp='git push'
-alias gpf='git push --force'
 alias gb='git branch -vv --all'
 alias master='git checkout master'
 alias gd='git diff'
@@ -123,9 +80,3 @@ gr () {
     [ -n "$1" ] && git reset HEAD~"$1" || git reset
 }
 alias grv='git remote -v'
-vbump () {
-    [ -n "$1" ]                     && \
-        git add --all               && \
-        git commit -S -m "v${1}"    && \
-        git tag -s -m "v${1}" "v${1}"
-}
