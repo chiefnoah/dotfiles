@@ -42,14 +42,18 @@ if
         true
         ;;
     og)
-        $stow base bin 'os-arch' 'config-og'
+        $stow base bin
+        $stow -d os arch
+        $stow -d configs og
         $stow -d apps gnupg cava redshift rofi-pass
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
         $stow -d shells zsh
         ;;
     tatami)
-        $stow base bin 'os-alpine' 'config-tatami'
+        $stow base bin
+        $stow -d os alpine
+        $stow -d configs tatami
         $stow -d apps gnupg
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
@@ -57,7 +61,9 @@ if
         ;;
     work)
         true
-#        $stow --ignore='Brewfile' base bin 'os-mac' 'config-work'
+#        $stow --ignore='Brewfile' base bin
+#        $stow -d os osx
+#        $stow -d configs work
 #        $stow -d dev-langs python
 #        $stow -d dev-tools editorconfig micro tmux
 #        $stow -d shells zsh
