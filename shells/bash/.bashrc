@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
 # prompt
