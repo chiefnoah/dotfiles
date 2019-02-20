@@ -1,5 +1,6 @@
 {
     "CtrlA": "StartOfLine",
+    "CtrlC": "Copy",
     "CtrlE": "EndOfLine",
     "CtrlL": "SelectLine",
     "CtrlK": "DeleteLine",
