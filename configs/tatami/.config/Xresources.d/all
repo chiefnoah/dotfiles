@@ -1,4 +1,4 @@
-#include ".config/.Xresources.d/colors"
+#include "colors"
 
 *background:  BG
 *foreground:  FG
@@ -19,4 +19,4 @@
 *color7:      wht
 *color15:     bwht
 
-#include ".config/.Xresources.d/urxvt"
+#include "urxvt"

@@ -5,3 +5,6 @@ init.version=0.0.1
 init.author.url=https://github.com/JoshuaRLi
 loglevel=warn
 save-exact=true
+
+cache=${XDG_CACHE_HOME}/npm
+tmp=${XDG_RUNTIME_DIR}/npm

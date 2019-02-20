@@ -42,7 +42,7 @@ else
 fi
 
 notify 'loading new colors into X.'
-xrdb -merge "${HOME}/.Xresources"
+xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 
 notify 'reloading bspwn, dunst, and polybar.'
 # NOTE: wal automatically reloads polybar, so we don't need to do it here.

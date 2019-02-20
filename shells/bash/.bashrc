@@ -1,14 +1,10 @@
-export SHELL="$(which bash)"
-export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
-
-export PATH
 
 # prompt
 df_export_PS1
 
 # configure GNU readline + keybindings
-bind -f "${HOME}/.inputrc"
+bind -f "${XDG_CONFIG_HOME}/readline/inputrc"
 
 # options
 export FIGNORE=".:.."
@@ -27,8 +23,8 @@ fi
 
 # history
 export PROMPT_COMMAND="history -a"
+export HISTFILE="${XDG_DATA_HOME}/bash/history"
 export HISTFILESIZE=1000000
-export HISTFILE="${HOME}/.bash_history"
 export HISTSIZE="$HISTFILESIZE"
 export SAVEHIST="$HISTSIZE"
 export HISTTIMEFORMAT="%F %T "

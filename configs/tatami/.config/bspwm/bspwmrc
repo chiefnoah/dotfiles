@@ -21,7 +21,7 @@ bspc config focus_follows_pointer   true
 bspc config pointer_follows_focus   false
 
 # Load and apply colors before relaunching other graphical processes
-xrdb -merge -quiet "${HOME}/.Xresources"
+xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 . "${HOME}/bin/xcolors"
 
 pkill dunst

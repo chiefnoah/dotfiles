@@ -1,3 +1,6 @@
+export LANG='en_US.UTF-8'
+export LANGUAGE='en_US.UTF-8'
+
 pathappend () {
     for DIR in "$@"; do
         if [ ! -d "$DIR" ]; then
@@ -24,13 +27,35 @@ pathappend              \
 
 export PATH
 
-export LANG='en_US.UTF-8'
-export LANGUAGE='en_US.UTF-8'
-export GPG_TTY="$(tty)"
-export XDG_CONFIG_HOME="${HOME}/.config"
-
 export PAGER='less'
 export LESS='-irS'
+if df_require micro; then
+    export EDITOR='micro'
+else
+    export EDITOR='nano'
+fi
+
+export GIT_EDITOR="$EDITOR"
+export GIT_PAGER="$PAGER"
+export GPG_TTY="$(tty)"
+
+
+# xdg
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+# note: rely on the particular *nix or *bsd distribution to set runtime dir
+
+export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
+export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
+export LESSHISTFILE="${XDG_DATA_HOME}/less_history"
+df_require urxvt && export RXVT_SOCKET="${XDG_RUNTIME_DIR}/urxvtd"
+df_require adb && export ANDROID_SDK_HOME="${XDG_CONFIG_HOME}/android"
+df_require tmuxp && export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"
+df_require sqlite3 && export SQLITE_HISTORY="${XDG_DATA_HOME}/sqlite_history"
+df_require gpg && export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+df_require pass && export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/password-store"
+
 
 # colored man pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
@@ -40,14 +65,3 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
-
-if df_require micro; then
-    export EDITOR='micro'
-else
-    export EDITOR='nano'
-fi
-
-export GIT_EDITOR="$EDITOR"
-export GIT_PAGER="$PAGER"
-
-export TMUXP_CONFIGDIR="${XDG_CONFIG_HOME}/tmuxp"

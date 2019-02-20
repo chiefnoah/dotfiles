@@ -1,8 +1,14 @@
-export SHELL="$(which zsh)"
-export XDG_CONFIG_HOME="${HOME}/.config"
 . "${XDG_CONFIG_HOME}/dotfiles/base/all"
 
-export PATH
+# prompt
+# need to redefine colors so zsh knows the control characters don't need to show up in terminal
+df_c_fg_green='%{\e[32m%}'
+df_c_fg_cyan='%{\e[36m%}'
+df_c_fg_red_bold='%{\e[1;31m%}'
+df_c_fg_white_bold='%{\e[1;97m%}'
+df_c_reset='%{\e[0m%}'
+setopt prompt_subst
+df_export_PS1_echo
 
 # keybindings
 bindkey -e
@@ -15,8 +21,9 @@ bindkey '\e[1;5C'  forward-word             # ctrl+right
 bindkey '\e\e[C'  forward-word              # alt+right
 bindkey '\e[3~'  backward-delete-char       # del
 
-# completion adjustments
-autoload -Uz compinit && compinit
+# completion
+[ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir "${XDG_CACHE_HOME}/zsh"
+autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump"
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' list-colors ''
@@ -31,16 +38,6 @@ unsetopt CASE_GLOB
 setopt AUTO_CD
 setopt NULL_GLOB
 
-# prompt
-# need to redefine colors so zsh knows the control characters don't need to show up in terminal
-df_c_fg_green='%{\e[32m%}'
-df_c_fg_cyan='%{\e[36m%}'
-df_c_fg_red_bold='%{\e[1;31m%}'
-df_c_fg_white_bold='%{\e[1;97m%}'
-df_c_reset='%{\e[0m%}'
-setopt prompt_subst
-df_export_PS1_echo
-
 # auto-expand aliases inline
 globalias () {
    zle _expand_alias
@@ -53,8 +50,9 @@ bindkey '^ ' magic-space            # control-space to bypass completion
 bindkey -M isearch ' ' magic-space  # normal space during history searches
 
 # history
-alias history='fc -l'
-export HISTFILE="${HOME}/.zsh_history"
+#alias history='fc -l'
+[ ! -d "${XDG_DATA_HOME}/zsh" ] && mkdir "${XDG_DATA_HOME}/zsh"
+export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 export HISTSIZE=1000000
 export SAVEHIST="$HISTSIZE"
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:ls:history"
