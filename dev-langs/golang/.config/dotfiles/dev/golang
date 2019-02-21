@@ -1,15 +1,4 @@
-alias gols='ls "${GOPATH}/src/github.com/JoshuaRLi/"'
-
-gocd () {
-    [ -n "$1" ] && pushd "${GOPATH}/src/github.com/JoshuaRLi/${1}" || pushd "$GOPATH"
-}
-
-alias goi='go install'
-alias godl='go get -d -v'
-alias gog='go get -u -v'
-alias depi='dep ensure -add'
-
-export GOPATH="${HOME}/.go"
+# i use go modules but go get still relies on GOPATH
+export GOPATH="${XDG_DATA_HOME}/go"
 pathappend "${GOPATH}/bin"
-
 export PATH
