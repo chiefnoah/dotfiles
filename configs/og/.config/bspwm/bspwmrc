@@ -29,6 +29,4 @@ bspc config pointer_follows_focus   false
 bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
-polybar top & polybar bottom &
-
 "${HOME}/bin/wal-set"

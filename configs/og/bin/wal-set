@@ -41,10 +41,8 @@ else
     wal -q -i "$category" -a 75
 fi
 
-notify 'loading new colors into X.'
 xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 
-notify 'reloading bspwn, dunst, and polybar.'
 # NOTE: wal automatically reloads polybar, so we don't need to do it here.
 source "${HOME}/.cache/wal/colors.sh"
 bspc config normal_border_color "$color0"
