@@ -19,6 +19,7 @@
 
 // reverted due to breakage
 user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
+user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts selectively per-domain in uBlock
 
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
@@ -73,7 +74,6 @@ user_pref("javascript.options.asmjs",	false);  // until asm.js spec is stable
 user_pref("beacon.enabled", false);
 user_pref("browser.send_pings", false);
 user_pref("media.video_stats.enabled", false);
-user_pref("browser.display.use_document_fonts", 0);
 user_pref("browser.cache.offline.enable", false);
 user_pref("security.ssl.disable_session_identifiers", true);
 user_pref("network.http.sendRefererHeader", 0);  // disable referer
@@ -187,9 +187,13 @@ user_pref("security.csp.enable", true);
 user_pref("security.sri.enable", true);
 user_pref("security.tls.version.min", 3);  // TLS 1.2
 user_pref("security.tls.version.max", 4);  // TLS 1.3
-user_pref("network.stricttransportsecurity.preloadlist", true);
-user_pref("network.IDN_show_punycode", true);
+user_pref("security.ssl.require_safe_negotiation", true);  // probably noop since min is tls 1.2, but just in case
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("security.OCSP.enabled", 0);  // disable OCSP - when will this not suck?
+user_pref("security.cert_pinning.enforcement_level", 2);  // strict cert pinning
+user_pref("network.stricttransportsecurity.preloadlist", true);
+user_pref("security.ssl.enable_false_start", false);
+user_pref("network.IDN_show_punycode", true);
 user_pref("security.pki.sha1_enforcement_level", 1);
 
 // annoyances
