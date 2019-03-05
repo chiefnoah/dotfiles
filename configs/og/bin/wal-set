@@ -44,7 +44,7 @@ fi
 xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 
 # NOTE: wal automatically reloads polybar, so we don't need to do it here.
-source "${HOME}/.cache/wal/colors.sh"
+. "${HOME}/.cache/wal/colors.sh"
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
 pkill -x dunst && dunst \
