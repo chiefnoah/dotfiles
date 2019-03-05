@@ -20,7 +20,7 @@ EOF
     exit 1
 }
 
-stow="stow -vt ${HOME}"
+stow="stow --no-folding -vt ${HOME}"
 [ "$2" = 'd' ] && stow="stow -vDt ${HOME}"
 
 if
@@ -50,7 +50,7 @@ if
         ;;
     work)
         true
-#        $stow --ignore='Brewfile' base bin
+#        $stow base bin
 #        $stow -d os osx
 #        $stow -d configs work
 #        $stow -d dev-langs python
