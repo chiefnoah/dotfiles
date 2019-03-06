@@ -26,12 +26,14 @@ stow="stow --no-folding -vt ${HOME}"
 if
     ! case "$1" in
     base)
-        $stow base bin
+        $stow base
+        $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d apps gnupg
         $stow -d shells bash mksh zsh
         ;;
     og)
-        $stow base bin
+        $stow base
+        $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d os arch
         $stow -d configs og
         $stow -d apps gnupg cava redshift rofi-pass
@@ -40,7 +42,8 @@ if
         $stow -d shells zsh
         ;;
     tatami)
-        $stow base bin
+        $stow base
+        $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d os alpine
         $stow -d configs tatami
         $stow -d apps gnupg
@@ -50,7 +53,8 @@ if
         ;;
     work)
         true
-#        $stow base bin
+#        $stow base
+#        $stow --ignore='README\.md' --ignore='LICENSE' bin
 #        $stow -d os osx
 #        $stow -d configs work
 #        $stow -d dev-langs python
