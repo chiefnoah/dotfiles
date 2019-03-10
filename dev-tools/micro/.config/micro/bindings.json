@@ -1,11 +1,9 @@
 {
     "CtrlA": "StartOfLine",
-    "CtrlC": "Copy",
     "CtrlE": "EndOfLine",
     "CtrlL": "SelectLine",
     "CtrlK": "DeleteLine",
     "CtrlJ": "JumpLine",
-    "CtrlY": "Redo",
     "CtrlU": "Undo",
     "CtrlLeft": "WordLeft",
     "CtrlRight": "WordRight",
