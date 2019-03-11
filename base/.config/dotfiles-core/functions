@@ -18,6 +18,19 @@ require () {
 }
 
 
+enc () {
+    require openssl || return $?
+    require shred || return $?
+    usage $# 1 'password-encrypts a FILE with good openssl enc settings as of Mar 2019.' \
+        "$0 FILE" || return $?
+    openssl enc -aes-256-ctr -pbkdf2 -iter 1000000 -md sha256 -salt \
+        -in "$1" \
+        -out "${1}.aes-256-ctr-pbkdf2-1000000-sha256.enc" \
+        && echo 'done. shredding original file, please wait...' && \
+    shred --random-source=/dev/urandom -zu "$1"
+}
+
+
 # man wrapper with --help fallback.
 h () {
     man "$@" 2>/dev/null || "$@" --help 2>&1 | "$PAGER"
