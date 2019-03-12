@@ -20,6 +20,7 @@
 // reverted due to breakage
 user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, but this was breaking Standard Notes
 user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts selectively per-domain in uBlock
+user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
 
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
@@ -48,7 +49,6 @@ user_pref("browser.search.geoip.url", "");
 
 // privacy: disable various apis
 user_pref("media.navigator.enabled", false);
-user_pref("dom.event.clipboardevents.enabled", false);
 user_pref("dom.enable_performance", false);
 user_pref("dom.enable_user_timing",	false);
 user_pref("dom.enable_resource_timing", false);
