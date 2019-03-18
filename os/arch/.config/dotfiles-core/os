@@ -1,12 +1,30 @@
-alias pacup='yay -Sy --noconfirm pacman yay && yay'
-alias paci='yay --needed -S'
-alias pacii='yay --noconfirm --needed -S'
-alias pacrm='yay -Rs'
-alias pacclean='yay -Yc'
-# alias pacclean='sudo pacman -Rns $(pacman -Qtdq)'
+alias pkgrm='yay -Rs'
+alias pkgclean='yay -Yc'
+alias pkgsearch='yay --sortby popularity'
+alias pkgq='yay -Si'
+alias pkgfiles='yay -Fl'
+pacwhich () { yay -Qo "$(command -v "$1")"; }
 
-alias pacs='yay --sortby popularity'  # better than pacman -Ss
-pacfiles () { yay -Fl "$1" | less ; }
-pacwhich () { yay -Qo "$(which "$1")" ; }
-alias pacinfo='yay -Si'
-alias pacstats='yay -Ps'
+# list top-level official packages not part of base, base-devel, or xorg
+# outputs bottom-up listing of size MiB name
+pkgaudit () {
+    df_require expac || { echo 'expac is required.'; return 1; }
+    db="$(mktemp)"
+    dbtmp="$(mktemp)"
+    xorg="$(mktemp)"
+    base="$(mktemp)"
+    basedevel="$(mktemp)"
+    pacman -Qqet            | sort -u > $db
+    pacman -Qqg xorg        | sort -u > $xorg
+    pacman -Qqg base        | sort -u > $base
+    pacman -Qqg base-devel  | sort -u > $basedevel
+    comm -23 $db $xorg      > $dbtmp
+    comm -23 $dbtmp $base   > $db
+    comm -23 $db $basedevel > $dbtmp
+    # join sorted pkg list with sizes
+    expac -HM '%n %m' | sort > $db
+    awk 'NR == FNR { a[$1] = 1; next } a[$1]' $dbtmp $db |
+    awk '{ print $2,$3,"\t",$1 }' |
+    sort -n
+    rm "$db" "$dbtmp" "$xorg" "$base" "$basedevel"
+}
