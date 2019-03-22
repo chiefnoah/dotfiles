@@ -2,7 +2,7 @@
 
 die () { printf %s\\n "ERROR: ${1}"; exit 1; }
 
-command -v stow > /dev/null 2>&1 || die 'You must have GNU stow installed.'
+command -v sym > /dev/null 2>&1 || die 'command sym not found'
 
 usage () {
     cat <<EOF
@@ -20,51 +20,70 @@ EOF
     exit 1
 }
 
-stow="stow --no-folding -vt ${HOME}"
-[ "$2" = 'd' ] && stow="stow -vDt ${HOME}"
+sym="sym -v"
+[ "$2" = 'd' ] && sym="sym -dv"
 
 if
     ! case "$1" in
     base)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d apps gnupg
-        $stow -d shells bash mksh zsh
+        $sym base
+        $sym bin
+        $sym apps/gnupg
+        $sym shells/zsh
+        $sym shells/mksh
+        $sym shells/bash
         ;;
     og)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d os arch
-        $stow -d configs og
-        $stow -d apps gnupg cava redshift rofi-pass
-        $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools editorconfig git nano micro tmux sqlite
-        $stow -d shells zsh
+        $sym base
+        $sym bin
+        $sym os/arch
+        $sym configs/og
+        $sym apps/gnupg
+        $sym apps/cava
+        $sym apps/redshift
+        $sym apps/rofi-pass
+        $sym dev-langs/python
+        $sym dev-langs/golang
+        $sym dev-langs/rust
+        $sym dev-tools/editorconfig
+        $sym dev-tools/git
+        $sym dev-tools/nano
+        $sym dev-tools/micro
+        $sym dev-tools/tmux
+        $sym shells/zsh
         ;;
     tatami)
-        $stow base
-        $stow --ignore='README\.md' --ignore='LICENSE' bin
-        $stow -d os alpine
-        $stow -d configs tatami
-        $stow -d apps gnupg
-        $stow -d dev-langs python golang rust ruby nodejs
-        $stow -d dev-tools editorconfig git nano micro tmux
-        $stow -d shells mksh
+        $sym base
+        $sym bin
+        $sym os/alpine
+        $sym configs/tatami
+        $sym apps/gnupg
+        $sym dev-langs/python
+        $sym dev-langs/golang
+        $sym dev-langs/rust
+        $sym dev-tools/editorconfig
+        $sym dev-tools/git
+        $sym dev-tools/nano
+        $sym dev-tools/micro
+        $sym dev-tools/tmux
+        $sym shells/mksh
         ;;
     work)
         true
-#        $stow base
-#        $stow --ignore='README\.md' --ignore='LICENSE' bin
-#        $stow -d os osx
-#        $stow -d configs work
-#        $stow -d dev-langs python
-#        $stow -d dev-tools editorconfig micro tmux
-#        $stow -d shells zsh
+#        $sym base
+#        $sym bin
+#        $sym os/osx
+#        $sym configs/work
+#        $sym dev-langs/python
+#        $sym dev-tools/editorconfig
+#        $sym dev-tools/micro
+#        $sym dev-tools/tmux
+#        $sym shells/zsh
         ;;
     *)
         usage
         ;;
     esac
 then
-    die "stow exited unsuccessfully; you probably have to move or delete the files stow is conflicting with."
+    die "sym exited unsuccessfully"
 fi
