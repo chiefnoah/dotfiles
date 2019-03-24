@@ -26,60 +26,62 @@ sym="sym -v"
 if
     ! case "$1" in
     base)
-        $sym base
-        $sym bin
-        $sym apps/gnupg
-        $sym shells/zsh
-        $sym shells/mksh
-        $sym shells/bash
-        ;;
+        $sym \
+            base        \
+            bin         \
+            apps/gnupg  \
+            shells/zsh  \
+            shells/mksh \
+            shells/bash ;;
     og)
-        $sym base
-        $sym bin
-        $sym os/arch
-        $sym configs/og
-        $sym apps/gnupg
-        $sym apps/cava
-        $sym apps/redshift
-        $sym apps/rofi-pass
-        $sym dev-langs/python
-        $sym dev-langs/golang
-        $sym dev-langs/rust
-        $sym dev-tools/editorconfig
-        $sym dev-tools/git
-        $sym dev-tools/nano
-        $sym dev-tools/micro
-        $sym dev-tools/tmux
-        $sym shells/zsh
-        ;;
+        $sym \
+            base                    \
+            bin                     \
+            os/arch                 \
+            configs/og              \
+            apps/gnupg              \
+            apps/cava               \
+            apps/redshift           \
+            apps/rofi-pass          \
+            dev-langs/python        \
+            dev-langs/golang        \
+            dev-langs/rust          \
+            dev-tools/editorconfig  \
+            dev-tools/git           \
+            dev-tools/nano          \
+            dev-tools/micro         \
+            dev-tools/tmux          \
+            shells/zsh              ;;
     tatami)
-        $sym base
-        $sym bin
-        $sym os/alpine
-        $sym configs/tatami
-        $sym apps/gnupg
-        $sym dev-langs/python
-        $sym dev-langs/golang
-        $sym dev-langs/rust
-        $sym dev-tools/editorconfig
-        $sym dev-tools/git
-        $sym dev-tools/nano
-        $sym dev-tools/micro
-        $sym dev-tools/tmux
-        $sym shells/mksh
-        ;;
+        $sym \
+            base                    \
+            bin                     \
+            os/alpine               \
+            configs/tatami          \
+            apps/gnupg              \
+            dev-langs/python        \
+            dev-langs/golang        \
+            dev-langs/rust          \
+            dev-tools/editorconfig  \
+            dev-tools/git           \
+            dev-tools/nano          \
+            dev-tools/micro         \
+            dev-tools/tmux          \
+            shells/mksh             ;;
     work)
-        true
-#        $sym base
-#        $sym bin
-#        $sym os/osx
-#        $sym configs/work
-#        $sym dev-langs/python
-#        $sym dev-tools/editorconfig
-#        $sym dev-tools/micro
-#        $sym dev-tools/tmux
-#        $sym shells/zsh
-        ;;
+        true ;;
+#        $sym \
+#            base                    \
+#            bin                     \
+#            os/osx                  \
+#            configs/work            \
+#            dev-langs/python        \
+#            dev-tools/editorconfig  \
+#            dev-tools/git           \
+#            dev-tools/nano          \
+#            dev-tools/micro         \
+#            dev-tools/tmux          \
+#            shells/zsh             ;;
     *)
         usage
         ;;
