@@ -22,12 +22,13 @@ user_pref("dom.storage.enabled", true);  // DOM storage used by supercookies, bu
 user_pref("browser.display.use_document_fonts", 1);  // i'll just disable fonts selectively per-domain in uBlock
 user_pref("dom.event.clipboardevents.enabled", true);  // breaks google docs + fb messenger "could not display composer"
 
+// disable DNS caching because I leave that to my local resolver
+user_pref("network.dnsCacheEntries", 0);
+user_pref("network.dnsCacheExpiration", 0);
+
 // perf: disable smooth scroll, which eats a non-trivial amount of CPU,
 // especially if OpenGL OMTC is enabled via layers.acceleration.force-enabled
 user_pref("general.smoothScroll", false);
-
-// security: DNS over SOCKS proxy
-user_pref("network.proxy.socks_remote_dns", true);
 
 // perf: disable service workers, i have no need for them
 user_pref("dom.serviceWorkers.enabled", false);
