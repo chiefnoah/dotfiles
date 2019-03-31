@@ -36,7 +36,7 @@ if
         $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d os arch
         $stow -d configs og
-        $stow -d apps gnupg cava redshift rofi-pass irssi
+        $stow -d apps gnupg cava redshift rofi-pass irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite
         $stow -d shells zsh
@@ -46,7 +46,7 @@ if
         $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d os alpine
         $stow -d configs tatami
-        $stow -d apps gnupg irssi
+        $stow -d apps gnupg irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux
         $stow -d shells mksh

@@ -1,0 +1,21 @@
+# defaults unsetting to override later
+zoom_in
+zoom_out
+scroll_up
+scroll_down
+scroll_right
+scroll_left
+next_img
+prev_img
+delete
+
+# custom key mappings (x11 keysym names)
+zoom_in plus
+zoom_out minus
+scroll_up Down
+scroll_down Up
+scroll_left Right
+scroll_right Left Prior
+next_img space Return Next
+prev_img BackSpace
+delete Delete
