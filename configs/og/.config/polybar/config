@@ -1,23 +1,7 @@
 [colors]
-bg = ${xrdb:color0}
-lbg = ${xrdb:color1}
-bg2 = ${xrdb:color2}
-lbg2 = ${xrdb:color3}
-idk1 = ${xrdb:color4}
-idk2 = ${xrdb:color5}
-idk3 = ${xrdb:color6}
+background = ${xrdb:color0}
+foreground = ${xrdb:color15}
 highlight = ${xrdb:color7}
-primary = ${xrdb:color8}
-warn = ${xrdb:color9}
-executable = ${xrdb:color10}
-secondary = ${xrdb:color11}
-directory = ${xrdb:color12}
-idk4 = ${xrdb:color13}
-symlink = ${xrdb:color14}
-text = ${xrdb:color15}
-
-background = ${colors.bg}
-foreground = ${colors.text}
 red = #ff0000
 yellow = #ffff00
 green = #00ff00
@@ -38,7 +22,6 @@ font-2 = "unifont:size=10;2"
 font-3 = "Source Han Sans:size=10;2"
 
 modules-left = bspwm
-modules-center = xwindow
 modules-right = network memory cpu date
 
 
@@ -57,23 +40,14 @@ font-2 = "unifont:size=10;2"
 font-3 = "Source Han Sans:size=10;2"
 
 tray-position = left
-# modules-center = mpdcurrentsong
-modules-right = volume filesystem battery
-
-
-[module/xwindow]
-type = internal/xwindow
-
-label = %title%
-label-maxlen = 60
+modules-right = filesystem battery
 
 
 [module/bspwm]
 type = internal/bspwm
-
 label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = ${colors.highlight}
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.foreground}
 label-focused-padding = 1
 
 label-empty = %index%
@@ -81,11 +55,11 @@ label-empty-foreground = ${colors.foreground}
 label-empty-padding = 1
 
 label-occupied = %index%
-label-occupied-foreground = ${colors.background}
-label-occupied-background = ${colors.text}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-background = ${colors.background}
 label-occupied-padding = 1
 
-label-urgent = %index%!
+label-urgent = %index%
 label-urgent-foreground = #ffffff
 label-urgent-background = ${colors.red}
 label-urgent-padding = 1
@@ -93,7 +67,7 @@ label-urgent-padding = 1
 
 [module/filesystem]
 type = internal/fs
-interval = 5
+interval = 30
 fixed-values = true
 
 format-mounted = <label-mounted>
@@ -101,12 +75,6 @@ format-mounted-padding = 1
 
 mount-0 = /
 label-mounted =  %used% / %total%
-
-
-[module/mpdcurrentsong]
-type = custom/script
-exec = mpc current
-interval = 1
 
 
 [module/cpu]
@@ -134,56 +102,31 @@ label = %percentage_used%%
 [module/network]
 type = internal/network
 interface = wlp2s0
-interval = 1
+interval = 15
 
-format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+format-connected = <label-connected>
 format-connected-padding = 1
+format-connected-prefix = " "
+label-disconnected = disconnected
 format-disconnected = <label-disconnected>
 format-disconnected-padding = 1
 format-disconnected-prefix = " "
-
-label-connected = %essid%
-label-disconnected = disconnected
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
 
 
 [module/date]
 type = internal/date
 interval = 1
 
-format = <label>
-format-padding = 1
-
 date =  %m/%d %H:%M:%S
 label = %date%
 label-foreground = ${colors.foreground}
-
-
-[module/volume]
-type = internal/volume
-format-volume = <ramp-volume> <label-volume>
-format-volume-padding = 1
-format-muted = <ramp-volume> <label-muted>
-format-muted-padding = 1
-
-label-volume = %percentage%%
-label-muted = MUTED
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+format = <label>
+format-padding = 1
 
 
 [module/battery]
 type = internal/battery
-# ls -1 /sys/class/power_supply/
 adapter = AC
 battery = BAT0
 full-at = 98
@@ -215,4 +158,4 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-framerate = 750
+animation-charging-framerate = 1000
