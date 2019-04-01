@@ -1,0 +1,8 @@
+[global]
+    font = Hack 10
+    alignment = left
+    word_wrap = yes
+    geometry = "320x25-5+32"
+    separator_height = 0
+    padding = 4
+    horizontal_padding = 4

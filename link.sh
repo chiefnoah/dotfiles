@@ -10,7 +10,7 @@ USAGE: $0 PRESET [d]
 
 PRESETS:
 base        - base, bin, and interactive shell configs
-og          - Arch Linux "og" configs
+dd          - Arch Linux "dd" configs
 tatami      - Alpine Linux "tatami" configs
 work        - configs for work [currently: n/a]
 
@@ -31,11 +31,11 @@ if
         $stow -d apps gnupg
         $stow -d shells bash mksh zsh
         ;;
-    og)
+    dd)
         $stow base
         $stow --ignore='README\.md' --ignore='LICENSE' bin
         $stow -d os arch
-        $stow -d configs og
+        $stow -d configs dd
         $stow -d apps gnupg cava redshift rofi-pass irssi feh
         $stow -d dev-langs python golang rust ruby nodejs
         $stow -d dev-tools editorconfig git nano micro tmux sqlite

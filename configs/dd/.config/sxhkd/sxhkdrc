@@ -1,0 +1,76 @@
+super + Escape
+    pkill -USR1 -x sxhkd ;\
+    notify-send "[sxhkd] config reloaded" -t 1000 ;\
+    sh "${XDG_CONFIG_HOME}/bspwm/bspwmrc" ;\
+    notify-send "[bspwm] config reloaded" -t 1000
+
+ctrl + Return
+    urxvtc
+
+shift + Return
+    bspwm-draw-urxvt
+
+super + Return
+    rofi -show run
+
+super + alt + Return
+    rofi-pass
+
+ctrl + alt + Delete
+    systemctl suspend
+
+Print
+    mkdir -p "${HOME}/Screenshots" && \
+    maim "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 5 && \
+        notify-send "[maim] Screenshot saved." -t 1000
+
+shift + Print
+    mkdir -p "${HOME}/Screenshots" && \
+    maim -s "${HOME}/Screenshots/"$(date +%Y-%m-%d-%H-%M-%S)".png" --quality 10 && \
+        notify-send "[maim] Screenshot selection saved." -t 1000
+
+alt + Print
+    maim -s --quality 10 | xclip -selection clipboard -t image/png && \
+        notify-send "[maim] Screenshot selection saved to clipboard buffer." -t 1000
+
+XF86AudioMute
+    # note: to only toggle pulseaudio, pass -D pulse
+    amixer set Master toggle
+
+XF86Audio{LowerVolume,RaiseVolume}
+    amixer set Master 5%{-,+}
+
+XF86MonBrightness{Down,Up}
+    light -{U,A} 10
+    # xbacklight -{dec,inc} 10
+
+
+# BSPWM
+
+# close or kill
+super + {c,k}
+    bspc node -{c,k}
+
+# toggle tiled / monocle layout
+super + m
+    bspc desktop -l next
+
+# toggle node between floating and tiled
+super + {f,t}
+    bspc node -t {floating,tiled}
+
+# cycle through desktops
+super + {Left,Right}
+    bspc desktop -f {prev,next}
+
+# cycle through nodes
+super + alt + {Left,Right}
+    bspc node -f {prev,next}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# adjust window gap via mouse wheel
+super + button{4,5}
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5))
