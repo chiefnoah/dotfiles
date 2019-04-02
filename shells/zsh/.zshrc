@@ -1,5 +1,5 @@
 export XDG_CONFIG_HOME="${HOME}/.config"
-. "${XDG_CONFIG_HOME}/dotfiles-core/all"
+. "${XDG_CONFIG_HOME}/dotfiles/all"
 
 # prompt
 # need to redefine colors so zsh knows the control characters don't need to show up in terminal

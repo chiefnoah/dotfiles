@@ -1,5 +1,5 @@
 export XDG_CONFIG_HOME="${HOME}/.config"
-. "${XDG_CONFIG_HOME}/dotfiles-core/all"
+. "${XDG_CONFIG_HOME}/dotfiles/all"
 
 # prompt
 df_export_PS1_echo

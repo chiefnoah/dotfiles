@@ -1,19 +1,19 @@
 # source this file to apply all my dotfiles/configs for configuring a shell.
 
 # lib defines some useful df_* routines used by the rest of these files
-. "${XDG_CONFIG_HOME}/dotfiles-core/lib"
+. "${XDG_CONFIG_HOME}/dotfiles/lib"
 
-. "${XDG_CONFIG_HOME}/dotfiles-core/env"
-. "${XDG_CONFIG_HOME}/dotfiles-core/aliases"
-. "${XDG_CONFIG_HOME}/dotfiles-core/functions"
+. "${XDG_CONFIG_HOME}/dotfiles/env"
+. "${XDG_CONFIG_HOME}/dotfiles/aliases"
+. "${XDG_CONFIG_HOME}/dotfiles/functions"
 
 # dev environments
 for f in "${XDG_CONFIG_HOME}/dotfiles/dev/"*; do
     . "$f"
 done
 
-. "${XDG_CONFIG_HOME}/dotfiles-core/os"
+. "${XDG_CONFIG_HOME}/dotfiles/os"
 
 if xhost > /dev/null 2>&1; then
-    . "${XDG_CONFIG_HOME}/dotfiles-core/x"
+    . "${XDG_CONFIG_HOME}/dotfiles/x"
 fi
