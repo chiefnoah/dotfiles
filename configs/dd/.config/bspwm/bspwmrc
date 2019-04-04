@@ -2,31 +2,21 @@
 
 bspc monitor -d I II III IV V
 
-bspc config border_width            1
-bspc config window_gap              0
-
-bspc config split_ratio             0.50
-bspc config top_padding             28
-bspc config bottom_padding          28
-bspc config left_padding            0
-bspc config right_padding           0
-
-# Use super + mouse to resize (left-click) and swap (right-click) nodes
+# super + mouse to resize (left-click) and swap (right-click) nodes
 bspc config pointer_modifier        mod4
 bspc config pointer_action1         resize_corner
 bspc config pointer_action3         move
 
-# Monocle mode imitates fullscreen but respects top/bottom paddings
+# monocle mode imitates fullscreen but respects top/bottom padding
 bspc config borderless_monocle      true
 bspc config gapless_monocle         true
 bspc config paddingless_monocle     true
 
-# Focus under pointer, but do not alter cursor position
+# focus under pointer, but do not alter cursor position
 bspc config focus_follows_pointer   true
 bspc config pointer_follows_focus   false
 
 # init/reload graphical programs
-
 xrdb -merge "${XDG_CONFIG_HOME}/dotfiles/colors/colors.Xresources"
 xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 
@@ -35,8 +25,7 @@ xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 bspc config normal_border_color "$color0"
 bspc config focused_border_color "$color15"
 
-pkill dunst
-dunst \
+pkill dunst; dunst \
     -lb "$color0"  \
     -nb "$color0"  \
     -cb "#ff0000"  \
@@ -45,6 +34,4 @@ dunst \
     -cf "#000000"  \
     -nf "$color15" &
 
-pkill polybar
-polybar top &
-polybar bottom &
+pkill polybar; polybar bar &
