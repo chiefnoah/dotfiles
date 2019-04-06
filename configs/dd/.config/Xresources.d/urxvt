@@ -1,7 +1,6 @@
 URxvt*termName: rxvt
 
 ! appearance
-! NOTE: depth and true transparency is set by wal -a in wal-set.
 URxvt.letterSpace: -1
 URxvt.internalBorder: 25
 URxvt.font: xft:Hack:size=11
