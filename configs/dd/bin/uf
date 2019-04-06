@@ -1,0 +1,64 @@
+#!/usr/bin/env sh
+
+# based on jschx/ufetch
+
+die () { printf %s\\n "ERROR: ${1}"; exit 1; }
+
+require () {
+    command -v "$1" >/dev/null 2>&1 || die "${1} not found and is required."
+}
+
+require tput
+
+ppid () { ps -o ppid= -p $PPID; }
+trim () { printf %s\\n "${1//[[:space:]]/}"; }
+# stolen from https://github.com/dylanaraps/neofetch
+mem () {
+    while IFS=":" read -r a b; do
+        case "$a" in
+            "MemTotal")
+                mem_used="$((mem_used+=${b/kB}))"; mem_total="${b/kB}" ;;
+            "Shmem")
+                mem_used="$((mem_used+=${b/kB}))" ;;
+            "MemFree" | "Buffers" | "Cached" | "SReclaimable")
+                mem_used="$((mem_used-=${b/kB}))" ;;
+        esac
+    done < /proc/meminfo
+    mem_used="$((mem_used / 1024))"
+    mem_total="$((mem_total / 1024))"
+    printf %s\\n "${mem_used} MiB / ${mem_total} MiB"
+}
+
+# info
+host="$(hostname)"
+dist='Arch Linux'
+kernel="$(uname -sr)"
+packages="$(pacman -Q | wc -l)"
+term="$(cat /proc/$(trim "$(ppid)")/comm)"
+shell="$(basename "$SHELL")"
+wm="$(tail -n 1 "${HOME}/.xinitrc" | awk '{print $2}')"
+memory="$(mem)"
+
+# colors
+bold="$(tput bold)"
+red="$(tput setaf 1)"
+blue="$(tput setaf 4)"
+white="$(tput setaf 7)"
+reset="$(tput sgr0)"
+
+lc="${reset}${bold}${blue}"  # label color
+ic="${reset}${bold}${white}" # item color
+c0="${reset}${bold}${blue}"
+
+cat <<EOF
+
+${reset}${bold}${white}${USER}${reset}@${bold}${red}${host}${reset}
+${c0}${lc}dist     ${ic}${dist}${reset}
+${c0}${lc}kernel   ${ic}${kernel}${reset}
+${c0}${lc}pkg      ${ic}${packages}${reset}
+${c0}${lc}term     ${ic}${term}${reset}
+${c0}${lc}shell    ${ic}${shell}${reset}
+${c0}${lc}wm       ${ic}${wm}${reset}
+${c0}${lc}mem      ${ic}${memory}${reset}
+
+EOF
