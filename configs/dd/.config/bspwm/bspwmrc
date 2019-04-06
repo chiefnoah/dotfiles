@@ -2,6 +2,8 @@
 
 bspc monitor -d I II III IV V
 
+bspc config border_width            2
+
 # super + mouse to resize (left-click) and swap (right-click) nodes
 bspc config pointer_modifier        mod4
 bspc config pointer_action1         resize_corner
@@ -22,7 +24,7 @@ xrdb -merge "${XDG_CONFIG_HOME}/Xresources.d/all"
 
 . "${XDG_CONFIG_HOME}/dotfiles/colors/colors.sh"
 
-bspc config normal_border_color "$color0"
+bspc config normal_border_color "#777777"
 bspc config focused_border_color "$color15"
 
 pkill dunst; dunst \

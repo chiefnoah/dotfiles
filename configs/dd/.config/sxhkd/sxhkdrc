@@ -77,3 +77,9 @@ super + {_,shift + }{1-9,0}
 # adjust window gap via mouse wheel
 super + button{4,5}
     bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5))
+
+super + b
+    bspc config border_width 0
+
+super + alt + b
+    bspc config border_width 2
