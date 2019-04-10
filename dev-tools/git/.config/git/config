@@ -3,15 +3,6 @@
     email = josh@jrl.ninja
     signingkey = 846B322709634596!
 
-[gpg]
-    program = gpg2
-
-[commit]
-    gpgSign = true
-
-[tag]
-    forceSignAnnotated = true
-
 [url "git@github.com:"]
     insteadOf = https://github.com/
 
@@ -30,7 +21,6 @@
     stat = show --format=fuller --show-signature --stat
     peek = show --format=fuller --show-signature HEAD
     unstage = reset --
-    resign = rebase --committer-date-is-author-date --exec 'git commit --amend --reset-author --no-edit -n -S' -i
 
 [push]
     default = current

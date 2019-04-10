@@ -70,7 +70,6 @@ alias gaa='git add --all'
 alias gs='git status -sb -uall'
 alias gcm='git commit -S -m'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>'"
-alias gll="git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d %C(bold white)%s%Creset %Cgreen%ar %Cblue%an <%ae>%Creset %GK (%G?)'"
 alias gp='git push'
 alias gb='git branch -vv --all'
 alias master='git checkout master'
